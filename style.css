@@ -2,7 +2,8 @@ html, body {
     margin: 0px;
 }
 
-video {
+
+.poster {
     position: absolute;
     top: 0;
     left: 0;
@@ -11,7 +12,28 @@ video {
     width: 100%;
 }
 
-.videoWrapper {
+.posterVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+#posterVideoOne {
+    display: none;
+}
+
+#indexPoster {
+    display: block;
+}
+
+#posterImgOne {
+    display: none;
+}
+
+.posterWrapper {
     position: relative;
     width: 100vw;
     height: 100vh;

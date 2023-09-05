@@ -4,12 +4,16 @@
  * @author John Den Hartog
  */
 const init = () => {
-    console.log("artifacts.js init running")
-    document.querySelector("#exampleButton").addEventListener("click", buttonClick);
+    console.log("artifacts.js init running");
+    document.getElementById("exampleButton").addEventListener("click", indexButtonClick);
 }
 
-const buttonClick = () => {
-    console.log("example button clicked")
+const indexButtonClick = () => {
+    console.log("example button clicked");
+    const indexPoster = document.getElementById("indexPoster");
+    const posterVideoOne = document.getElementById("posterVideoOne");
+    indexPoster.style.display = "none";
+    posterVideoOne.style.display = "block";
 }
 
 window.onload = init;

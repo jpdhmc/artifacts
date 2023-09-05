@@ -8,12 +8,13 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="videoWrapper">
-        <video playsinline autoplay muted loop poster="img/poster.png">
+    <div class="posterWrapper">
+        <img src="img/poster.png" alt="initial poster image" id="indexPoster" class="poster">
+        <button type="button" id="exampleButton" class="exampleButton">Example button</button>
+        <video playsinline autoplay muted poster="img/poster.png" class="poster" id="posterVideoOne">
             <source src="img/testvid.mp4" type="video/webm">
             This error shouldn't happen. Update your browser.
         </video>
-        <button type="button" id="exampleButton" class="exampleButton">Example button</button>
     </div>
 </body>
 </html>
