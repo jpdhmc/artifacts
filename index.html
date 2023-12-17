@@ -3,18 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="John Den Hartog">
     <title>DH Artifacts</title>
-    <script src="artifacts.js" charset="utf-8"></script>
-    <link rel="stylesheet" href="style.css">
+    <script src="js/artifacts.js" charset="utf-8"></script>
+    <script src="js/includeHTML.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- Include script -->
+    <script src="js/includeHTML.js"></script>
 </head>
 <body>
-    <div class="posterWrapper">
-        <img src="img/poster.png" alt="initial poster image" id="indexPoster" class="poster">
-        <button type="button" id="exampleButton" class="exampleButton">Example button</button>
-        <video playsinline autoplay muted poster="img/poster.png" class="poster" id="posterVideoOne">
-            <source src="img/testvid.mp4" type="video/webm">
-            This error shouldn't happen. Update your browser.
-        </video>
-    </div>
+    <div data-my-include-html="include\header.html"></div>
+    <main>
+        <div class="posterWrapper">
+            <img src="img/poster.png" alt="initial poster image" id="indexPoster" class="poster">
+            <button type="button" id="exampleButton" class="exampleButton">Transition Example</button>
+            <video playsinline autoplay muted poster="img/poster.png" class="poster" id="posterVideoOne">
+                <source src="img/testvid.mp4" type="video/webm">
+                This error shouldn't happen. Your browser is out of date or doesn't support the video element.
+            </video>
+        </div>
+    </main>
+    <script>includeHTML();</script>
 </body>
 </html>
