@@ -10,9 +10,10 @@ const init = () => {
     // cant use foreach because its an htmlcollection not an array
     for (let i = 0; i < posters.length; i++) {
         let posterImg = posters[i].querySelector("img");
-        posters[i].addEventListener('mouseover', () => {posterImg.style.transform = "scale(1.1,1.1)"});
+        posters[i].addEventListener('mouseover', () => {posterImg.style.transform = "scale(1.05,1.05)"});
         posters[i].addEventListener('mouseout', () => {posterImg.style.transform = "scale(1,1)"});
-        posters[i].addEventListener('mousemove', (e) => {posterImg.style.transform-origin = ((e.pageX - posters[i].offsetLeft) / posters[i].offsetWidth) * 100})
+        posters[i].addEventListener('mousemove', (e) => {posterImg.style.transformOrigin = ((e.pageX - posters[i].offsetLeft) / posters[i].offsetWidth) * 100 + "% "
+                                                                                            + ((e.pageY - posters[i].offsetTop) / posters[i].offsetHeight) * 100 + "%"});
     }
 }
 
