@@ -6,7 +6,7 @@
 const init = () => {
     console.log("artifacts.js init running");
     document.getElementById("exampleButton").addEventListener("click", indexButtonClick);
-    handlePosterImages();
+    handlePosterMovers();
 }
 
 const indexButtonClick = () => {
@@ -17,20 +17,21 @@ const indexButtonClick = () => {
     posterVideoOne.style.display = "block";
 }
 
-// Poster image background zooming and panning
-const handlePosterImages = () => {
+// Poster interactive zooming and panning
+const handlePosterMovers = () => {
     const posters = document.getElementsByClassName("posterWrapper");
+
     for (let i = 0; i < posters.length; i++) {
-        let posterImg = posters[i].querySelector("img");
-        posters[i].addEventListener('mouseover', () => {posterImg.style.transform = "scale(1.05,1.05)"});
-        posters[i].addEventListener('mouseout', () => {posterImg.style.transform = "scale(1,1)"});
+        let posterMover = posters[i].querySelector(".posterMover");
+        posters[i].addEventListener('mouseover', () => {posterMover.style.transform = "scale(1.05,1.05)"});
+        posters[i].addEventListener('mouseout', () => {posterMover.style.transform = "scale(1,1)"});
 
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posters[i].addEventListener('mousemove', (e) => {posterImg.style.transformOrigin = calculateTransformOrigin(e, posters[i])})
+        posters[i].addEventListener('mousemove', (e) => {posterMover.style.transformOrigin = calculateTransformOrigin(e, posters[i])})
     }
 }
 
-// Calculate movement of elements based on relative mouse position, to be called on mousemove
+// Calculate transform of elements based on relative mouse position, to be called on mousemove
 const calculateTransformOrigin = (ev, element) => {
     let trOrigin = ((ev.pageX - element.offsetLeft) / element.offsetWidth) * 100 + "% "
     + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%"
