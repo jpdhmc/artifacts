@@ -20,15 +20,21 @@ const indexButtonClick = () => {
 // Poster image background zooming and panning
 const handlePosterImages = () => {
     const posters = document.getElementsByClassName("posterWrapper");
-    // Can't use foreach because it's an htmlcollection not an array
     for (let i = 0; i < posters.length; i++) {
         let posterImg = posters[i].querySelector("img");
         posters[i].addEventListener('mouseover', () => {posterImg.style.transform = "scale(1.05,1.05)"});
         posters[i].addEventListener('mouseout', () => {posterImg.style.transform = "scale(1,1)"});
+
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posters[i].addEventListener('mousemove', (e) => {posterImg.style.transformOrigin = ((e.pageX - posters[i].offsetLeft) / posters[i].offsetWidth) * 100 + "% "
-                                                                                            + ((e.pageY - posters[i].offsetTop) / posters[i].offsetHeight) * 100 + "%"});
+        posters[i].addEventListener('mousemove', (e) => {posterImg.style.transformOrigin = calculateTransformOrigin(e, posters[i])})
     }
+}
+
+// Calculate movement of elements based on relative mouse position, to be called on mousemove
+const calculateTransformOrigin = (ev, element) => {
+    let trOrigin = ((ev.pageX - element.offsetLeft) / element.offsetWidth) * 100 + "% "
+    + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%"
+    return trOrigin;
 }
 
 window.onload = init;
