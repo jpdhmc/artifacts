@@ -34,7 +34,8 @@ const requestFilenames = () => {
 }
 
 const handleFilenames = (fileText) => {
-    console.log(fileText);
+    let fileNames = fileText.split(" ");
+    console.log(fileNames);
 }
 
 // Poster interactive zooming and panning
