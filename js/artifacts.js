@@ -15,6 +15,26 @@ const indexButtonClick = () => {
     const posterVideoOne = document.getElementById("posterVideoOne");
     indexPoster.style.display = "none";
     posterVideoOne.style.display = "block";
+    requestFilenames();
+}
+
+const requestFilenames = () => {
+    let file = "include/asdf.txt"
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4) {
+            if (this.status == 200) {
+                handleFilenames(this.responseText);
+            }
+        }
+    }
+    xhttp.open("GET", file, true);
+    xhttp.send()
+}
+
+const handleFilenames = (fileText) => {
+    console.log(fileText);
 }
 
 // Poster interactive zooming and panning
