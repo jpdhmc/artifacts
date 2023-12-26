@@ -1,1 +1,1 @@
-one.jpg two.jpg three.jpg four.png five.jpg
+img/one.jpg img/two.jpg img/three.jpg img/four.png img/five.jpg

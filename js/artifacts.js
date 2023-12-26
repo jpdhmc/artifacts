@@ -36,6 +36,17 @@ const requestFilenames = () => {
 const handleFilenames = (fileText) => {
     let fileNames = fileText.split(" ");
     console.log(fileNames);
+    let imgDiv = document.getElementById("imgDiv");
+
+    fileNames.forEach(fileName => {
+        let newImg = document.createElement("img");
+        newImg.src = fileName;
+        imgDiv.appendChild(newImg);
+    });
+
+    newImg = document.createElement("img")
+    newImg.src = 
+    document.getElementById("imgDiv").appendChild(newImg);
 }
 
 // Poster interactive zooming and panning
