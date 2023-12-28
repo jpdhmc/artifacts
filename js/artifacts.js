@@ -13,8 +13,9 @@ const indexButtonClick = () => {
     console.log("example button clicked");
     const indexPoster = document.getElementById("indexPoster");
     const posterVideoOne = document.getElementById("posterVideoOne");
-    indexPoster.style.display = "none";
-    posterVideoOne.style.display = "block";
+    //indexPoster.style.display = "none";
+    document.getElementById("exampleButton").style.display = "none";
+    //posterVideoOne.style.display = "block";
     requestFilenames();
 }
 
@@ -41,12 +42,15 @@ const requestFilenames = () => {
 const handleFilenames = (fileText) => {
     let fileNames = fileText.split(" ");
     console.log(fileNames);
-    let imgDiv = document.getElementById("imgDiv");
+    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+    let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+    filmSlidesGalleryWrapper.style.display = "flex";
+    filmSlidesGallery.style.display = "block";
 
     fileNames.forEach(fileName => {
         let newImg = document.createElement("img");
         newImg.src = fileName;
-        imgDiv.appendChild(newImg);
+        filmSlidesGallery.appendChild(newImg);
     });
 }
 

@@ -2,7 +2,6 @@ html, body {
     margin: 0px;
 }
 
-
 .posterMover {
     position: absolute;
     top: 0;
@@ -43,4 +42,29 @@ html, body {
 
 #exampleButton {
     position: absolute;
+}
+
+.galleryWrapper {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+#filmSlidesGallery {
+    position: relative;
+    width: 50%;
+    height: 70%;
+    padding: 1em;
+    background-color: grey;
+    display: none;
+}
+
+#filmSlidesGallery img {
+    width: 15em;
+    height: 15em;
+    object-fit: cover;
 }
