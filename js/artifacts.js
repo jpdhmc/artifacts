@@ -18,6 +18,7 @@ const indexButtonClick = () => {
     requestFilenames();
 }
 
+// Use an xmlhttprequest to get a string containing the filenames from the server
 const requestFilenames = () => {
     let file = "include/asdf.txt"
 
@@ -26,6 +27,9 @@ const requestFilenames = () => {
         if (this.readyState == 4) {
             if (this.status == 200) {
                 handleFilenames(this.responseText);
+            } else if (this.status == 404) {
+                handleFilenames("error.png");
+                console.log("Document containing filenames was not found on server");
             }
         }
     }
@@ -33,6 +37,7 @@ const requestFilenames = () => {
     xhttp.send()
 }
 
+// Split the filenames string into an array and use it to populate the html DOM
 const handleFilenames = (fileText) => {
     let fileNames = fileText.split(" ");
     console.log(fileNames);
@@ -43,10 +48,6 @@ const handleFilenames = (fileText) => {
         newImg.src = fileName;
         imgDiv.appendChild(newImg);
     });
-
-    newImg = document.createElement("img")
-    newImg.src = 
-    document.getElementById("imgDiv").appendChild(newImg);
 }
 
 // Poster interactive zooming and panning
