@@ -45,7 +45,7 @@ const handleFilenames = (fileText) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
     filmSlidesGalleryWrapper.style.display = "flex";
-    filmSlidesGallery.style.display = "block";
+    filmSlidesGallery.style.display = "flex";
 
     fileNames.forEach(fileName => {
         let newImg = document.createElement("img");
