@@ -38,15 +38,17 @@ const requestFilenames = () => {
     xhttp.send()
 }
 
-// Split the filenames string into an array and use it to populate the html DOM
+// Split the filenames string into an array
 const handleFilenames = (fileText) => {
     let fileNames = fileText.split(" ");
     console.log(fileNames);
+}
+
+// Build and display the gallery
+const showGallery = (fileNames) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-    //filmSlidesGalleryWrapper.style.display = "flex";
     filmSlidesGalleryWrapper.style.transform = "scale(1)";
-    //filmSlidesGallery.style.display = "flex";
 
     fileNames.forEach(fileName => {
         let newImg = document.createElement("img");

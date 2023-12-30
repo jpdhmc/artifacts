@@ -59,7 +59,7 @@ html, body {
 #filmSlidesGallery {
     position: relative;
     width: 50%;
-    height: 70%;
+    height: 80%;
     padding: 1em;
     background-color: grey;
     display: flex;
