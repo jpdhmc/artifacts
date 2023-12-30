@@ -29,10 +29,10 @@ const requestFilenames = () => {
         let file = "include/asdf.txt"
 
         let xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function () {
-            if (this.readyState == 4) {
-                if (this.status == 200) {
-                    let fileNames = this.responseText.split(" ");
+        xhttp.onreadystatechange = () => {
+            if (xhttp.readyState == 4) {
+                if (xhttp.status == 200) {
+                    let fileNames = xhttp.responseText.split(" ");
                     resolve(fileNames);
                 } else {
                     reject(new Error("Request for file names failed"));
