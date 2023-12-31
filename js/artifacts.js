@@ -50,6 +50,17 @@ const showGallery = (fileNames) => {
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
     filmSlidesGalleryWrapper.style.transform = "scale(1)";
 
+    // Close/cleanup
+    window.onclick = (event) => {
+        if (event.target != filmSlidesGallery) {
+            filmSlidesGalleryWrapper.style.transform = "scale(0)";
+            while (filmSlidesGallery.firstChild) {
+                filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+            }
+            document.getElementById("exampleButton").style.display = "block";
+        }
+    }
+
     fileNames.forEach(fileName => {
         let newImg = document.createElement("img");
         newImg.src = fileName;
