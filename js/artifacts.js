@@ -52,7 +52,7 @@ const showGallery = (fileNames) => {
 
     // Close/cleanup
     window.onclick = (event) => {
-        if (event.target != filmSlidesGallery) {
+        if (!filmSlidesGallery.contains(event.target)) {
             filmSlidesGalleryWrapper.style.transform = "scale(0)";
             while (filmSlidesGallery.firstChild) {
                 filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
@@ -66,6 +66,14 @@ const showGallery = (fileNames) => {
         newImg.src = fileName;
         filmSlidesGallery.appendChild(newImg);
     });
+
+    // Navigation
+    document.getElementById("openBtn").onclick = (event) => {
+        document.getElementById("overlayNav").style.height = "100%";
+    }
+    document.getElementById("closeBtn").onclick = (event) => {
+        document.getElementById("overlayNav").style.height = "0%";
+    }
 }
 
 // Poster interactive zooming and panning
