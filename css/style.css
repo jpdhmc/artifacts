@@ -60,7 +60,7 @@ html, body {
     position: relative;
     width: 50%;
     height: 80%;
-    margin: 1em;
+    padding: 1em;
     background-color: grey;
     display: flex;
     flex-flow: row wrap;
@@ -84,32 +84,11 @@ html, body {
     border-radius: 4%;
 }
 
-.overlay {
-    height: 0%;
-    width: 100%;
-    position: relative;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    background-color: rgba(0,0,0, 0.9);
-    overflow-y: hidden;
-    transition: 0.5s;
-}
-
-.overlay-content {
-    position: relative;
-    top: 25%;
-    width: 100%;
-    text-align: center;
-    margin-top: 1em;
-}
-
-.overlay a {
-    display: block;
-}
-
-.overlay .closebtn {
-    position: absolute;
-    top: 1em;
-    right: 2em;
-}
+.tablink {
+    background-color: #555;
+    color: white;
+    border: none;
+    padding: 1em;
+    font-size: 24px;
+    width: 33.33%;
+  }

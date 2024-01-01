@@ -23,16 +23,18 @@ const indexButtonClick = () => {
     });
 }
 
-// Use an xmlhttprequest to get a string containing the filenames from the server
+// Use an xmlhttprequest to get a json object containing the files from the server
 const requestFilenames = () => {
     return new Promise((resolve, reject) => {
-        let file = "include/asdf.txt"
+        let file = "include/gallery.json"
 
         let xhttp = new XMLHttpRequest();
+        xhttp.responseType = "json";
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4) {
                 if (xhttp.status == 200) {
-                    let fileNames = xhttp.responseText.split(" ");
+                    let fileNames = xhttp.response;
+                    console.log(fileNames);
                     resolve(fileNames);
                 } else {
                     reject(new Error("Request for file names failed"));
@@ -61,19 +63,11 @@ const showGallery = (fileNames) => {
         }
     }
 
-    fileNames.forEach(fileName => {
+    fileNames.images.forEach(fileName => {
         let newImg = document.createElement("img");
-        newImg.src = fileName;
+        newImg.src = "img/" + fileName.filename;
         filmSlidesGallery.appendChild(newImg);
     });
-
-    // Navigation
-    document.getElementById("openBtn").onclick = (event) => {
-        document.getElementById("overlayNav").style.height = "100%";
-    }
-    document.getElementById("closeBtn").onclick = (event) => {
-        document.getElementById("overlayNav").style.height = "0%";
-    }
 }
 
 // Poster interactive zooming and panning

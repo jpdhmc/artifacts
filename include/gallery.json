@@ -1,0 +1,16 @@
+{
+    "images": [
+        {
+            "filename": "one.jpg",
+            "audiofilename": null,
+            "description": "A cool image!",
+            "category": ["dog", "animal"]
+        },
+        {
+            "filename": "two.jpg",
+            "audiofilename": null,
+            "description": "Another cool image!",
+            "category": ["dog", "animal"]
+        }
+    ]
+}
