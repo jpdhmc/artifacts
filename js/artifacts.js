@@ -16,15 +16,15 @@ const indexButtonClick = () => {
     document.getElementById("exampleButton").style.display = "none";
     //posterVideoOne.style.display = "block";
 
-    requestFilenames().then(fileNames => {
-        showGallery(fileNames);
+    requestGalleryFiles().then(galleryFiles => {
+        showGallery(galleryFiles);
     }).catch(error => {
         console.error("Error: ", error);
     });
 }
 
 // Use an xmlhttprequest to get a json object containing the files from the server
-const requestFilenames = () => {
+const requestGalleryFiles = () => {
     return new Promise((resolve, reject) => {
         let file = "include/gallery.json"
 
@@ -33,9 +33,9 @@ const requestFilenames = () => {
         xhttp.onreadystatechange = () => {
             if (xhttp.readyState == 4) {
                 if (xhttp.status == 200) {
-                    let fileNames = xhttp.response;
-                    console.log(fileNames);
-                    resolve(fileNames);
+                    let galleryFiles = xhttp.response;
+                    console.log(galleryFiles);
+                    resolve(galleryFiles);
                 } else {
                     reject(new Error("Request for file names failed"));
                 }
@@ -47,7 +47,7 @@ const requestFilenames = () => {
 }
 
 // Build and display the gallery
-const showGallery = (fileNames) => {
+const showGallery = (galleryFiles) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
     filmSlidesGalleryWrapper.style.transform = "scale(1)";
@@ -63,9 +63,9 @@ const showGallery = (fileNames) => {
         }
     }
 
-    fileNames.images.forEach(fileName => {
+    galleryFiles.images.forEach(galleryFile => {
         let newImg = document.createElement("img");
-        newImg.src = "img/" + fileName.filename;
+        newImg.src = "img/" + galleryFile.filename;
         filmSlidesGallery.appendChild(newImg);
     });
 }
