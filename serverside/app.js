@@ -5,8 +5,6 @@
  */
 const fs = require("fs");
 const path = require("path");
-const express = require("express");
-const app = express();
 
 const imgFolderPath = "../img";
 const outputPath = "../include/imgFiles.json"
@@ -36,13 +34,7 @@ const traverseDirectory = (directory) => {
     });
 }
 
-app.get('/update', (req, res) => {
-    filesArray = [];
-    traverseDirectory(imgFolderPath);
-    fs.writeFileSync(outputPath, JSON.stringify(filesArray, null, 4));
-    res.end();
-})
-
-app.listen(3000, () => {
-    console.log("listening");
-})
+console.log("Building a new JSON file.");
+traverseDirectory(imgFolderPath);
+fs.writeFileSync(outputPath, JSON.stringify(filesArray, null, 4));
+process.exit();
