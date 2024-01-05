@@ -40,7 +40,7 @@ app.get('/update', (req, res) => {
     filesArray = [];
     traverseDirectory(imgFolderPath);
     fs.writeFileSync(outputPath, JSON.stringify(filesArray, null, 4));
-    res.send("Hello world");
+    res.end();
 })
 
 app.listen(3000, () => {

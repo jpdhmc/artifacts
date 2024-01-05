@@ -1,0 +1,38 @@
+[
+    {
+        "name": "four.jpg",
+        "category": "categoryOne"
+    },
+    {
+        "name": "one.jpg",
+        "category": "categoryOne"
+    },
+    {
+        "name": "endframe.png",
+        "category": ""
+    },
+    {
+        "name": "error.png",
+        "category": ""
+    },
+    {
+        "name": "five.jpg",
+        "category": ""
+    },
+    {
+        "name": "poster.png",
+        "category": ""
+    },
+    {
+        "name": "testvid.mp4",
+        "category": ""
+    },
+    {
+        "name": "three.jpg",
+        "category": ""
+    },
+    {
+        "name": "two.jpg",
+        "category": ""
+    }
+]
