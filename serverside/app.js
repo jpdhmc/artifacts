@@ -1,12 +1,12 @@
 /**
- * Server-side code
+ * Server-side nodejs code to build a json file based on the directory structure of the server
  * 
  * @author John Den Hartog
  */
 const fs = require("fs");
 const path = require("path");
 
-const imgFolderPath = "../img";
+const imgFolderPath = "../img/gallery";
 const outputPath = "../include/imgFiles.json"
 
 let filesArray = [];
@@ -36,5 +36,5 @@ const traverseDirectory = (directory) => {
 
 console.log("Building a new JSON file.");
 traverseDirectory(imgFolderPath);
-fs.writeFileSync(outputPath, JSON.stringify(filesArray, null, 4));
+fs.writeFileSync(outputPath, JSON.stringify({images: filesArray}, null, 4));
 process.exit();
