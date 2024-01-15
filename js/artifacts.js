@@ -16,41 +16,26 @@ const indexButtonClick = () => {
     document.getElementById("exampleButton").style.display = "none";
     //posterVideoOne.style.display = "block";
 
-    requestGalleryFiles().then(galleryFiles => {
-        showGallery(galleryFiles);
-    }).catch(error => {
-        console.error("Error: ", error);
-    });
-}
-
-// Use an xmlhttprequest to get a json object containing the files from the server
-const requestGalleryFiles = () => {
-    return new Promise((resolve, reject) => {
-        let file = "include/gallery.json"
-
-        let xhttp = new XMLHttpRequest();
-        xhttp.responseType = "json";
-        xhttp.onreadystatechange = () => {
-            if (xhttp.readyState == 4) {
-                if (xhttp.status == 200) {
-                    let galleryFiles = xhttp.response;
-                    console.log(galleryFiles);
-                    resolve(galleryFiles);
-                } else {
-                    reject(new Error("Request for file names failed"));
-                }
-            }
-        }
-        xhttp.open("GET", file, true);
-        xhttp.send()
-    });
+    showGallery();
 }
 
 // Build and display the gallery
-const showGallery = (galleryFiles) => {
+const showGallery = () => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-    filmSlidesGalleryWrapper.style.transform = "scale(1)";
+    
+    fetch("../include/imgFiles.json")
+    .then((response) => {
+        return response.json();
+    }).then(galleryJson => {
+        filmSlidesGalleryWrapper.style.transform = "scale(1)";
+        galleryJson.images.forEach(galleryJson => {
+            let newImg = document.createElement("img");
+            newImg.src = "img/gallery/" + galleryJson.category + "/" + galleryJson.name;
+            filmSlidesGallery.appendChild(newImg);
+        });
+    })
+    
 
     // Close/cleanup
     window.onclick = (event) => {
@@ -63,11 +48,7 @@ const showGallery = (galleryFiles) => {
         }
     }
 
-    galleryFiles.images.forEach(galleryFile => {
-        let newImg = document.createElement("img");
-        newImg.src = "img/" + galleryFile.filename;
-        filmSlidesGallery.appendChild(newImg);
-    });
+    
 }
 
 // Poster interactive zooming and panning
