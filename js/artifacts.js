@@ -23,15 +23,26 @@ const indexButtonClick = () => {
 const showGallery = () => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+    categoryList = [];
     
     fetch("../include/imgFiles.json")
     .then((response) => {
         return response.json();
     }).then(galleryJson => {
         filmSlidesGalleryWrapper.style.transform = "scale(1)";
-        galleryJson.images.forEach(galleryJson => {
+        galleryJson.images.forEach(galleryObject => {
+            imgName = galleryObject.name;
+            imgCategory = galleryObject.category;
+
+            // Build gallery tabs
+            if (!categoryList.includes(imgCategory)) {
+                categoryList.push(imgCategory)
+            }
+            console.log(categoryList);
+
+            // Populate gallery with images
             let newImg = document.createElement("img");
-            newImg.src = "img/gallery/" + galleryJson.category + "/" + galleryJson.name;
+            newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
             filmSlidesGallery.appendChild(newImg);
         });
     })
