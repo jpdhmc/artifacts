@@ -21,14 +21,15 @@ const indexButtonClick = () => {
 
 // Build and display the gallery
 const showGallery = () => {
-    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-    let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-    categoryList = [];
-    
     fetch("../include/imgFiles.json")
     .then((response) => {
         return response.json();
     }).then(galleryJson => {
+        let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+        let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+        let galleryButtons = document.getElementById("galleryButtons");
+        categoryList = [];
+
         filmSlidesGalleryWrapper.style.transform = "scale(1)";
         galleryJson.images.forEach(galleryObject => {
             imgName = galleryObject.name;
@@ -36,9 +37,13 @@ const showGallery = () => {
 
             // Build gallery tabs
             if (!categoryList.includes(imgCategory)) {
-                categoryList.push(imgCategory)
+                categoryList.push(imgCategory);
+                let newCategory = document.createElement("button");
+                newCategory.className = "tabButton";
+                newCategory.id = imgCategory;
+                newCategory.innerHTML = imgCategory;
+                galleryButtons.appendChild(newCategory);
             }
-            console.log(categoryList);
 
             // Populate gallery with images
             let newImg = document.createElement("img");
