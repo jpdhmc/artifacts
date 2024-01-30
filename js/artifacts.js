@@ -21,23 +21,26 @@ const indexButtonClick = () => {
 
 // Build and display the gallery
 const showGallery = () => {
+    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+    let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+
     fetch("../include/imgFiles.json")
     .then((response) => {
         return response.json();
     }).then(galleryJson => {
-        let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-        let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-        let galleryButtons = document.getElementById("galleryButtons");
-        categoryList = [];
+        let galleryButtons = document.createElement("div");
+        filmSlidesGallery.appendChild(galleryButtons);
+        let categoryList = [];
 
         filmSlidesGalleryWrapper.style.transform = "scale(1)";
         galleryJson.images.forEach(galleryObject => {
-            imgName = galleryObject.name;
-            imgCategory = galleryObject.category;
+            let imgName = galleryObject.name;
+            let imgCategory = galleryObject.category;
 
             // Build gallery tabs
             if (!categoryList.includes(imgCategory)) {
                 categoryList.push(imgCategory);
+                galleryButtons.style.gridTemplateColumns += "auto ";
                 let newCategory = document.createElement("button");
                 newCategory.className = "tabButton";
                 newCategory.id = imgCategory;
@@ -50,19 +53,19 @@ const showGallery = () => {
             newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
             filmSlidesGallery.appendChild(newImg);
         });
-    })
-    
 
-    // Close/cleanup
-    window.onclick = (event) => {
-        if (!filmSlidesGallery.contains(event.target)) {
-            filmSlidesGalleryWrapper.style.transform = "scale(0)";
-            while (filmSlidesGallery.firstChild) {
-                filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+        // Close/cleanup
+        window.onclick = (event) => {
+            if (!filmSlidesGallery.contains(event.target)) {
+                filmSlidesGalleryWrapper.style.transform = "scale(0)";
+                while (filmSlidesGallery.firstChild) {
+                    filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+                }
+                document.getElementById("exampleButton").style.display = "block";
             }
-            document.getElementById("exampleButton").style.display = "block";
         }
-    }
+    });
+    
 
     
 }
