@@ -29,6 +29,8 @@ const showGallery = () => {
         return response.json();
     }).then(galleryJson => {
         let galleryButtons = document.createElement("div");
+        let columnsStyle = "";
+        galleryButtons.className = "galleryButtons";
         filmSlidesGallery.appendChild(galleryButtons);
         let categoryList = [];
 
@@ -40,8 +42,9 @@ const showGallery = () => {
             // Build gallery tabs
             if (!categoryList.includes(imgCategory)) {
                 categoryList.push(imgCategory);
-                galleryButtons.style.gridTemplateColumns += "auto ";
-                galleryButtons.className = "galleryButtons";
+                columnsStyle += "auto ";
+                galleryButtons.style.gridTemplateColumns = columnsStyle;
+                console.log(galleryButtons.style.gridTemplateColumns);
                 let newCategory = document.createElement("button");
                 newCategory.className = "tabButton";
                 newCategory.id = imgCategory;
