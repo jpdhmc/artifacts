@@ -41,6 +41,7 @@ const showGallery = () => {
             if (!categoryList.includes(imgCategory)) {
                 categoryList.push(imgCategory);
                 galleryButtons.style.gridTemplateColumns += "auto ";
+                galleryButtons.className = "galleryButtons";
                 let newCategory = document.createElement("button");
                 newCategory.className = "tabButton";
                 newCategory.id = imgCategory;
