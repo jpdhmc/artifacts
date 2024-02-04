@@ -30,26 +30,26 @@ const showGallery = () => {
     }).then(galleryJson => {
         let galleryButtons = document.createElement("div");
         let columnsStyle = "";
+        let categoryList = [];
         galleryButtons.className = "galleryButtons";
         filmSlidesGallery.appendChild(galleryButtons);
-        let categoryList = [];
-
         filmSlidesGalleryWrapper.style.transform = "scale(1)";
+        
         galleryJson.images.forEach(galleryObject => {
             let imgName = galleryObject.name;
             let imgCategory = galleryObject.category;
 
-            // Build gallery tabs
+            // Build category tabs
             if (!categoryList.includes(imgCategory)) {
                 categoryList.push(imgCategory);
                 columnsStyle += "auto ";
                 galleryButtons.style.gridTemplateColumns = columnsStyle;
-                console.log(galleryButtons.style.gridTemplateColumns);
                 let newCategory = document.createElement("button");
                 newCategory.className = "tabButton";
                 newCategory.id = imgCategory;
                 newCategory.innerHTML = imgCategory;
                 galleryButtons.appendChild(newCategory);
+                newCategory.addEventListener("click", () => {console.log(newCategory.id)});
             }
 
             // Populate gallery with images
