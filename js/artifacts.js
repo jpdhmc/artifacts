@@ -39,6 +39,11 @@ const showGallery = () => {
             let imgName = galleryObject.name;
             let imgCategory = galleryObject.category;
 
+            // Populate gallery with all images
+            let newImg = document.createElement("img");
+            newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
+            filmSlidesGallery.appendChild(newImg);
+
             // Build category tabs
             if (!categoryList.includes(imgCategory)) {
                 categoryList.push(imgCategory);
@@ -49,13 +54,10 @@ const showGallery = () => {
                 newCategory.id = imgCategory;
                 newCategory.innerHTML = imgCategory;
                 galleryButtons.appendChild(newCategory);
-                newCategory.addEventListener("click", () => {console.log(newCategory.id)});
+                newCategory.addEventListener("click", () => {
+                    filterGallery(newCategory.id);
+                });
             }
-
-            // Populate gallery with images
-            let newImg = document.createElement("img");
-            newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
-            filmSlidesGallery.appendChild(newImg);
         });
 
         // Close/cleanup
@@ -69,9 +71,18 @@ const showGallery = () => {
             }
         }
     });
-    
+}
 
-    
+// Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
+const filterGallery = (filterCategory) => {
+    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+    let imgs = filmSlidesGallery.getElementsByTagName("img");
+    console.log(imgs.length);
+    for (let i = 0; i < imgs.length; i++) {
+        let currentImg = imgs[i];
+        console.log("Deleting: " + currentImg.src);
+        filmSlidesGallery.removeChild(currentImg);
+    }
 }
 
 // Poster interactive zooming and panning
