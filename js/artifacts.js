@@ -42,6 +42,7 @@ const showGallery = () => {
             // Populate gallery with all images
             let newImg = document.createElement("img");
             newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
+            newImg.dataset.category = imgCategory;
             filmSlidesGallery.appendChild(newImg);
 
             // Build category tabs
@@ -70,7 +71,7 @@ const showGallery = () => {
                 document.getElementById("exampleButton").style.display = "block";
             }
         }
-    });
+    }).catch(err => console.error("Error: " + err));
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
@@ -79,8 +80,11 @@ const filterGallery = (filterCategory) => {
     let imgs = Array.from(filmSlidesGallery.getElementsByTagName("img"));
     for (let i = 0; i < imgs.length; i++) {
         let currentImg = imgs[i];
-        console.log("Deleting: " + currentImg.src);
-        filmSlidesGallery.removeChild(currentImg);
+        if (currentImg.dataset.category != filterCategory) {
+            currentImg.style.display = "none";
+        } else {
+            currentImg.style.display = "inline";
+        }
     }
 }
 
