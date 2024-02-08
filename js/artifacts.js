@@ -76,8 +76,7 @@ const showGallery = () => {
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-    let imgs = filmSlidesGallery.getElementsByTagName("img");
-    console.log(imgs.length);
+    let imgs = Array.from(filmSlidesGallery.getElementsByTagName("img"));
     for (let i = 0; i < imgs.length; i++) {
         let currentImg = imgs[i];
         console.log("Deleting: " + currentImg.src);
