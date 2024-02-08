@@ -34,6 +34,17 @@ const showGallery = () => {
         galleryButtons.className = "galleryButtons";
         filmSlidesGallery.appendChild(galleryButtons);
         filmSlidesGalleryWrapper.style.transform = "scale(1)";
+
+        // Create the button for removing gallery filtering
+        let allCategory = document.createElement("button");
+        allCategory.className = "tabButton";
+        allCategory.id = "allCategory"
+        allCategory.innerHTML = "All Categories";
+        galleryButtons.appendChild(allCategory);
+        allCategory.addEventListener("click", () => {
+            filterGallery("allCategory");
+        });
+
         
         galleryJson.images.forEach(galleryObject => {
             let imgName = galleryObject.name;
@@ -80,10 +91,12 @@ const filterGallery = (filterCategory) => {
     let imgs = Array.from(filmSlidesGallery.getElementsByTagName("img"));
     for (let i = 0; i < imgs.length; i++) {
         let currentImg = imgs[i];
-        if (currentImg.dataset.category != filterCategory) {
-            currentImg.style.display = "none";
-        } else {
+        if (filterCategory == "allCategory") {
             currentImg.style.display = "inline";
+        } else if (currentImg.dataset.category == filterCategory) {
+            currentImg.style.display = "inline";
+        } else {
+            currentImg.style.display = "none";
         }
     }
 }
