@@ -25,64 +25,74 @@ const showGallery = () => {
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
     fetch("../include/imgFiles.json")
-    .then((response) => {
-        return response.json();
-    }).then(galleryJson => {
-        let galleryButtons = document.createElement("div");
-        let columnsStyle = "auto ";
-        let categoryList = [];
-        galleryButtons.className = "galleryButtons";
-        filmSlidesGallery.appendChild(galleryButtons);
-        filmSlidesGalleryWrapper.style.transform = "scale(1)";
+        .then((response) => {
+            return response.json();
+        }).then(galleryJson => {
+            let galleryButtons = document.createElement("div");
+            let columnsStyle = "auto ";
+            let categoryList = [];
+            galleryButtons.className = "galleryButtons";
+            filmSlidesGallery.appendChild(galleryButtons);
+            filmSlidesGalleryWrapper.style.transform = "scale(1)";
 
-        // Create the button for removing gallery filtering
-        let allCategory = document.createElement("button");
-        allCategory.className = "tabButton";
-        allCategory.id = "allCategory"
-        allCategory.innerHTML = "All Categories";
-        galleryButtons.appendChild(allCategory);
-        allCategory.addEventListener("click", () => {
-            filterGallery("allCategory");
-        });
+            // Create the button for removing gallery filtering
+            let allCategory = document.createElement("button");
+            allCategory.className = "tabButton tabButtonActive";
+            allCategory.id = "allCategory"
+            allCategory.innerHTML = "All Categories";
+            galleryButtons.appendChild(allCategory);
+            allCategory.addEventListener("click", () => {
+                tabButtons = Array.from(galleryButtons.getElementsByTagName("button"))
+                tabButtons.forEach(tabButton => {
+                    tabButton.classList = "tabButton";
+                })
+                allCategory.className = "tabButton tabButtonActive"
+                filterGallery("allCategory");
+            });
 
-        
-        galleryJson.images.forEach(galleryObject => {
-            let imgName = galleryObject.name;
-            let imgCategory = galleryObject.category;
 
-            // Populate gallery with all images
-            let newImg = document.createElement("img");
-            newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
-            newImg.dataset.category = imgCategory;
-            filmSlidesGallery.appendChild(newImg);
+            galleryJson.images.forEach(galleryObject => {
+                let imgName = galleryObject.name;
+                let imgCategory = galleryObject.category;
 
-            // Build category tabs
-            if (!categoryList.includes(imgCategory)) {
-                categoryList.push(imgCategory);
-                columnsStyle += "auto ";
-                galleryButtons.style.gridTemplateColumns = columnsStyle;
-                let newCategory = document.createElement("button");
-                newCategory.className = "tabButton";
-                newCategory.id = imgCategory;
-                newCategory.innerHTML = imgCategory;
-                galleryButtons.appendChild(newCategory);
-                newCategory.addEventListener("click", () => {
-                    filterGallery(newCategory.id);
-                });
-            }
-        });
+                // Populate gallery with all images
+                let newImg = document.createElement("img");
+                newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
+                newImg.dataset.category = imgCategory;
+                filmSlidesGallery.appendChild(newImg);
 
-        // Close/cleanup
-        window.onclick = (event) => {
-            if (!filmSlidesGallery.contains(event.target)) {
-                filmSlidesGalleryWrapper.style.transform = "scale(0)";
-                while (filmSlidesGallery.firstChild) {
-                    filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+                // Build category tabs
+                if (!categoryList.includes(imgCategory)) {
+                    categoryList.push(imgCategory);
+                    columnsStyle += "auto ";
+                    galleryButtons.style.gridTemplateColumns = columnsStyle;
+                    let newCategory = document.createElement("button");
+                    newCategory.className = "tabButton";
+                    newCategory.id = imgCategory;
+                    newCategory.innerHTML = imgCategory;
+                    galleryButtons.appendChild(newCategory);
+                    newCategory.addEventListener("click", () => {
+                        tabButtons = Array.from(galleryButtons.getElementsByTagName("button"))
+                        tabButtons.forEach(tabButton => {
+                            tabButton.classList = "tabButton";
+                        })
+                        newCategory.className = "tabButton tabButtonActive";
+                        filterGallery(newCategory.id);
+                    });
                 }
-                document.getElementById("exampleButton").style.display = "block";
+            });
+
+            // Close/cleanup
+            window.onclick = (event) => {
+                if (!filmSlidesGallery.contains(event.target)) {
+                    filmSlidesGalleryWrapper.style.transform = "scale(0)";
+                    while (filmSlidesGallery.firstChild) {
+                        filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+                    }
+                    document.getElementById("exampleButton").style.display = "block";
+                }
             }
-        }
-    }).catch(err => console.error("Error: " + err));
+        }).catch(err => console.error("Error: " + err));
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category

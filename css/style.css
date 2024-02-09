@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+
 html, body {
     margin: 0px;
 }
@@ -60,8 +62,7 @@ html, body {
     position: relative;
     width: 50%;
     height: 80%;
-    padding: 1em;
-    background-color: grey;
+    background-color: #778899;
     display: flex;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -75,6 +76,22 @@ html, body {
     flex: 0 0 100%;
     max-height: 6em;
     min-height: 4em;
+}
+
+.tabButton {
+    border: none;
+    cursor: pointer;
+    background-color: #2F4F4F;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25em;
+}
+
+.tabButtonActive {
+    background-color: #778899;
+}
+
+.tabButton:hover {
+    background-color: lightgray;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
