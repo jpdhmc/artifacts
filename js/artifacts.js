@@ -29,7 +29,7 @@ const showGallery = () => {
         return response.json();
     }).then(galleryJson => {
         let galleryButtons = document.createElement("div");
-        let columnsStyle = "";
+        let columnsStyle = "auto ";
         let categoryList = [];
         galleryButtons.className = "galleryButtons";
         filmSlidesGallery.appendChild(galleryButtons);

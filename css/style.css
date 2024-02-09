@@ -73,6 +73,8 @@ html, body {
 .galleryButtons {
     display: grid;
     flex: 0 0 100%;
+    max-height: 6em;
+    min-height: 4em;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -86,4 +88,5 @@ html, body {
     margin: 0.5em;
     object-fit: cover;
     border-radius: 4%;
+    transition: 0.3s ease;
 }
