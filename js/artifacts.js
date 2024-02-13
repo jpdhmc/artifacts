@@ -60,6 +60,9 @@ const showGallery = () => {
                 newImg.src = "img/gallery/" + imgCategory + "/" + imgName;
                 newImg.dataset.category = imgCategory;
                 filmSlidesGallery.appendChild(newImg);
+                newImg.addEventListener("click", () => {
+                    console.log("NIIIIIIICE! " + newImg.src);
+                })
 
                 // Build category tabs
                 if (!categoryList.includes(imgCategory)) {
