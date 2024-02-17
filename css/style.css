@@ -58,6 +58,19 @@ html, body {
     transition: 0.3s ease;
 }
 
+.expandedWrapper {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    background-color: rgba(0,0,0,0.4);
+    width: 100%;
+    height: 100%;
+}
+
+.expandedImg {
+    width: 70%;
+}
+
 #filmSlidesGallery {
     position: relative;
     width: 50%;

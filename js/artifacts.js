@@ -61,7 +61,7 @@ const showGallery = () => {
                 newImg.dataset.category = imgCategory;
                 filmSlidesGallery.appendChild(newImg);
                 newImg.addEventListener("click", () => {
-                    console.log("NIIIIIIICE! " + newImg.src);
+                    expandImage(newImg);
                 })
 
                 // Build category tabs
@@ -96,6 +96,15 @@ const showGallery = () => {
                 }
             }
         }).catch(err => console.error("Error: " + err));
+}
+
+// Called when an image in the gallery is clicked, displays the full size image 
+const expandImage = (selectedImg) => {
+    let expandedWrapper = document.getElementById("expandedWrapper");
+    let expandedImage = document.getElementById("expandedImg");
+    expandedImage.src = selectedImg.src;
+    expandedWrapper.style.display = "block";
+    console.log(selectedImg.src);
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
