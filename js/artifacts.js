@@ -33,7 +33,7 @@ const showGallery = () => {
             let categoryList = [];
             galleryButtons.className = "galleryButtons";
             filmSlidesGallery.appendChild(galleryButtons);
-            filmSlidesGalleryWrapper.style.transform = "scale(1)";
+            filmSlidesGalleryWrapper.style.display = "flex";
             handleCloseGalleryOrImage();
 
             // Create the button for removing gallery filtering
@@ -90,22 +90,28 @@ const showGallery = () => {
 
 // Handle the closing/cleaning up for the gallery or the expanded image
 const handleCloseGalleryOrImage = () => {
-    window.addEventListener("click", (event) => {
+    window.addEventListener("click", closer = (event) => {
         let filmSlidesGallery = document.getElementById("filmSlidesGallery");
         let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
         let expandedWrapper = document.getElementById("expandedWrapper");
 
         // Clicks outside the gallery close it. If an expanded image is currently being shown clicks outside the image will close it
-        if (expandedWrapper.style.display != "none") {
+        if (expandedWrapper.style.display == "block") {
             if (event.target == expandedWrapper) {
                 expandedWrapper.style.display = "none";
             }
         } else if (!filmSlidesGallery.contains(event.target)) {
-            filmSlidesGalleryWrapper.style.transform = "scale(0)";
+            filmSlidesGalleryWrapper.addEventListener("animationend", animend = () => {
+                filmSlidesGalleryWrapper.style.display = "none";
+                filmSlidesGalleryWrapper.classList.remove("shrink");
+                filmSlidesGalleryWrapper.removeEventListener("animationend", animend);
+            })
+            filmSlidesGalleryWrapper.classList.add("shrink");
             while (filmSlidesGallery.firstChild) {
                 filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
             }
             document.getElementById("exampleButton").style.display = "block";
+            window.removeEventListener("click", closer);
         }
     })
 }
@@ -116,7 +122,7 @@ const expandImage = (selectedImg) => {
     let expandedImage = document.getElementById("expandedImg");
     expandedImage.src = selectedImg.src;
     expandedWrapper.style.display = "block";
-    expandedWrapper.style.backgroundColor = "rgba(0,0,0,0.4)";
+    expandedImage.style.display = "block";
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
