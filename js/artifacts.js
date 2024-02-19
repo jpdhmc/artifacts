@@ -34,6 +34,7 @@ const showGallery = () => {
             galleryButtons.className = "galleryButtons";
             filmSlidesGallery.appendChild(galleryButtons);
             filmSlidesGalleryWrapper.style.transform = "scale(1)";
+            handleCloseGalleryOrImage();
 
             // Create the button for removing gallery filtering
             let allCategory = document.createElement("button");
@@ -84,18 +85,29 @@ const showGallery = () => {
                     });
                 }
             });
-
-            // Close/cleanup
-            window.onclick = (event) => {
-                if (!filmSlidesGallery.contains(event.target)) {
-                    filmSlidesGalleryWrapper.style.transform = "scale(0)";
-                    while (filmSlidesGallery.firstChild) {
-                        filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
-                    }
-                    document.getElementById("exampleButton").style.display = "block";
-                }
-            }
         }).catch(err => console.error("Error: " + err));
+}
+
+// Handle the closing/cleaning up for the gallery or the expanded image
+const handleCloseGalleryOrImage = () => {
+    window.addEventListener("click", (event) => {
+        let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+        let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+        let expandedWrapper = document.getElementById("expandedWrapper");
+
+        // Clicks outside the gallery close it. If an expanded image is currently being shown clicks outside the image will close it
+        if (expandedWrapper.style.display != "none") {
+            if (event.target == expandedWrapper) {
+                expandedWrapper.style.display = "none";
+            }
+        } else if (!filmSlidesGallery.contains(event.target)) {
+            filmSlidesGalleryWrapper.style.transform = "scale(0)";
+            while (filmSlidesGallery.firstChild) {
+                filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
+            }
+            document.getElementById("exampleButton").style.display = "block";
+        }
+    })
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
@@ -104,7 +116,7 @@ const expandImage = (selectedImg) => {
     let expandedImage = document.getElementById("expandedImg");
     expandedImage.src = selectedImg.src;
     expandedWrapper.style.display = "block";
-    console.log(selectedImg.src);
+    expandedWrapper.style.backgroundColor = "rgba(0,0,0,0.4)";
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
