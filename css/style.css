@@ -8,9 +8,8 @@ html, body {
     position: absolute;
     top: 0;
     left: 0;
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     transition: transform .5s ease-out;
     text-align: center;
     display: flex;
@@ -33,6 +32,9 @@ html, body {
 
 #indexPoster {
     display: block;
+    object-fit: cover;
+    height: 100vh;
+    width: 100vw;
 }
 
 .posterWrapper {

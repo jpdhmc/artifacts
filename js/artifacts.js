@@ -12,11 +12,16 @@ const init = () => {
 const indexButtonClick = () => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideoOne = document.getElementById("posterVideoOne");
-    //indexPoster.style.display = "none";
+    indexPoster.style.display = "none";
     document.getElementById("exampleButton").style.display = "none";
-    //posterVideoOne.style.display = "block";
+    posterVideoOne.style.display = "block";
 
-    showGallery();
+    posterVideoOne.onended = () => {
+        posterVideoOne.style.display = "none";
+        indexPoster.src = "img/slidesStill.JPG";
+        indexPoster.style.display = "block";
+        showGallery();
+    }
 }
 
 // Build and display the gallery
