@@ -9,13 +9,17 @@
     <link rel="stylesheet" href="css/style.css">
 
 </head>
-<body>
+<body style="background-color: black;">
     <main>
         <div class="posterWrapper">
-            <div class="posterMover">
-                <img src="img/deskStill.JPG" alt="initial poster image" id="indexPoster" class="poster">
+            <div class="posterMover" id="posterMover">
+                <img src="img/deskStill.jpg" alt="initial poster image" id="indexPoster">
                 <button type="button" id="exampleButton">Transition Example</button>
             </div>
+            <video playsinline autoplay muted preload="auto" poster="img/deskStill.jpg" id="posterVideoOne">
+                <source src="img/slidesTransition.mp4" type="video/webm">
+                This error shouldn't happen. Your browser is out of date or doesn't support the video element.
+            </video>
             <div class="galleryWrapper" id="galleryWrapper">
                 <div class="expandedWrapper" id="expandedWrapper">
                     <img src="" class="expandedImg" id="expandedImg">
@@ -23,10 +27,6 @@
                 <div id="filmSlidesGallery">
                 </div>
             </div>
-            <video playsinline autoplay muted poster="img/deskStill.JPG" class="poster" id="posterVideoOne">
-                <source src="img/slidesTransition.mp4" type="video/webm">
-                This error shouldn't happen. Your browser is out of date or doesn't support the video element.
-            </video>
         </div>
     </main>
 </body>

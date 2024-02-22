@@ -6,22 +6,33 @@
 const init = () => {
     console.log("artifacts.js init running");
     document.getElementById("exampleButton").addEventListener("click", indexButtonClick);
-    handlePosterMovers();
+    handlePosterMovers(true);
 }
 
 const indexButtonClick = () => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideoOne = document.getElementById("posterVideoOne");
-    indexPoster.style.display = "none";
-    document.getElementById("exampleButton").style.display = "none";
-    posterVideoOne.style.display = "block";
+    const posterMover = document.getElementById("posterMover");
+    const button = document.getElementById("exampleButton");
 
-    posterVideoOne.onended = () => {
-        posterVideoOne.style.display = "none";
-        indexPoster.src = "img/slidesStill.JPG";
-        indexPoster.style.display = "block";
-        showGallery();
-    }
+    // Waits until poster scale transition finishes to trigger
+    posterMover.addEventListener("transitionend", () => {
+        posterVideoOne.style.display = "block";
+
+        // Onplay helps avoid a blank frame between image and video
+        posterVideoOne.onplay = () => {
+            indexPoster.style.display = "none";
+            indexPoster.src = "img/slidesStill.JPG";
+            button.style.display = "none";
+        }
+
+        posterVideoOne.onended = () => {
+            indexPoster.style.display = "block";
+            posterVideoOne.style.display = "none";
+            showGallery();
+        }
+    });
+    handlePosterMovers(false);
 }
 
 // Build and display the gallery
@@ -147,16 +158,20 @@ const filterGallery = (filterCategory) => {
 }
 
 // Poster interactive zooming and panning
-const handlePosterMovers = () => {
-    const posters = document.getElementsByClassName("posterWrapper");
-
-    for (let i = 0; i < posters.length; i++) {
-        let posterMover = posters[i].querySelector(".posterMover");
-        posters[i].addEventListener('mouseover', () => { posterMover.style.transform = "scale(1.05,1.05)" });
-        posters[i].addEventListener('mouseout', () => { posterMover.style.transform = "scale(1,1)" });
+const handlePosterMovers = (isHandling) => {
+    let posterMover = document.getElementById("posterMover");
+    // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
+    if (isHandling) {
+        posterMover.addEventListener('mouseover', mouseoverEvent = () => { posterMover.style.transform = "scale(1.05,1.05)" });
+        posterMover.addEventListener('mouseout', mouseoutEvent = () => { posterMover.style.transform = "scale(1,1)" });
 
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posters[i].addEventListener('mousemove', (e) => { posterMover.style.transformOrigin = calculateTransformOrigin(e, posters[i]) })
+        posterMover.addEventListener('mousemove', mousemoveEvent = (e) => { posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover) });
+    } else {
+        posterMover.removeEventListener('mouseover', mouseoverEvent);
+        posterMover.removeEventListener('mouseout', mouseoutEvent);
+        posterMover.removeEventListener('mousemove', mousemoveEvent);
+        posterMover.style.transform = "scale(1,1)";
     }
 }
 
