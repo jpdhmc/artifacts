@@ -27,13 +27,15 @@ const traverseDirectory = (directory) => {
             let parentFolder = path.relative(imgFolderPath, directory);
             let galleryFolder = parentFolder.split("\\")[0];
             let categoryFolder = parentFolder.split("\\")[1];
-            let title = fileOrFolder.split(".")[0];
+            let title = fileOrFolder.split(".")[0].split("=")[0];
+            let tags = fileOrFolder.split(".")[0].split("=")[1];
             let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;
             let file = {
                 name: title,
                 gallery: galleryFolder,
                 category: categoryFolder,
-                filePath: artifactPath
+                filePath: artifactPath,
+                tags: tags
             };
             filesArray.push(file);
         }
