@@ -25,9 +25,12 @@ const traverseDirectory = (directory) => {
         } else {
             // if file, create an object to represent it and place it in the filesArray
             let parentFolder = path.relative(imgFolderPath, directory);
+            let title = fileOrFolder.split(".")[0];
+            let artifactPath = "img/gallery/" + parentFolder + "/" + fileOrFolder;
             let file = {
-                name: fileOrFolder,
+                name: title,
                 category: parentFolder,
+                filePath: artifactPath
             };
             filesArray.push(file);
         }
@@ -36,5 +39,5 @@ const traverseDirectory = (directory) => {
 
 console.log("Building a new JSON file.");
 traverseDirectory(imgFolderPath);
-fs.writeFileSync(outputPath, JSON.stringify({images: filesArray}, null, 4));
+fs.writeFileSync(outputPath, JSON.stringify({artifacts: filesArray}, null, 4));
 process.exit();
