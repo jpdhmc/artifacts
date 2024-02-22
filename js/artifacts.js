@@ -4,35 +4,63 @@
  * @author John Den Hartog
  */
 const init = () => {
-    console.log("artifacts.js init running");
-    document.getElementById("exampleButton").addEventListener("click", indexButtonClick);
+    const artifacts = generateArtifacts();
+    document.getElementsByClassName("indexButtons");
+    document.getElementById("filmSlidesButton").addEventListener("click", (e) => {
+        console.log(e.target.id);
+        filmSlidesClick(artifacts)
+    });
     handlePosterMovers(true);
 }
 
-const indexButtonClick = () => {
+const filmSlidesClick = (artifacts) => {
     const indexPoster = document.getElementById("indexPoster");
-    const posterVideoOne = document.getElementById("posterVideoOne");
+    const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
-    const button = document.getElementById("exampleButton");
+    const button = document.getElementById("filmSlidesButton");
 
     // Waits until poster scale transition finishes to trigger
     posterMover.addEventListener("transitionend", () => {
-        posterVideoOne.style.display = "block";
+        posterVideo.style.display = "block";
 
         // Onplay helps avoid a blank frame between image and video
-        posterVideoOne.onplay = () => {
+        posterVideo.onplay = () => {
             indexPoster.style.display = "none";
             indexPoster.src = "img/slidesStill.JPG";
             button.style.display = "none";
         }
 
-        posterVideoOne.onended = () => {
+        posterVideo.onended = () => {
             indexPoster.style.display = "block";
-            posterVideoOne.style.display = "none";
+            posterVideo.style.display = "none";
             showGallery();
         }
     });
     handlePosterMovers(false);
+}
+
+class Artifact {
+    constructor(name, gallery, category, filePath, tags) {
+        this.name = name;
+        this.gallery = gallery;
+        this.category = category;
+        this.filePath = filePath;
+        this.tags = tags;
+    }
+}
+
+const generateArtifacts = () => {
+    let artifactList = []
+    fetch("../include/imgFiles.json")
+        .then((response) => {
+            return response.json();
+        }).then(galleryJson => {
+            galleryJson.artifacts.forEach(jsonArtifact => {
+                const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.tags);
+                artifactList.push(newArtifact);
+            })
+        });
+    return artifactList;
 }
 
 // Build and display the gallery
@@ -162,7 +190,7 @@ const handlePosterMovers = (isHandling) => {
     let posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
-        posterMover.addEventListener('mouseover', mouseoverEvent = () => { posterMover.style.transform = "scale(1.05,1.05)" });
+        posterMover.addEventListener('mouseover', mouseoverEvent = () => { posterMover.style.transform = "scale(1.1,1.1)" });
         posterMover.addEventListener('mouseout', mouseoutEvent = () => { posterMover.style.transform = "scale(1,1)" });
 
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element

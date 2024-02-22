@@ -17,7 +17,7 @@ html, body {
     justify-content: center;
 }
 
-#posterVideoOne {
+#posterVideo {
     display: none;
     object-fit: cover;
     height: 100vh;
@@ -31,6 +31,18 @@ html, body {
     width: 100vw;
 }
 
+.indexButtons {
+    position: absolute;
+}
+
+#filmSlidesButton {
+    left: 10em;
+}
+
+#printedButton {
+    right: 10em;
+}
+
 .posterWrapper {
     position: relative;
     width: 100vw;
@@ -38,7 +50,7 @@ html, body {
     overflow: hidden;
 }
 
-#exampleButton {
+.gallerySelector {
     position: absolute;
 }
 

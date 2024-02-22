@@ -1,28 +1,42 @@
 {
-    "images": [
+    "artifacts": [
         {
-            "name": "four.jpg",
-            "category": "categoryOne"
+            "name": "four",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/four=cat animal cool_pic.jpg",
+            "tags": "cat animal cool_pic"
         },
         {
-            "name": "one.jpg",
-            "category": "categoryOne"
+            "name": "one",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/one=dog luna.jpg",
+            "tags": "dog luna"
         },
         {
-            "name": "il_fullxfull.3248772718_4eq0.png",
-            "category": "categoryThree"
+            "name": "il_fullxfull",
+            "gallery": "filmSlides",
+            "category": "categoryThree",
+            "filePath": "img/gallery/filmSlides/categoryThree/il_fullxfull.3248772718_4eq0.png"
         },
         {
-            "name": "five.jpg",
-            "category": "categoryTwo"
+            "name": "five",
+            "gallery": "otherGallery",
+            "category": "categoryTwo",
+            "filePath": "img/gallery/otherGallery/categoryTwo/five.jpg"
         },
         {
-            "name": "three.jpg",
-            "category": "categoryTwo"
+            "name": "three",
+            "gallery": "otherGallery",
+            "category": "categoryTwo",
+            "filePath": "img/gallery/otherGallery/categoryTwo/three.jpg"
         },
         {
-            "name": "two.jpg",
-            "category": "categoryTwo"
+            "name": "two",
+            "gallery": "otherGallery",
+            "category": "categoryTwo",
+            "filePath": "img/gallery/otherGallery/categoryTwo/two.jpg"
         }
     ]
 }
