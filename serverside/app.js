@@ -11,7 +11,7 @@ const outputPath = "../include/imgFiles.json"
 
 let filesArray = [];
 
-// Traverse server directory and add images to filesArray
+// Traverse server directory and add artifacts to filesArray
 const traverseDirectory = (directory) => {
     let filesAndFolders = fs.readdirSync(directory);
 
@@ -25,11 +25,14 @@ const traverseDirectory = (directory) => {
         } else {
             // if file, create an object to represent it and place it in the filesArray
             let parentFolder = path.relative(imgFolderPath, directory);
+            let galleryFolder = parentFolder.split("\\")[0];
+            let categoryFolder = parentFolder.split("\\")[1];
             let title = fileOrFolder.split(".")[0];
-            let artifactPath = "img/gallery/" + parentFolder + "/" + fileOrFolder;
+            let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;
             let file = {
                 name: title,
-                category: parentFolder,
+                category: categoryFolder,
+                gallery: galleryFolder,
                 filePath: artifactPath
             };
             filesArray.push(file);
