@@ -31,8 +31,8 @@ const traverseDirectory = (directory) => {
             let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;
             let file = {
                 name: title,
-                category: categoryFolder,
                 gallery: galleryFolder,
+                category: categoryFolder,
                 filePath: artifactPath
             };
             filesArray.push(file);
