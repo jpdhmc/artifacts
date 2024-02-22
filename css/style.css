@@ -35,11 +35,11 @@ html, body {
     position: absolute;
 }
 
-#filmSlidesButton {
+#filmSlides {
     left: 10em;
 }
 
-#printedButton {
+#tapes {
     right: 10em;
 }
 

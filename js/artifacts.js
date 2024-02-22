@@ -3,42 +3,6 @@
  * 
  * @author John Den Hartog
  */
-const init = () => {
-    const artifacts = generateArtifacts();
-    document.getElementsByClassName("indexButtons");
-    document.getElementById("filmSlidesButton").addEventListener("click", (e) => {
-        console.log(e.target.id);
-        filmSlidesClick(artifacts)
-    });
-    handlePosterMovers(true);
-}
-
-const filmSlidesClick = (artifacts) => {
-    const indexPoster = document.getElementById("indexPoster");
-    const posterVideo = document.getElementById("posterVideo");
-    const posterMover = document.getElementById("posterMover");
-    const button = document.getElementById("filmSlidesButton");
-
-    // Waits until poster scale transition finishes to trigger
-    posterMover.addEventListener("transitionend", () => {
-        posterVideo.style.display = "block";
-
-        // Onplay helps avoid a blank frame between image and video
-        posterVideo.onplay = () => {
-            indexPoster.style.display = "none";
-            indexPoster.src = "img/slidesStill.JPG";
-            button.style.display = "none";
-        }
-
-        posterVideo.onended = () => {
-            indexPoster.style.display = "block";
-            posterVideo.style.display = "none";
-            showGallery();
-        }
-    });
-    handlePosterMovers(false);
-}
-
 class Artifact {
     constructor(name, gallery, category, filePath, tags) {
         this.name = name;
@@ -49,6 +13,54 @@ class Artifact {
     }
 }
 
+const init = () => {
+    const artifacts = generateArtifacts();
+    buttons = document.getElementsByClassName("indexButtons");
+    for (let i = 0; i < buttons.length; i++) {
+        let button = buttons[i];
+        button.addEventListener("click", (e) => {
+            galleryButtonClick(e.target.id, artifacts)
+        })
+    }
+    handlePosterMovers(true);
+}
+
+// Transitions poster depending on selected gallery and calls its function
+const galleryButtonClick = (selectedGallery, artifacts) => {
+    console.log(selectedGallery);
+    const indexPoster = document.getElementById("indexPoster");
+    const posterVideo = document.getElementById("posterVideo");
+    const posterMover = document.getElementById("posterMover");
+    
+    posterVideo.src = "img/" + selectedGallery + "Transition.mp4";
+
+    // Waits until poster scale transition finishes to trigger
+    posterMover.addEventListener("transitionend", () => {
+        posterVideo.style.display = "block";
+
+        // Onplay helps avoid a blank frame between image and video
+        posterVideo.onplay = () => {
+            indexPoster.style.display = "none";
+            indexPoster.src = "img/" + selectedGallery +"Still.JPG";
+            button.style.display = "none";
+        }
+
+        posterVideo.onended = () => {
+            indexPoster.style.display = "block";
+            posterVideo.style.display = "none";
+            switch (selectedGallery) {
+                case "filmSlides":
+                    displayFilmSlidesGallery(artifacts);
+                    break;
+                case "tapes":
+                    displayTapesGallery(artifacts);
+            }
+        }
+    });
+    handlePosterMovers(false);
+}
+
+// Fetches artifacts json and creates Artifact objects
 const generateArtifacts = () => {
     let artifactList = []
     fetch("../include/imgFiles.json")
@@ -64,7 +76,7 @@ const generateArtifacts = () => {
 }
 
 // Build and display the gallery
-const showGallery = () => {
+const displayFilmSlidesGallery = (artifacts) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
