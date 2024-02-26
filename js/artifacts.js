@@ -32,6 +32,13 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
 
+    let desiredArtifacts = [];
+    artifactsArray.forEach(artifact => {
+        if (artifact.gallery == selectedGallery) {
+            desiredArtifacts.push(artifact);
+        }
+    })
+
     posterVideo.src = "img/" + selectedGallery + "Transition.mp4";
 
     // Waits until poster scale transition finishes to trigger
@@ -42,7 +49,12 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         posterVideo.onplay = () => {
             indexPoster.style.display = "none";
             indexPoster.src = "img/" + selectedGallery + "Still.JPG";
-            //button.style.display = "none";
+
+            // Hide buttons
+            let allButtons = Array.from(posterMover.getElementsByTagName("button"));
+            allButtons.forEach(button => {
+                button.style.display = "none";
+            })
         }
 
         posterVideo.onended = () => {
@@ -50,10 +62,19 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             posterVideo.style.display = "none";
             switch (selectedGallery) {
                 case "filmSlides":
-                    displayFilmSlidesGallery(artifactsArray);
+                    displayFilmSlidesGallery(desiredArtifacts);
+                    break;
+                case "vhsPlayer":
+                    displayvhsPlayer(desiredArtifacts);
+                    break;
+                case "printedMedia":
+                    displayprintedMedia(desiredArtifacts);
+                    break;
+                case "cassettes":
+                    displayCassettes(desiredArtifacts);
                     break;
                 case "tapes":
-                    displayTapesGallery(artifactsArray);
+                    displayTapesGallery(desiredArtifacts);
             }
         }
     });
@@ -96,7 +117,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     allCategory.innerHTML = "All Categories";
     galleryButtons.appendChild(allCategory);
     allCategory.addEventListener("click", () => {
-        tabButtons = Array.from(galleryButtons.getElementsByTagName("button"))
+        tabButtons = Array.from(galleryButtons.getElementsByTagName("button"));
         tabButtons.forEach(tabButton => {
             tabButton.classList = "tabButton";
         })
@@ -169,6 +190,7 @@ const handleCloseGalleryOrImage = () => {
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
+// TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedImg) => {
     let expandedWrapper = document.getElementById("expandedWrapper");
     let expandedImage = document.getElementById("expandedImg");
