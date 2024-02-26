@@ -29,13 +29,19 @@ const traverseDirectory = (directory) => {
             let categoryFolder = parentFolder.split("\\")[1];
             let title = fileOrFolder.split(".")[0].split("=")[0];
             let tags = fileOrFolder.split(".")[0].split("=")[1];
+            let audio = fileOrFolder.split(".")[0].split("=")[2];
+            let audioPath;
+            if (audio) {
+                audioPath = "audio/" + title + ".mp3";
+            }
             let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;
             let file = {
                 name: title,
                 gallery: galleryFolder,
                 category: categoryFolder,
                 filePath: artifactPath,
-                tags: tags
+                tags: tags,
+                audioPath: audioPath
             };
             filesArray.push(file);
         }

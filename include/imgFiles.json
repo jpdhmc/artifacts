@@ -11,8 +11,9 @@
             "name": "one",
             "gallery": "filmSlides",
             "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/one=dog luna.jpg",
-            "tags": "dog luna"
+            "filePath": "img/gallery/filmSlides/categoryOne/one=dog luna=se.jpg",
+            "tags": "dog luna",
+            "audioPath": "audio/one.mp3"
         },
         {
             "name": "il_fullxfull",

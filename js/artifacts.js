@@ -4,17 +4,19 @@
  * @author John Den Hartog
  */
 class Artifact {
-    constructor(name, gallery, category, filePath, tags) {
+    constructor(name, gallery, category, filePath, audioPath, tags) {
         this.name = name;
         this.gallery = gallery;
         this.category = category;
         this.filePath = filePath;
+        this.audioPath = audioPath;
         this.tags = tags;
     }
 }
 
 const init = () => {
     const artifactsArray = generateArtifacts();
+    console.log(artifactsArray);
     buttons = document.getElementsByClassName("indexButtons");
     for (let i = 0; i < buttons.length; i++) {
         let button = buttons[i];
@@ -23,6 +25,21 @@ const init = () => {
         })
     }
     handlePosterMovers(true);
+}
+
+// Fetches artifacts json and creates Artifact objects
+const generateArtifacts = () => {
+    let artifactsArray = []
+    fetch("../include/imgFiles.json")
+        .then((response) => {
+            return response.json();
+        }).then(galleryJson => {
+            galleryJson.artifacts.forEach(jsonArtifact => {
+                const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.audioPath, jsonArtifact.tags);
+                artifactsArray.push(newArtifact);
+            })
+        });
+    return artifactsArray;
 }
 
 // Transitions poster depending on selected gallery and calls its function
@@ -79,21 +96,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         }
     });
     handlePosterMovers(false);
-}
-
-// Fetches artifacts json and creates Artifact objects
-const generateArtifacts = () => {
-    let artifactsArray = []
-    fetch("../include/imgFiles.json")
-        .then((response) => {
-            return response.json();
-        }).then(galleryJson => {
-            galleryJson.artifacts.forEach(jsonArtifact => {
-                const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.tags);
-                artifactsArray.push(newArtifact);
-            })
-        });
-    return artifactsArray;
 }
 
 // Build and display the gallery
