@@ -25,18 +25,28 @@ html, body {
 }
 
 #indexPoster {
-    display: block;
     object-fit: cover;
-    height: 100vh;
-    width: 100vw;
+    height: 100%;
+    width: 100%;
+    position: absolute;
 }
 
 .indexButtons {
     position: absolute;
+    background-color: transparent;
+    border: none;
 }
 
-#filmSlides {
-    left: 10em;
+#glowGraph {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+#filmSlides img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 #tapes {
@@ -48,10 +58,6 @@ html, body {
     width: 100vw;
     height: 100vh;
     overflow: hidden;
-}
-
-.gallerySelector {
-    position: absolute;
 }
 
 .galleryWrapper {

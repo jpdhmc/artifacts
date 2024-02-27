@@ -20,8 +20,8 @@ const init = () => {
     buttons = document.getElementsByClassName("indexButtons");
     for (let i = 0; i < buttons.length; i++) {
         let button = buttons[i];
-        button.addEventListener("click", (e) => {
-            galleryButtonClick(e.target.id, artifactsArray)
+        button.addEventListener("click", () => {
+            galleryButtonClick(button.id, artifactsArray)
         })
     }
     handlePosterMovers(true);
@@ -98,7 +98,8 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     handlePosterMovers(false);
 }
 
-// Build and display the gallery
+// Build and display the film slides gallery
+// TODO add audio/title
 const displayFilmSlidesGallery = (artifactsArray) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
@@ -233,6 +234,10 @@ const handlePosterMovers = (isHandling) => {
         posterMover.removeEventListener('mousemove', mousemoveEvent);
         posterMover.style.transform = "scale(1,1)";
     }
+}
+
+const areaClick = () => {
+    console.log("click!!");
 }
 
 // Calculate transform of elements based on relative mouse position, to be called on mousemove
