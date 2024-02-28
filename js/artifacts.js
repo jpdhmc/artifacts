@@ -16,12 +16,11 @@ class Artifact {
 
 const init = () => {
     const artifactsArray = generateArtifacts();
-    console.log(artifactsArray);
-    buttons = document.getElementsByClassName("indexButtons");
-    for (let i = 0; i < buttons.length; i++) {
-        let button = buttons[i];
-        button.addEventListener("click", () => {
-            galleryButtonClick(button.id, artifactsArray)
+    paths = document.getElementsByClassName("indexPaths");
+    for (let i = 0; i < paths.length; i++) {
+        let path = paths[i];
+        path.addEventListener("click", () => {
+            galleryButtonClick(path.id, artifactsArray)
         })
     }
     handlePosterMovers(true);
@@ -65,13 +64,10 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         // Onplay helps avoid a blank frame between image and video
         posterVideo.onplay = () => {
             indexPoster.style.display = "none";
-            indexPoster.src = "img/" + selectedGallery + "Still.JPG";
+            indexPoster.src = "img/" + selectedGallery + "Still.jpg";
 
-            // Hide buttons
-            let allButtons = Array.from(posterMover.getElementsByTagName("button"));
-            allButtons.forEach(button => {
-                button.style.display = "none";
-            })
+            // Hide svg glow
+            document.getElementById("indexGlow").style.display = "none";
         }
 
         posterVideo.onended = () => {
@@ -109,7 +105,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     let categoryList = [];
 
     galleryButtons.className = "galleryButtons";
-    filmSlidesGallery.appendChild(galleryButtons);
+    filmSlidesGalleryWrapper.appendChild(galleryButtons);
     filmSlidesGalleryWrapper.style.display = "flex";
     handleCloseGalleryOrImage();
 
@@ -145,8 +141,8 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         // Build category tabs
         if (!categoryList.includes(imgCategory)) {
             categoryList.push(imgCategory);
-            columnsStyle += "auto ";
-            galleryButtons.style.gridTemplateColumns = columnsStyle;
+            // columnsStyle += "auto ";
+            // galleryButtons.style.gridTemplateColumns = columnsStyle;
             let newCategory = document.createElement("button");
             newCategory.className = "tabButton";
             newCategory.id = imgCategory;
@@ -164,31 +160,11 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     });
 }
 
-// Handle the closing/cleaning up for the gallery or the expanded image
+// Handle the closing/cleaning up for the expanded image
 const handleCloseGalleryOrImage = () => {
-    window.addEventListener("click", closer = (event) => {
-        let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-        let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-        let expandedWrapper = document.getElementById("expandedWrapper");
-
-        // Clicks outside the gallery close it. If an expanded image is currently being shown clicks outside the image will close it
-        if (expandedWrapper.style.display == "block") {
-            if (event.target == expandedWrapper) {
-                expandedWrapper.style.display = "none";
-            }
-        } else if (!filmSlidesGallery.contains(event.target)) {
-            filmSlidesGalleryWrapper.addEventListener("animationend", animend = () => {
-                filmSlidesGalleryWrapper.style.display = "none";
-                filmSlidesGalleryWrapper.classList.remove("shrink");
-                filmSlidesGalleryWrapper.removeEventListener("animationend", animend);
-            })
-            filmSlidesGalleryWrapper.classList.add("shrink");
-            while (filmSlidesGallery.firstChild) {
-                filmSlidesGallery.removeChild(filmSlidesGallery.lastChild);
-            }
-            document.getElementById("exampleButton").style.display = "block";
-            window.removeEventListener("click", closer);
-        }
+    let expandedWrapper = document.getElementById("expandedWrapper");
+    expandedWrapper.addEventListener("click", closer = (event) => {
+        expandedWrapper.style.display = "none";
     })
 }
 
@@ -234,10 +210,6 @@ const handlePosterMovers = (isHandling) => {
         posterMover.removeEventListener('mousemove', mousemoveEvent);
         posterMover.style.transform = "scale(1,1)";
     }
-}
-
-const areaClick = () => {
-    console.log("click!!");
 }
 
 // Calculate transform of elements based on relative mouse position, to be called on mousemove
