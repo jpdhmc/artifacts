@@ -58,7 +58,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     posterVideo.src = "img/" + selectedGallery + "Transition.mp4";
 
     // Waits until poster scale transition finishes to trigger
-    posterMover.addEventListener("transitionend", () => {
+    posterMover.addEventListener("transitionend", posterTransition = () => {
         posterVideo.style.display = "block";
 
         // Onplay helps avoid a blank frame between image and video
@@ -71,6 +71,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         }
 
         posterVideo.onended = () => {
+            posterMover.removeEventListener("transitionend", posterTransition);
             indexPoster.style.display = "block";
             posterVideo.style.display = "none";
             switch (selectedGallery) {
@@ -97,6 +98,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 // Build and display the film slides gallery
 // TODO add audio/title
 const displayFilmSlidesGallery = (artifactsArray) => {
+    handlePosterMovers(true)
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
