@@ -127,12 +127,19 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     artifactsArray.forEach(galleryObject => {
         let imgCategory = galleryObject.category;
         let imgPath = galleryObject.filePath;
+        let imgName = galleryObject.name;
 
-        // Populate gallery with all images
+        // Populate gallery with figures for all images
+        let newFigure = document.createElement("figure");
+        let newFigCaption = document.createElement("figcaption");
         let newImg = document.createElement("img");
         newImg.src = imgPath;
-        newImg.dataset.category = imgCategory;
-        filmSlidesGallery.appendChild(newImg);
+        newFigure.dataset.category = imgCategory;
+        newFigCaption.innerHTML = imgName;
+
+        newFigure.appendChild(newImg);
+        newFigure.appendChild(newFigCaption);
+        filmSlidesGallery.appendChild(newFigure);
         newImg.addEventListener("click", () => {
             expandImage(newImg);
         })
@@ -177,15 +184,15 @@ const handleCloseGalleryOrImage = () => {
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory) => {
     let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-    let imgs = Array.from(filmSlidesGallery.getElementsByTagName("img"));
-    for (let i = 0; i < imgs.length; i++) {
-        let currentImg = imgs[i];
+    let figures = Array.from(filmSlidesGallery.getElementsByTagName("figure"));
+    for (let i = 0; i < figures.length; i++) {
+        let currentFig = figures[i];
         if (filterCategory == "allCategory") {
-            currentImg.style.display = "inline";
-        } else if (currentImg.dataset.category == filterCategory) {
-            currentImg.style.display = "inline";
+            currentFig.style.display = "inline";
+        } else if (currentFig.dataset.category == filterCategory) {
+            currentFig.style.display = "inline";
         } else {
-            currentImg.style.display = "none";
+            currentFig.style.display = "none";
         }
     }
 }

@@ -108,7 +108,6 @@ html, body {
     flex: 0 0 10%;
     margin-right: 25%;
     margin-bottom: 20%;
-    max-width: 13em;
 }
 
 .tabButton {
@@ -132,13 +131,24 @@ html, body {
     display: none;
 }
 
+#filmSlidesGallery figure {
+    margin: 1.5%;
+    transition: 0.3s ease;
+    font-family: 'Open Sans', sans-serif;
+}
+
+#filmSlidesGallery figcaption {
+    text-align: center;
+    background-color: white;
+}
+
 #filmSlidesGallery img {
-    width: 10em;
-    height: 10em;
-    margin: 0.5em;
+    width: 8vw;
+    height: 8vw;
+    min-width: 6em;
+    min-height: 6em;
     object-fit: cover;
     border-radius: 4%;
-    transition: 0.3s ease;
 }
 
 @keyframes grow {
