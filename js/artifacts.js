@@ -101,7 +101,6 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
     let galleryButtons = document.createElement("div");
-    let columnsStyle = "auto ";
     let categoryList = [];
 
     galleryButtons.className = "galleryButtons";
@@ -141,8 +140,6 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         // Build category tabs
         if (!categoryList.includes(imgCategory)) {
             categoryList.push(imgCategory);
-            // columnsStyle += "auto ";
-            // galleryButtons.style.gridTemplateColumns = columnsStyle;
             let newCategory = document.createElement("button");
             newCategory.className = "tabButton";
             newCategory.id = imgCategory;
@@ -160,22 +157,21 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     });
 }
 
-// Handle the closing/cleaning up for the expanded image
-const handleCloseGalleryOrImage = () => {
-    let expandedWrapper = document.getElementById("expandedWrapper");
-    expandedWrapper.addEventListener("click", closer = (event) => {
-        expandedWrapper.style.display = "none";
-    })
-}
-
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedImg) => {
     let expandedWrapper = document.getElementById("expandedWrapper");
     let expandedImage = document.getElementById("expandedImg");
     expandedImage.src = selectedImg.src;
-    expandedWrapper.style.display = "block";
-    expandedImage.style.display = "block";
+    expandedWrapper.style.display = "flex";
+}
+
+// Handle the closing/cleaning up for the expanded image
+const handleCloseGalleryOrImage = () => {
+    let expandedWrapper = document.getElementById("expandedWrapper");
+    expandedWrapper.addEventListener("click", closer = (event) => {
+        expandedWrapper.style.display = "none";
+    })
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
