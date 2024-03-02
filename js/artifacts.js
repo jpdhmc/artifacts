@@ -144,7 +144,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         newFigure.appendChild(newFigCaption);
         filmSlidesGallery.appendChild(newFigure);
         newImg.addEventListener("click", () => {
-            expandImage(newFigure);
+            expandImage(newFigure, galleryObject);
         })
 
         // Build category tabs
@@ -169,11 +169,19 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
-const expandImage = (selectedFigure) => {
+const expandImage = (selectedFigure, galleryObject) => {
     handlePosterMovers(false);
     let expandedWrapper = document.getElementById("expandedWrapper");
     let expandedFigure = document.getElementById("expandedFigure");
     expandedFigure.innerHTML = selectedFigure.innerHTML;
+    if (galleryObject.audioPath) {
+        console.log(galleryObject.audioPath);
+        let objectAudio = document.createElement("audio");
+        //TODO clean this up
+        objectAudio.src = galleryObject.audioPath;
+        objectAudio.controls = true;
+        expandedFigure.appendChild(objectAudio);
+    }
     expandedWrapper.style.display = "flex";
 }
 

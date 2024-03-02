@@ -88,8 +88,17 @@ html, body {
     animation: grow 0.4s;
 }
 
+#expandedFigure figcaption {
+    max-width: 90vw;
+    max-height: 10vh;
+    overflow-wrap: break-word;
+    font-size: 2em;
+    white-space: normal;
+}
+
 #expandedFigure img {
     display: block;
+    margin: auto;
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
@@ -146,6 +155,10 @@ figcaption {
     text-align: center;
     background-color: white;
     font-family: 'Open Sans', sans-serif;
+    max-width: 8vw;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 #filmSlidesGallery img {
