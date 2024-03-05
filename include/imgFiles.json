@@ -8,6 +8,13 @@
             "tags": "cat animal cool_pic"
         },
         {
+            "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua=dog animal.png",
+            "tags": "dog animal"
+        },
+        {
             "name": "one",
             "gallery": "filmSlides",
             "category": "categoryOne",
@@ -77,8 +84,9 @@
             "name": "fox2",
             "gallery": "filmSlides",
             "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
+            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic=se.jpg",
+            "tags": "animal cool_pic",
+            "audioPath": "audio/fox2.mp3"
         },
         {
             "name": "fox3",

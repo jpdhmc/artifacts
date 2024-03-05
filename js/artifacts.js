@@ -9,7 +9,6 @@ class Artifact {
         this.gallery = gallery;
         this.category = category;
         this.filePath = filePath;
-        this.audioPath = audioPath;
         this.tags = tags;
     }
 }
@@ -34,7 +33,7 @@ const generateArtifacts = () => {
             return response.json();
         }).then(galleryJson => {
             galleryJson.artifacts.forEach(jsonArtifact => {
-                const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.audioPath, jsonArtifact.tags);
+                const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.tags);
                 artifactsArray.push(newArtifact);
             })
         });
@@ -144,7 +143,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         newFigure.appendChild(newFigCaption);
         filmSlidesGallery.appendChild(newFigure);
         newImg.addEventListener("click", () => {
-            expandImage(newFigure, galleryObject);
+            expandImage(newFigure);
         })
 
         // Build category tabs
@@ -169,19 +168,11 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
-const expandImage = (selectedFigure, galleryObject) => {
+const expandImage = (selectedFigure) => {
     handlePosterMovers(false);
     let expandedWrapper = document.getElementById("expandedWrapper");
     let expandedFigure = document.getElementById("expandedFigure");
     expandedFigure.innerHTML = selectedFigure.innerHTML;
-    if (galleryObject.audioPath) {
-        console.log(galleryObject.audioPath);
-        let objectAudio = document.createElement("audio");
-        //TODO clean this up
-        objectAudio.src = galleryObject.audioPath;
-        objectAudio.controls = true;
-        expandedFigure.appendChild(objectAudio);
-    }
     expandedWrapper.style.display = "flex";
 }
 
@@ -201,9 +192,9 @@ const filterGallery = (filterCategory) => {
     for (let i = 0; i < figures.length; i++) {
         let currentFig = figures[i];
         if (filterCategory == "allCategory") {
-            currentFig.style.display = "inline";
+            currentFig.style.display = "block";
         } else if (currentFig.dataset.category == filterCategory) {
-            currentFig.style.display = "inline";
+            currentFig.style.display = "block";
         } else {
             currentFig.style.display = "none";
         }
