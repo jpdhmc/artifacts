@@ -31,20 +31,14 @@ html, body {
     position: absolute;
 }
 
-.indexButtons {
-    position: absolute;
-    background-color: transparent;
-    border: none;
-}
-
 #indexGlow {
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
 }
 
-#tapes {
-    right: 10em;
+.indexPathSelector {
+    cursor: pointer;
 }
 
 .posterWrapper {

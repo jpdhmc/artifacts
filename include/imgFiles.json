@@ -19,16 +19,14 @@
             "gallery": "filmSlides",
             "category": "categoryOne",
             "filePath": "img/gallery/filmSlides/categoryOne/one=dog luna=se.jpg",
-            "tags": "dog luna",
-            "audioPath": "audio/one.mp3"
+            "tags": "dog luna"
         },
         {
             "name": "reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
             "gallery": "filmSlides",
             "category": "categoryOne",
             "filePath": "img/gallery/filmSlides/categoryOne/reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage=cat animal=se.jpg",
-            "tags": "cat animal",
-            "audioPath": "audio/reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage.mp3"
+            "tags": "cat animal"
         },
         {
             "name": "bird",
@@ -77,16 +75,14 @@
             "gallery": "filmSlides",
             "category": "categoryThree",
             "filePath": "img/gallery/filmSlides/categoryThree/fossa=animal cool_pic=se.jpg",
-            "tags": "animal cool_pic",
-            "audioPath": "audio/fossa.mp3"
+            "tags": "animal cool_pic"
         },
         {
             "name": "fox2",
             "gallery": "filmSlides",
             "category": "categoryThree",
             "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic=se.jpg",
-            "tags": "animal cool_pic",
-            "audioPath": "audio/fox2.mp3"
+            "tags": "animal cool_pic"
         },
         {
             "name": "fox3",

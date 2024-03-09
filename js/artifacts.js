@@ -15,7 +15,7 @@ class Artifact {
 
 const init = () => {
     const artifactsArray = generateArtifacts();
-    paths = document.getElementsByClassName("indexPaths");
+    paths = document.getElementsByClassName("indexPathSelector");
     for (let i = 0; i < paths.length; i++) {
         let path = paths[i];
         path.addEventListener("click", () => {
