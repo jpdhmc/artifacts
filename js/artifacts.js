@@ -15,14 +15,60 @@ class Artifact {
 
 const init = () => {
     const artifactsArray = generateArtifacts();
-    paths = document.getElementsByClassName("indexPathSelector");
-    for (let i = 0; i < paths.length; i++) {
-        let path = paths[i];
-        path.addEventListener("click", () => {
-            galleryButtonClick(path.id, artifactsArray)
-        })
-    }
+    handleIndexPaths(true, artifactsArray);
     handlePosterMovers(true);
+}
+
+// Shows/hides the index svg glows and selectable buttons
+const handleIndexPaths = (isHandling, artifactsArray) => {
+    let glowSVG = document.getElementById("indexGlow");
+    if (isHandling) {
+        let paths = document.getElementsByClassName("indexPathSelector");
+        let allPathGlows = document.getElementsByClassName("indexPath");
+        glowSVG.style.display = "block";
+
+        // Path glow timer
+        const timerFunc = () => {
+            const endGlow = (e) => {
+                e.target.style.strokeOpacity = 0;
+                e.target.removeEventListener("transitionend", endGlow);
+            }
+
+            for (let i = 0; i < allPathGlows.length; i++) {
+                let pathGlow = allPathGlows[i];
+                // If we are not already mousing over
+                if (pathGlow.style.strokeOpacity != 1) {
+                    pathGlow.addEventListener("transitionend", endGlow)
+                    pathGlow.style.strokeOpacity = 0.5;
+                }
+            }
+        }
+        let glowTimer = setInterval(timerFunc, 6000);
+
+        // Path selector logic
+        for (let i = 0; i < paths.length; i++) {
+            let path = paths[i];
+            let pathGlowClass = path.id + "Glow";
+            let pathGlows = document.getElementsByClassName(pathGlowClass);
+            path.addEventListener("click", () => {
+                galleryButtonClick(path.id, artifactsArray)
+            })
+            path.addEventListener("mouseover", () => {
+                for (let i = 0; i < pathGlows.length; i++) {
+                    let pathGlow = pathGlows[i];
+                    pathGlow.style.strokeOpacity = 1;
+                }
+            })
+            path.addEventListener("mouseout", () => {
+                for (let i = 0; i < pathGlows.length; i++) {
+                    let pathGlow = pathGlows[i];
+                    pathGlow.style.strokeOpacity = 0;
+                }
+            })
+        }
+    } else {
+        glowSVG.style.display = "none";
+    }
 }
 
 // Fetches artifacts json and creates Artifact objects
@@ -66,7 +112,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             indexPoster.src = "img/" + selectedGallery + "Still.jpg";
 
             // Hide svg glow
-            document.getElementById("indexGlow").style.display = "none";
+            handleIndexPaths(false);
         }
 
         posterVideo.onended = () => {
@@ -206,15 +252,15 @@ const handlePosterMovers = (isHandling) => {
     let posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
-        posterMover.addEventListener('mouseover', mouseoverEvent = () => { posterMover.style.transform = "scale(1.1,1.1)" });
-        posterMover.addEventListener('mouseout', mouseoutEvent = () => { posterMover.style.transform = "scale(1,1)" });
+        posterMover.addEventListener("mouseover", mouseoverEvent = () => { posterMover.style.transform = "scale(1.1,1.1)" });
+        posterMover.addEventListener("mouseout", mouseoutEvent = () => { posterMover.style.transform = "scale(1,1)" });
 
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posterMover.addEventListener('mousemove', mousemoveEvent = (e) => { posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover) });
+        posterMover.addEventListener("mousemove", mousemoveEvent = (e) => { posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover) });
     } else {
-        posterMover.removeEventListener('mouseover', mouseoverEvent);
-        posterMover.removeEventListener('mouseout', mouseoutEvent);
-        posterMover.removeEventListener('mousemove', mousemoveEvent);
+        posterMover.removeEventListener("mouseover", mouseoverEvent);
+        posterMover.removeEventListener("mouseout", mouseoutEvent);
+        posterMover.removeEventListener("mousemove", mousemoveEvent);
         posterMover.style.transform = "scale(1,1)";
     }
 }

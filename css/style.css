@@ -37,6 +37,39 @@ html, body {
     width: 100vw;
 }
 
+.indexPath {
+    transition: stroke-opacity 1s;
+    stroke-opacity: 0;
+}
+
+.tapesGlow {
+
+}
+
+.microCassettesGlow {
+
+}
+
+.albumsGlow {
+
+}
+
+.filmSlidesGlow {
+
+}
+
+.objectsGlow {
+
+}
+
+.vhsGlow {
+
+}
+
+.printedGlow {
+
+}
+
 .indexPathSelector {
     cursor: pointer;
 }
