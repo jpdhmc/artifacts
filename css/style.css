@@ -144,6 +144,10 @@ html, body {
     scrollbar-width: none;  /* Firefox scrollbar */
 }
 
+#filmSlidesGallery figure:hover {
+    transform: scale(1.2);
+}
+
 .galleryButtons {
     display: flex;
     flex-direction: column;

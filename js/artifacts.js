@@ -4,7 +4,7 @@
  * @author John Den Hartog
  */
 class Artifact {
-    constructor(name, gallery, category, filePath, audioPath, tags) {
+    constructor(name, gallery, category, filePath, tags) {
         this.name = name;
         this.gallery = gallery;
         this.category = category;
@@ -15,60 +15,9 @@ class Artifact {
 
 const init = () => {
     const artifactsArray = generateArtifacts();
+    console.log(artifactsArray);
     handleIndexPaths(true, artifactsArray);
     handlePosterMovers(true);
-}
-
-// Shows/hides the index svg glows and selectable buttons
-const handleIndexPaths = (isHandling, artifactsArray) => {
-    let glowSVG = document.getElementById("indexGlow");
-    if (isHandling) {
-        let paths = document.getElementsByClassName("indexPathSelector");
-        let allPathGlows = document.getElementsByClassName("indexPath");
-        glowSVG.style.display = "block";
-
-        // Path glow timer
-        const timerFunc = () => {
-            const endGlow = (e) => {
-                e.target.style.strokeOpacity = 0;
-                e.target.removeEventListener("transitionend", endGlow);
-            }
-
-            for (let i = 0; i < allPathGlows.length; i++) {
-                let pathGlow = allPathGlows[i];
-                // If we are not already mousing over
-                if (pathGlow.style.strokeOpacity != 1) {
-                    pathGlow.addEventListener("transitionend", endGlow)
-                    pathGlow.style.strokeOpacity = 0.5;
-                }
-            }
-        }
-        let glowTimer = setInterval(timerFunc, 6000);
-
-        // Path selector logic
-        for (let i = 0; i < paths.length; i++) {
-            let path = paths[i];
-            let pathGlowClass = path.id + "Glow";
-            let pathGlows = document.getElementsByClassName(pathGlowClass);
-            path.addEventListener("click", () => {
-                galleryButtonClick(path.id, artifactsArray)
-            })
-            path.addEventListener("mouseover", () => {
-                for (let i = 0; i < pathGlows.length; i++) {
-                    let pathGlow = pathGlows[i];
-                    pathGlow.style.strokeOpacity = 1;
-                }
-            })
-            path.addEventListener("mouseout", () => {
-                for (let i = 0; i < pathGlows.length; i++) {
-                    let pathGlow = pathGlows[i];
-                    pathGlow.style.strokeOpacity = 0;
-                }
-            })
-        }
-    } else {
-        glowSVG.style.display = "none";
-    }
 }
 
 // Fetches artifacts json and creates Artifact objects
@@ -83,6 +32,17 @@ const generateArtifacts = () => {
                 artifactsArray.push(newArtifact);
             })
         });
+    
+    // Video files hosted on external websites
+    fetch("../include/vidFiles.json")
+        .then((response) => {
+            return response.json();
+        }).then(vidJson => {
+            vidJson.videos.forEach(vidFile => {
+                const newVidArtifact = new Artifact(vidFile.name, vidFile.gallery, vidFile.location, vidFile.link, vidFile.tags);
+                artifactsArray.push(newVidArtifact);
+            })
+        })
     return artifactsArray;
 }
 
@@ -123,8 +83,8 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                 case "filmSlides":
                     displayFilmSlidesGallery(desiredArtifacts);
                     break;
-                case "vhsPlayer":
-                    displayvhsPlayer(desiredArtifacts);
+                case "vhs":
+                    displayVhsGallery(desiredArtifacts);
                     break;
                 case "printedMedia":
                     displayprintedMedia(desiredArtifacts);
@@ -141,7 +101,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 }
 
 // Build and display the film slides gallery
-// TODO add audio/title
 const displayFilmSlidesGallery = (artifactsArray) => {
     // TODO change strength of poster move effect
     handlePosterMovers(true)
@@ -212,6 +171,10 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     });
 }
 
+const displayVhsGallery = () => {
+    
+}
+
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedFigure) => {
@@ -262,6 +225,61 @@ const handlePosterMovers = (isHandling) => {
         posterMover.removeEventListener("mouseout", mouseoutEvent);
         posterMover.removeEventListener("mousemove", mousemoveEvent);
         posterMover.style.transform = "scale(1,1)";
+    }
+}
+
+// Shows/hides the index svg glows and selectable buttons
+const handleIndexPaths = (isHandling, artifactsArray) => {
+    let glowSVG = document.getElementById("indexGlow");
+    if (isHandling) {
+        let paths = document.getElementsByClassName("indexPathSelector");
+        let allPathGlows = document.getElementsByClassName("indexPath");
+        glowSVG.style.display = "block";
+
+        // Path glow timer
+        const timerFunc = () => {
+            const endGlow = (e) => {
+                // Check in case mouseover occurred during transition
+                if (e.target.style.strokeOpacity != 1) {
+                    e.target.style.strokeOpacity = 0;
+                }
+                e.target.removeEventListener("transitionend", endGlow);
+            }
+
+            for (let i = 0; i < allPathGlows.length; i++) {
+                let pathGlow = allPathGlows[i];
+                // If we are not already mousing over
+                if (pathGlow.style.strokeOpacity != 1) {
+                    pathGlow.addEventListener("transitionend", endGlow)
+                    pathGlow.style.strokeOpacity = 0.5;
+                }
+            }
+        }
+        let glowTimer = setInterval(timerFunc, 6000);
+
+        // Path selector logic
+        for (let i = 0; i < paths.length; i++) {
+            let path = paths[i];
+            let pathGlowClass = path.id + "Glow";
+            let pathGlows = document.getElementsByClassName(pathGlowClass);
+            path.addEventListener("click", () => {
+                galleryButtonClick(path.id, artifactsArray)
+            })
+            path.addEventListener("mouseover", () => {
+                for (let i = 0; i < pathGlows.length; i++) {
+                    let pathGlow = pathGlows[i];
+                    pathGlow.style.strokeOpacity = 1;
+                }
+            })
+            path.addEventListener("mouseout", () => {
+                for (let i = 0; i < pathGlows.length; i++) {
+                    let pathGlow = pathGlows[i];
+                    pathGlow.style.strokeOpacity = 0;
+                }
+            })
+        }
+    } else {
+        glowSVG.style.display = "none";
     }
 }
 
