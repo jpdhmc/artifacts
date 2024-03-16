@@ -135,7 +135,7 @@ html, body {
     position: relative;
     width: 50%;
     height: 80%;
-    display: flex;
+    display: none;
     flex-flow: row wrap;
     justify-content: space-around;
     align-items: center;
@@ -146,6 +146,38 @@ html, body {
 
 #filmSlidesGallery figure:hover {
     transform: scale(1.2);
+}
+
+#vhsGallery {
+    position: relative;
+    width: 50%;
+    height: 80%;
+    display: none;
+}
+
+#vhsGallery iframe {
+    width: 100%;
+    height: 100%;
+}
+
+.vhsIconWrapper {
+    position: relative;
+    width: 100%;
+    height: auto;
+}
+
+.vhsIcon {
+    width: 100%;
+    height: auto;
+}
+
+.vhsText {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 .galleryButtons {

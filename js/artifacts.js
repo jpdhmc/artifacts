@@ -15,7 +15,6 @@ class Artifact {
 
 const init = () => {
     const artifactsArray = generateArtifacts();
-    console.log(artifactsArray);
     handleIndexPaths(true, artifactsArray);
     handlePosterMovers(true);
 }
@@ -48,7 +47,6 @@ const generateArtifacts = () => {
 
 // Transitions poster depending on selected gallery and calls its function
 const galleryButtonClick = (selectedGallery, artifactsArray) => {
-    console.log(selectedGallery);
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
@@ -112,7 +110,9 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 
     galleryButtons.className = "galleryButtons";
     filmSlidesGalleryWrapper.appendChild(galleryButtons);
+    filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
+    
     handleCloseGalleryOrImage();
 
     // Create the button for removing gallery filtering
@@ -171,7 +171,37 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     });
 }
 
-const displayVhsGallery = () => {
+const displayVhsGallery = (artifactsArray) => {
+    let vhsGallery = document.getElementById("vhsGallery");
+    let galleryWrapper = document.getElementById("galleryWrapper");
+    let vhsFrame = document.getElementById("vhsFrame");
+
+    let vhsButtons = document.createElement("div");
+    vhsButtons.classList.add("galleryButtons");
+    galleryWrapper.appendChild(vhsButtons);
+
+    // TODO on video select set false
+    handlePosterMovers(true);
+
+    artifactsArray.forEach(videoArtifact => {
+        let vhsIconWrapper = document.createElement("div");
+        let vhsIcon = document.createElement("img");
+        let vhsName = document.createElement("div");
+        vhsIconWrapper.appendChild(vhsIcon);
+        vhsIconWrapper.appendChild(vhsName);
+        vhsIcon.src = "img/icon/vhsIconClosed.png";
+        vhsIconWrapper.classList.add("vhsIconWrapper");
+        vhsIcon.classList.add("vhsIcon");
+        vhsName.classList.add("vhsText");
+        vhsName.innerHTML = videoArtifact.name;
+        //onclick
+        vhsButtons.appendChild(vhsIconWrapper);
+    })
+
+    
+    galleryWrapper.style.display = "flex";
+    vhsGallery.style.display = "flex";
+
     
 }
 
@@ -192,6 +222,10 @@ const handleCloseGalleryOrImage = () => {
         expandedWrapper.style.display = "none";
         handlePosterMovers(true);
     })
+}
+
+const goHome = () => {
+
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
