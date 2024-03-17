@@ -177,32 +177,34 @@ const displayVhsGallery = (artifactsArray) => {
     let vhsFrame = document.getElementById("vhsFrame");
 
     let vhsButtons = document.createElement("div");
-    vhsButtons.classList.add("galleryButtons");
+    vhsButtons.classList.add("vhsButtons", "vhsTemp");
     galleryWrapper.appendChild(vhsButtons);
-
-    // TODO on video select set false
-    handlePosterMovers(true);
 
     artifactsArray.forEach(videoArtifact => {
         let vhsIconWrapper = document.createElement("div");
+        
         let vhsIcon = document.createElement("img");
         let vhsName = document.createElement("div");
         vhsIconWrapper.appendChild(vhsIcon);
         vhsIconWrapper.appendChild(vhsName);
         vhsIcon.src = "img/icon/vhsIconClosed.png";
-        vhsIconWrapper.classList.add("vhsIconWrapper");
-        vhsIcon.classList.add("vhsIcon");
-        vhsName.classList.add("vhsText");
-        vhsName.innerHTML = videoArtifact.name;
+        vhsIconWrapper.classList.add("vhsIconWrapper", "vhsTemp");
+        vhsIcon.classList.add("vhsIcon", "vhsTemp");
+        vhsName.classList.add("vhsText", "vhsTemp");
+        vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
         //onclick
         vhsButtons.appendChild(vhsIconWrapper);
     })
-
-    
     galleryWrapper.style.display = "flex";
     vhsGallery.style.display = "flex";
+}
 
-    
+// Called on return home, deletes elements that are created every time gallery is shown
+const cleanupGalleryElements = (galleryClass) => {
+    classElements = getElementsByClassName(galleryClass);
+    for (i = 0; i < classElements.length; i++) {
+        classElements[i].remove();
+    }
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 

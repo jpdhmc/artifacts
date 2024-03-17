@@ -158,6 +158,7 @@ html, body {
 #vhsGallery iframe {
     width: 100%;
     height: 100%;
+    border: none;
 }
 
 .vhsIconWrapper {
@@ -174,7 +175,7 @@ html, body {
 .vhsText {
     display: block;
     position: absolute;
-    top: 50%;
+    top: 30%;
     width: 100%;
     text-align: center;
     font-size: 1.5em;
@@ -186,6 +187,13 @@ html, body {
     flex: 0 0 10%;
     margin-right: 25%;
     margin-bottom: 20%;
+}
+
+.vhsButtons {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 20%;
+    margin: 10% 5% 10% 10%;
 }
 
 .tabButton {
