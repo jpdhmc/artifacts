@@ -192,7 +192,12 @@ const displayVhsGallery = (artifactsArray) => {
         vhsIcon.classList.add("vhsIcon", "vhsTemp");
         vhsName.classList.add("vhsText", "vhsTemp");
         vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
-        //onclick
+
+        vhsIconWrapper.addEventListener("click", () => {
+            console.log(videoArtifact.filePath);
+            vhsFrame.src = videoArtifact.filePath;
+        })
+
         vhsButtons.appendChild(vhsIconWrapper);
     })
     galleryWrapper.style.display = "flex";
