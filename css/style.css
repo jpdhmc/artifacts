@@ -24,6 +24,13 @@ html, body {
     width: 100vw;
 }
 
+#homeButton {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
 #indexPoster {
     object-fit: cover;
     height: 100%;
@@ -40,34 +47,6 @@ html, body {
 .indexPath {
     transition: stroke-opacity 1s;
     stroke-opacity: 0;
-}
-
-.tapesGlow {
-
-}
-
-.microCassettesGlow {
-
-}
-
-.albumsGlow {
-
-}
-
-.filmSlidesGlow {
-
-}
-
-.objectsGlow {
-
-}
-
-.vhsGlow {
-
-}
-
-.printedGlow {
-
 }
 
 .indexPathSelector {
@@ -150,8 +129,9 @@ html, body {
 
 #vhsGallery {
     position: relative;
-    width: 50%;
-    height: 80%;
+    aspect-ratio: 16/9;
+    width: 60%;
+    height: auto;
     display: none;
 }
 
@@ -163,14 +143,14 @@ html, body {
 
 .vhsIconWrapper {
     position: relative;
-    width: 100%;
+    width: 90%;
     height: auto;
     transition: 0.3s ease;
     margin-top: 4%;
 }
 
 .vhsIconWrapper:hover {
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .vhsIcon {
@@ -198,7 +178,8 @@ html, body {
 .vhsButtons {
     display: flex;
     flex-flow: column nowrap;
-    flex: 0 0 20%;
+    align-items: center;
+    flex: 1 1 20%;
     margin: 10% 5% 10% 10%;
     height: 90%;
     width: 5%;

@@ -17,6 +17,9 @@ const init = () => {
     const artifactsArray = generateArtifacts();
     handleIndexPaths(true, artifactsArray);
     handlePosterMovers(true);
+    document.getElementById("homeButton").addEventListener("click", () => {
+        goHome(artifactsArray)
+    })
 }
 
 // Fetches artifacts json and creates Artifact objects
@@ -31,7 +34,7 @@ const generateArtifacts = () => {
                 artifactsArray.push(newArtifact);
             })
         });
-    
+
     // Video files hosted on external websites
     fetch("../include/vidFiles.json")
         .then((response) => {
@@ -50,6 +53,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
+
 
     let desiredArtifacts = [];
     artifactsArray.forEach(artifact => {
@@ -77,6 +81,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             posterMover.removeEventListener("transitionend", posterTransition);
             indexPoster.style.display = "block";
             posterVideo.style.display = "none";
+
             switch (selectedGallery) {
                 case "filmSlides":
                     displayFilmSlidesGallery(desiredArtifacts);
@@ -112,7 +117,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     filmSlidesGalleryWrapper.appendChild(galleryButtons);
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
-    
+
     handleCloseGalleryOrImage();
 
     // Create the button for removing gallery filtering
@@ -174,23 +179,26 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 const displayVhsGallery = (artifactsArray) => {
     let vhsGallery = document.getElementById("vhsGallery");
     let galleryWrapper = document.getElementById("galleryWrapper");
-    let vhsFrame = document.getElementById("vhsFrame");
+    let vhsFrame = document.createElement("iframe");
+    vhsFrame.id = "vhsFrame";
+    vhsFrame.classList.add("temp");
+    vhsGallery.appendChild(vhsFrame);
 
     let vhsButtons = document.createElement("div");
-    vhsButtons.classList.add("vhsButtons", "vhsTemp");
+    vhsButtons.classList.add("vhsButtons", "temp");
     galleryWrapper.appendChild(vhsButtons);
 
     artifactsArray.forEach(videoArtifact => {
         let vhsIconWrapper = document.createElement("div");
-        
+
         let vhsIcon = document.createElement("img");
         let vhsName = document.createElement("div");
         vhsIconWrapper.appendChild(vhsIcon);
         vhsIconWrapper.appendChild(vhsName);
         vhsIcon.src = "img/icon/vhsIconClosed.png";
-        vhsIconWrapper.classList.add("vhsIconWrapper", "vhsTemp");
-        vhsIcon.classList.add("vhsIcon", "vhsTemp");
-        vhsName.classList.add("vhsText", "vhsTemp");
+        vhsIconWrapper.classList.add("vhsIconWrapper", "temp");
+        vhsIcon.classList.add("vhsIcon", "temp");
+        vhsName.classList.add("vhsText", "temp");
         vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
 
         vhsIconWrapper.addEventListener("click", () => {
@@ -202,14 +210,6 @@ const displayVhsGallery = (artifactsArray) => {
     })
     galleryWrapper.style.display = "flex";
     vhsGallery.style.display = "flex";
-}
-
-// Called on return home, deletes elements that are created every time gallery is shown
-const cleanupGalleryElements = (galleryClass) => {
-    classElements = getElementsByClassName(galleryClass);
-    for (i = 0; i < classElements.length; i++) {
-        classElements[i].remove();
-    }
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
@@ -231,8 +231,19 @@ const handleCloseGalleryOrImage = () => {
     })
 }
 
-const goHome = () => {
-
+// Delete temp gallery elements that are created when one is selected and return to index
+const goHome = (artifactsArray) => {
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    const indexPoster = document.getElementById("indexPoster");
+    let tempElements = document.querySelectorAll(".temp")
+    console.log(tempElements);
+    handlePosterMovers(true);
+    handleIndexPaths(true, artifactsArray);
+    for (i = 0; i < tempElements.length; i++) {
+        tempElements[i].remove();
+    }
+    indexPoster.src = "img/deskStill.JPG"
+    galleryWrapper.style.display = "none";
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
