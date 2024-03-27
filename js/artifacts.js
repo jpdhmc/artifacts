@@ -65,12 +65,9 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     posterVideo.src = "img/" + selectedGallery + "Transition.mp4";
 
     // Waits until poster scale transition finishes to trigger
-    console.log("finna add da event listener!!!!!!");
     posterMover.addEventListener("transitionend", posterTransition = (e) => {
         if (e.target == posterMover) {
-            console.log("postermover transition end event triggered:" + e.target);
             posterMover.removeEventListener("transitionend", posterTransition);
-            console.log("it seems the event was removed...");
             posterVideo.style.display = "block";
 
             // Onplay helps avoid a blank frame between image and video
@@ -297,6 +294,7 @@ const handleIndexPaths = (artifactsArray) => {
 
     // Path glow timer
     const timerFunc = () => {
+        console.log("timer func trigger");
         const endGlow = (e) => {
             // Check in case mouseover occurred during transition
             if (e.target.style.strokeOpacity != 1) {
@@ -342,8 +340,11 @@ const handleIndexPaths = (artifactsArray) => {
 // Show or hide index glows
 const showIndexPaths = (showing) => {
     let glowSVG = document.getElementById("indexGlow");
-
+    let allPathGlows = document.getElementsByClassName("indexPath");
     if (showing) {
+        for (let i = 0; i < allPathGlows.length; i++) {
+            allPathGlows[i].style.strokeOpacity = 0;
+        }
         glowSVG.style.display = "block";
     } else {
         glowSVG.style.display = "none";
