@@ -53,11 +53,12 @@ html, body {
     cursor: pointer;
 }
 
-.posterWrapper {
+#posterWrapper {
     position: relative;
     width: 100vw;
     height: 100vh;
     overflow: hidden;
+    transition: opacity 1s;
 }
 
 .galleryWrapper {

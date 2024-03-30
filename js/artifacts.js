@@ -237,18 +237,27 @@ const handleCloseGalleryOrImage = () => {
 const goHome = (artifactsArray) => {
     const galleryWrapper = document.getElementById("galleryWrapper");
     const indexPoster = document.getElementById("indexPoster");
+    const posterWrapper = document.getElementById("posterWrapper");
     let tempElements = document.querySelectorAll(".temp")
     let galleryElements = document.querySelectorAll(".gallery")
     handlePosterMovers(true);
     showIndexPaths(true);
-    for (i = 0; i < tempElements.length; i++) {
-        tempElements[i].remove();
-    }
-    for (i = 0; i < galleryElements.length; i++) {
-        galleryElements[i].style.display = "none";
-    }
-    indexPoster.src = "img/deskStill.JPG"
-    galleryWrapper.style.display = "none";
+
+    posterWrapper.addEventListener("transitionend", fadeTransition = (e) => {
+        if (e.target == posterWrapper) {
+            posterWrapper.removeEventListener("transitionend", fadeTransition);
+            for (i = 0; i < tempElements.length; i++) {
+                tempElements[i].remove();
+            }
+            for (i = 0; i < galleryElements.length; i++) {
+                galleryElements[i].style.display = "none";
+            }
+            indexPoster.src = "img/deskStill.JPG"
+            galleryWrapper.style.display = "none";
+            posterWrapper.style.opacity = 1;
+        }
+    });
+    posterWrapper.style.opacity = 0;
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
