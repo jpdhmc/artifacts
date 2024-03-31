@@ -246,15 +246,20 @@ const goHome = (artifactsArray) => {
     posterWrapper.addEventListener("transitionend", fadeTransition = (e) => {
         if (e.target == posterWrapper) {
             posterWrapper.removeEventListener("transitionend", fadeTransition);
-            for (i = 0; i < tempElements.length; i++) {
-                tempElements[i].remove();
-            }
-            for (i = 0; i < galleryElements.length; i++) {
-                galleryElements[i].style.display = "none";
-            }
+
+            indexPoster.addEventListener("load", imgLoad = (e) => {
+                if (e.target == indexPoster) {
+                    for (i = 0; i < tempElements.length; i++) {
+                        tempElements[i].remove();
+                    }
+                    for (i = 0; i < galleryElements.length; i++) {
+                        galleryElements[i].style.display = "none";
+                    }
+                    galleryWrapper.style.display = "none";
+                    posterWrapper.style.opacity = 1;
+                }
+            });
             indexPoster.src = "img/deskStill.JPG"
-            galleryWrapper.style.display = "none";
-            posterWrapper.style.opacity = 1;
         }
     });
     posterWrapper.style.opacity = 0;
