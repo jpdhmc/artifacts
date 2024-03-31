@@ -114,9 +114,9 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
     let galleryButtons = document.createElement("div");
+    galleryButtons.classList.add("galleryButtons", "temp")
     let categoryList = [];
 
-    galleryButtons.className = "galleryButtons";
     filmSlidesGalleryWrapper.appendChild(galleryButtons);
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
@@ -125,7 +125,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 
     // Create the button for removing gallery filtering
     let allCategory = document.createElement("button");
-    allCategory.className = "tabButton tabButtonActive";
+    allCategory.classList.add("tabButton", "tabButtonActive");
     allCategory.id = "allCategory"
     allCategory.innerHTML = "All Categories";
     galleryButtons.appendChild(allCategory);
@@ -150,6 +150,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         let newImg = document.createElement("img");
         newImg.src = imgPath;
         newFigure.dataset.category = imgCategory;
+        newFigure.classList.add("temp");
         newFigCaption.innerHTML = imgName;
 
         newFigure.appendChild(newImg);
@@ -179,6 +180,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     });
 }
 
+// Build and display the vhs gallery
 const displayVhsGallery = (artifactsArray) => {
     let vhsGallery = document.getElementById("vhsGallery");
     let galleryWrapper = document.getElementById("galleryWrapper");
