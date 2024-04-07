@@ -53,6 +53,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
+    const homeButton = document.getElementById("homeButton");
 
 
     let desiredArtifacts = [];
@@ -82,6 +83,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             posterVideo.onended = () => {
                 indexPoster.style.display = "block";
                 posterVideo.style.display = "none";
+                homeButton.style.display = "block";
 
                 switch (selectedGallery) {
                     case "filmSlides":
@@ -240,6 +242,7 @@ const goHome = (artifactsArray) => {
     const galleryWrapper = document.getElementById("galleryWrapper");
     const indexPoster = document.getElementById("indexPoster");
     const posterWrapper = document.getElementById("posterWrapper");
+    const homeButton = document.getElementById("homeButton");
     let tempElements = document.querySelectorAll(".temp")
     let galleryElements = document.querySelectorAll(".gallery")
     handlePosterMovers(true);
@@ -248,6 +251,7 @@ const goHome = (artifactsArray) => {
     posterWrapper.addEventListener("transitionend", fadeTransition = (e) => {
         if (e.target == posterWrapper) {
             posterWrapper.removeEventListener("transitionend", fadeTransition);
+            homeButton.style.display = "none";
 
             indexPoster.addEventListener("load", imgLoad = (e) => {
                 if (e.target == indexPoster) {
