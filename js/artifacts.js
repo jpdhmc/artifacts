@@ -123,7 +123,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
 
-    handleCloseGalleryOrImage();
+    handleCloseExpandedWrapper();
 
     // Create the button for removing gallery filtering
     let allCategory = document.createElement("button");
@@ -229,7 +229,7 @@ const expandImage = (selectedFigure) => {
 }
 
 // Handle the closing/cleaning up for the expanded image
-const handleCloseGalleryOrImage = () => {
+const handleCloseExpandedWrapper = () => {
     let expandedWrapper = document.getElementById("expandedWrapper");
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
@@ -243,8 +243,10 @@ const goHome = (artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterWrapper = document.getElementById("posterWrapper");
     const homeButton = document.getElementById("homeButton");
+    const expandedWrapper = document.getElementById("expandedWrapper");
     let tempElements = document.querySelectorAll(".temp")
     let galleryElements = document.querySelectorAll(".gallery")
+    expandedWrapper.style.display = "none";
     handlePosterMovers(true);
     showIndexPaths(true);
 
