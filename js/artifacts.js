@@ -49,6 +49,7 @@ const generateArtifacts = () => {
 }
 
 // Transitions poster depending on selected gallery and calls its function
+// TODO fix bug where you can click on a different button quickly before transition finishes
 const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
@@ -93,10 +94,10 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                         displayVhsGallery(desiredArtifacts);
                         break;
                     case "printedMedia":
-                        displayprintedMedia(desiredArtifacts);
+                        displayPrintedMediaGallery(desiredArtifacts);
                         break;
                     case "cassettes":
-                        displayCassettes(desiredArtifacts);
+                        displayCassettesGallery(desiredArtifacts);
                         break;
                     case "tapes":
                         displayTapesGallery(desiredArtifacts);
@@ -112,10 +113,10 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 const displayFilmSlidesGallery = (artifactsArray) => {
     // TODO change strength of poster move effect
     handlePosterMovers(true)
-    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
-    let filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
+    const filmSlidesGallery = document.getElementById("filmSlidesGallery");
+    const filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
-    let galleryButtons = document.createElement("div");
+    const galleryButtons = document.createElement("div");
     galleryButtons.classList.add("galleryButtons", "temp")
     let categoryList = [];
 
@@ -126,7 +127,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     handleCloseExpandedWrapper();
 
     // Create the button for removing gallery filtering
-    let allCategory = document.createElement("button");
+    const allCategory = document.createElement("button");
     allCategory.classList.add("tabButton", "tabButtonActive");
     allCategory.id = "allCategory"
     allCategory.innerHTML = "All Categories";
@@ -184,14 +185,14 @@ const displayFilmSlidesGallery = (artifactsArray) => {
 
 // Build and display the vhs gallery
 const displayVhsGallery = (artifactsArray) => {
-    let vhsGallery = document.getElementById("vhsGallery");
-    let galleryWrapper = document.getElementById("galleryWrapper");
-    let vhsFrame = document.createElement("iframe");
+    const vhsGallery = document.getElementById("vhsGallery");
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    const vhsFrame = document.createElement("iframe");
     vhsFrame.id = "vhsFrame";
     vhsFrame.classList.add("temp");
     vhsGallery.appendChild(vhsFrame);
 
-    let vhsButtons = document.createElement("div");
+    const vhsButtons = document.createElement("div");
     vhsButtons.classList.add("vhsButtons", "temp");
     galleryWrapper.appendChild(vhsButtons);
 
@@ -218,19 +219,23 @@ const displayVhsGallery = (artifactsArray) => {
     vhsGallery.style.display = "flex";
 }
 
+const displayTapesGallery = () => {
+
+}
+
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedFigure) => {
     handlePosterMovers(false);
-    let expandedWrapper = document.getElementById("expandedWrapper");
-    let expandedFigure = document.getElementById("expandedFigure");
+    const expandedWrapper = document.getElementById("expandedWrapper");
+    const expandedFigure = document.getElementById("expandedFigure");
     expandedFigure.innerHTML = selectedFigure.innerHTML;
     expandedWrapper.style.display = "flex";
 }
 
 // Handle the closing/cleaning up for the expanded image
 const handleCloseExpandedWrapper = () => {
-    let expandedWrapper = document.getElementById("expandedWrapper");
+    const expandedWrapper = document.getElementById("expandedWrapper");
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
         handlePosterMovers(true);
@@ -275,7 +280,7 @@ const goHome = (artifactsArray) => {
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory) => {
-    let filmSlidesGallery = document.getElementById("filmSlidesGallery");
+    const filmSlidesGallery = document.getElementById("filmSlidesGallery");
     let figures = Array.from(filmSlidesGallery.getElementsByTagName("figure"));
     for (let i = 0; i < figures.length; i++) {
         let currentFig = figures[i];
@@ -291,7 +296,7 @@ const filterGallery = (filterCategory) => {
 
 // Poster interactive zooming and panning
 const handlePosterMovers = (isHandling) => {
-    let posterMover = document.getElementById("posterMover");
+    const posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
         posterMover.addEventListener("mouseover", mouseoverEvent = () => { posterMover.style.transform = "scale(1.1,1.1)" });
@@ -309,9 +314,9 @@ const handlePosterMovers = (isHandling) => {
 
 // Shows/hides the index svg glows and selectable buttons
 const handleIndexPaths = (artifactsArray) => {
-    let glowSVG = document.getElementById("indexGlow");
-    let paths = document.getElementsByClassName("indexPathSelector");
-    let allPathGlows = document.getElementsByClassName("indexPath");
+    const glowSVG = document.getElementById("indexGlow");
+    const paths = document.getElementsByClassName("indexPathSelector");
+    const allPathGlows = document.getElementsByClassName("indexPath");
     glowSVG.style.display = "block";
 
     // Path glow timer
@@ -361,8 +366,8 @@ const handleIndexPaths = (artifactsArray) => {
 
 // Show or hide index glows
 const showIndexPaths = (showing) => {
-    let glowSVG = document.getElementById("indexGlow");
-    let allPathGlows = document.getElementsByClassName("indexPath");
+    const glowSVG = document.getElementById("indexGlow");
+    const allPathGlows = document.getElementsByClassName("indexPath");
     if (showing) {
         for (let i = 0; i < allPathGlows.length; i++) {
             allPathGlows[i].style.strokeOpacity = 0;
