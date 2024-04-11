@@ -132,7 +132,7 @@ html, body {
 #vhsGallery {
     position: relative;
     aspect-ratio: 16/9;
-    width: 60%;
+    width: 70%;
     height: auto;
     display: none;
 }
@@ -170,6 +170,28 @@ html, body {
     font-size: 1.5em;
 }
 
+.rightButtons {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    flex: 1 1 20%;
+    margin: 10% 5% 10% 5%;
+    height: 90%;
+    width: 5%;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge scrollbar */
+    scrollbar-width: none;  /* Firefox scrollbar */
+}
+
+#tapesGallery {
+    background-color: white;
+    position: relative;
+    aspect-ratio: 16/9;
+    width: 70vw;
+    height: auto;
+    display: none;
+}
+
 .galleryButtons {
     display: flex;
     flex-direction: column;
@@ -178,18 +200,6 @@ html, body {
     margin-bottom: 20%;
 }
 
-.vhsButtons {
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    flex: 1 1 20%;
-    margin: 10% 5% 10% 10%;
-    height: 90%;
-    width: 5%;
-    overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge scrollbar */
-    scrollbar-width: none;  /* Firefox scrollbar */
-}
 
 .tabButton {
     border: none;

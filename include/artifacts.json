@@ -135,6 +135,12 @@
             "gallery": "otherGallery",
             "category": "categoryTwo",
             "filePath": "img/gallery/otherGallery/categoryTwo/two.jpg"
+        },
+        {
+            "name": "BIGDOG",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/BIGDOG.wav"
         }
     ]
 }

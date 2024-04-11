@@ -7,7 +7,7 @@ const fs = require("fs");
 const path = require("path");
 
 const imgFolderPath = "../img/gallery";
-const outputPath = "../include/imgFiles.json"
+const outputPath = "../include/artifacts.json"
 
 let filesArray = [];
 

@@ -25,7 +25,7 @@ const init = () => {
 // Fetches artifacts json and creates Artifact objects
 const generateArtifacts = () => {
     let artifactsArray = []
-    fetch("../include/imgFiles.json")
+    fetch("../include/artifacts.json")
         .then((response) => {
             return response.json();
         }).then(galleryJson => {
@@ -107,6 +107,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     }
     );
     handlePosterMovers(false);
+    console.log("poster movers turned off");
 }
 
 // Build and display the film slides gallery
@@ -193,7 +194,7 @@ const displayVhsGallery = (artifactsArray) => {
     vhsGallery.appendChild(vhsFrame);
 
     const vhsButtons = document.createElement("div");
-    vhsButtons.classList.add("vhsButtons", "temp");
+    vhsButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(vhsButtons);
 
     artifactsArray.forEach(videoArtifact => {
@@ -219,8 +220,21 @@ const displayVhsGallery = (artifactsArray) => {
     vhsGallery.style.display = "flex";
 }
 
-const displayTapesGallery = () => {
+const displayTapesGallery = (artifactsArray) => {
+    const tapesGallery = document.getElementById("tapesGallery");
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    galleryWrapper.style.display = "flex";
+    tapesGallery.style.display = "flex";
 
+    const tapesButtons = document.createElement("div");
+    tapesButtons.classList.add("rightButtons", "temp");
+    galleryWrapper.appendChild("tapesButtons");
+
+    artifactsArray.forEach(artifact => {
+        let tapeIcon = document.createElement("img");
+        tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
+        
+    })
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
@@ -296,6 +310,7 @@ const filterGallery = (filterCategory) => {
 
 // Poster interactive zooming and panning
 const handlePosterMovers = (isHandling) => {
+    console.log("is handling: " + isHandling);
     const posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
@@ -321,7 +336,6 @@ const handleIndexPaths = (artifactsArray) => {
 
     // Path glow timer
     const timerFunc = () => {
-        console.log("timer func trigger");
         const endGlow = (e) => {
             // Check in case mouseover occurred during transition
             if (e.target.style.strokeOpacity != 1) {
