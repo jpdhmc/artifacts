@@ -228,12 +228,16 @@ const displayTapesGallery = (artifactsArray) => {
 
     const tapesButtons = document.createElement("div");
     tapesButtons.classList.add("rightButtons", "temp");
-    galleryWrapper.appendChild("tapesButtons");
+    galleryWrapper.appendChild(tapesButtons);
 
     artifactsArray.forEach(artifact => {
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
-        
+        tapeIcon.classList.add("tapeIcon", "temp");
+        tapeIcon.addEventListener("click", () => {
+            console.log(tapeIcon.src);
+        });
+        tapesButtons.appendChild(tapeIcon);
     })
 }
 

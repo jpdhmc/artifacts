@@ -171,13 +171,14 @@ html, body {
 }
 
 .rightButtons {
+    background-color: white;
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     flex: 1 1 20%;
-    margin: 10% 5% 10% 5%;
+    margin: 5% 3% 5% 3%;
     height: 90%;
-    width: 5%;
+    width: 3%;
     overflow: auto;
     -ms-overflow-style: none;  /* IE and Edge scrollbar */
     scrollbar-width: none;  /* Firefox scrollbar */
@@ -186,10 +187,15 @@ html, body {
 #tapesGallery {
     background-color: white;
     position: relative;
-    aspect-ratio: 16/9;
     width: 70vw;
-    height: auto;
+    height: 100vw;
     display: none;
+    margin-left: 3%;
+}
+
+.tapeIcon {
+    width: 100%;
+    height: auto;
 }
 
 .galleryButtons {

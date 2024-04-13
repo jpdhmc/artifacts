@@ -141,6 +141,36 @@
             "gallery": "tapes",
             "category": "coolAudio",
             "filePath": "img/gallery/tapes/coolAudio/BIGDOG.wav"
+        },
+        {
+            "name": "dog2",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/dog2.wav"
+        },
+        {
+            "name": "dog3",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/dog3.wav"
+        },
+        {
+            "name": "dog4",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/dog4.wav"
+        },
+        {
+            "name": "dog5",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/dog5.wav"
+        },
+        {
+            "name": "dog6",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/dog6.wav"
         }
     ]
 }
