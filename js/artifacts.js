@@ -64,7 +64,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         }
     })
 
-    posterVideo.src = "img/" + selectedGallery + "Transition.mp4";
+    posterVideo.src = "img/transitions/" + selectedGallery + "Transition.mp4";
 
     // Waits until poster scale transition finishes to trigger
     posterMover.addEventListener("transitionend", posterTransition = (e) => {
@@ -75,7 +75,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             // Onplay helps avoid a blank frame between image and video
             posterVideo.onplay = () => {
                 indexPoster.style.display = "none";
-                indexPoster.src = "img/" + selectedGallery + "Still.jpg";
+                indexPoster.src = "img/stills/" + selectedGallery + "Still.jpg";
 
                 // Hide svg glow
                 showIndexPaths(false);

@@ -187,15 +187,18 @@ html, body {
 #tapesGallery {
     background-color: white;
     position: relative;
-    width: 70vw;
+    width: 80vw;
     height: 100vw;
     display: none;
     margin-left: 3%;
 }
 
 .tapeIcon {
+    aspect-ratio: 1/1;
     width: 100%;
     height: auto;
+    margin-top: 2%;
+    margin-bottom: 3%;
 }
 
 .galleryButtons {
