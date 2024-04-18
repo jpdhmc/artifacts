@@ -107,7 +107,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     }
     );
     handlePosterMovers(false);
-    console.log("poster movers turned off");
 }
 
 // Build and display the film slides gallery
@@ -230,6 +229,10 @@ const displayTapesGallery = (artifactsArray) => {
     tapesButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(tapesButtons);
 
+    const audioPlayer = document.createElement("div");
+    audioPlayer.classList.add("temp");
+    tapesGallery.appendChild(audioPlayer);
+
     artifactsArray.forEach(artifact => {
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
@@ -270,6 +273,7 @@ const goHome = (artifactsArray) => {
     let tempElements = document.querySelectorAll(".temp")
     let galleryElements = document.querySelectorAll(".gallery")
     expandedWrapper.style.display = "none";
+    handlePosterMovers(false);
     handlePosterMovers(true);
     showIndexPaths(true);
 
@@ -290,7 +294,7 @@ const goHome = (artifactsArray) => {
                     posterWrapper.style.opacity = 1;
                 }
             });
-            indexPoster.src = "img/deskStill.JPG"
+            indexPoster.src = "img/stills/deskStill.jpg"
         }
     });
     posterWrapper.style.opacity = 0;
@@ -314,7 +318,6 @@ const filterGallery = (filterCategory) => {
 
 // Poster interactive zooming and panning
 const handlePosterMovers = (isHandling) => {
-    console.log("is handling: " + isHandling);
     const posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
