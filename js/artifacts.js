@@ -222,6 +222,8 @@ const displayVhsGallery = (artifactsArray) => {
 const displayTapesGallery = (artifactsArray) => {
     const tapesGallery = document.getElementById("tapesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
+    const playerButton = document.getElementById("playerButton");
+    let tapesAudio = document.getElementById("tapesAudio");
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
 
@@ -229,19 +231,25 @@ const displayTapesGallery = (artifactsArray) => {
     tapesButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(tapesButtons);
 
-    const audioPlayer = document.createElement("div");
-    audioPlayer.classList.add("temp");
-    tapesGallery.appendChild(audioPlayer);
-
     artifactsArray.forEach(artifact => {
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
-            console.log(tapeIcon.src);
+            tapesAudio.src = artifact.filePath;
         });
         tapesButtons.appendChild(tapeIcon);
-    })
+    });
+
+    playerButton.addEventListener("click", () => {
+        if (tapesAudio.paused) {
+            tapesAudio.play();
+            // change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+        } else {
+            tapesAudio.pause();
+            // change to play icon
+        }
+    });
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 

@@ -185,12 +185,11 @@ html, body {
 }
 
 #tapesGallery {
-    background-color: white;
+    justify-content: center;
     position: relative;
-    width: 80vw;
-    height: 100vw;
+    width: 80%;
+    height: 80%;
     display: none;
-    margin-left: 3%;
 }
 
 .tapeIcon {
@@ -199,6 +198,30 @@ html, body {
     height: auto;
     margin-top: 2%;
     margin-bottom: 3%;
+}
+
+#audioPlayer {
+    width: 30%;
+    height: 30%;
+    align-self: flex-start;
+}
+
+#controls {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin-top: 1%;
+}
+
+.player-button {
+    background-color: transparent;
+    border: 0;
+    width: 3em;
+    height: 3em;
+    cursor: pointer;
+    padding: 0;
 }
 
 .galleryButtons {
