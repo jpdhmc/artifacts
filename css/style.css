@@ -215,7 +215,7 @@ html, body {
     margin-top: 1%;
 }
 
-.player-button {
+#playerButton {
     background-color: transparent;
     border: 0;
     width: 3em;

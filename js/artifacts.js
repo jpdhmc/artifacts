@@ -237,6 +237,7 @@ const displayTapesGallery = (artifactsArray) => {
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
             tapesAudio.src = artifact.filePath;
+            console.log(tapesAudio.src);
         });
         tapesButtons.appendChild(tapeIcon);
     });
@@ -250,6 +251,10 @@ const displayTapesGallery = (artifactsArray) => {
             // change to play icon
         }
     });
+
+    tapesAudio.onended = () => {
+        // change to pause icon
+    }
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
