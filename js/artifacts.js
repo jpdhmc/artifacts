@@ -223,6 +223,7 @@ const displayTapesGallery = (artifactsArray) => {
     const tapesGallery = document.getElementById("tapesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
     const playerButton = document.getElementById("playerButton");
+    const playerTimeline = document.getElementById("timeline");
     let tapesAudio = document.getElementById("tapesAudio");
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
@@ -255,6 +256,17 @@ const displayTapesGallery = (artifactsArray) => {
     tapesAudio.onended = () => {
         // change to pause icon
     }
+
+    tapesAudio.ontimeupdate = () => {
+        let percentage = (100 * tapesAudio.currentTime) / tapesAudio.ondurationchange;
+        playerTimeline.style.backgroundSize = percentage + "% 100%";
+        playerTimeline.value = percentage;
+    }
+
+    playerTimeline.addEventListener("change", () => {
+        let time = (playerTimeline.value * tapesAudio.duration) / 100;
+        tapesAudio.currentTime = time;
+    })
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 

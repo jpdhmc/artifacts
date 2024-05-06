@@ -171,6 +171,12 @@
             "gallery": "tapes",
             "category": "coolAudio",
             "filePath": "img/gallery/tapes/coolAudio/dog6.wav"
+        },
+        {
+            "name": "Waltz",
+            "gallery": "tapes",
+            "category": "coolAudio",
+            "filePath": "img/gallery/tapes/coolAudio/Waltz.wav"
         }
     ]
 }
