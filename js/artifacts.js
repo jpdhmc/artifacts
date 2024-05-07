@@ -238,7 +238,6 @@ const displayTapesGallery = (artifactsArray) => {
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
             tapesAudio.src = artifact.filePath;
-            console.log(tapesAudio.src);
         });
         tapesButtons.appendChild(tapeIcon);
     });
@@ -258,7 +257,10 @@ const displayTapesGallery = (artifactsArray) => {
     }
 
     tapesAudio.ontimeupdate = () => {
-        let percentage = (100 * tapesAudio.currentTime) / tapesAudio.ondurationchange;
+        let percentage = (100 * tapesAudio.currentTime) / tapesAudio.duration;
+        if (isNaN(percentage)) {
+            percentage = 0;
+        }
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
     }
