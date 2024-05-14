@@ -256,6 +256,8 @@ const displayTapesGallery = (artifactsArray) => {
         // change to pause icon
     }
 
+    // TODO div to wrap reel svgs with timeline, adjust paths for time update
+    // TODO make reels a bit smaller
     tapesAudio.ontimeupdate = () => {
         let percentage = (100 * tapesAudio.currentTime) / tapesAudio.duration;
         if (isNaN(percentage)) {
