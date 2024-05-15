@@ -224,6 +224,8 @@ const displayTapesGallery = (artifactsArray) => {
     const galleryWrapper = document.getElementById("galleryWrapper");
     const playerButton = document.getElementById("playerButton");
     const playerTimeline = document.getElementById("timeline");
+    const reelSvgStart = document.getElementById("reelSvgStart");
+    const reelSvgEnd = document.getElementById("reelSvgEnd");
     let tapesAudio = document.getElementById("tapesAudio");
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
@@ -243,12 +245,16 @@ const displayTapesGallery = (artifactsArray) => {
     });
 
     playerButton.addEventListener("click", () => {
+        let audioTimeInterval;
         if (tapesAudio.paused) {
             tapesAudio.play();
             // change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+            audioTimeInterval = setInterval(setTapesAudio, 80);
+
         } else {
             tapesAudio.pause();
             // change to play icon
+            clearInterval(audioTimeInterval);
         }
     });
 
@@ -258,13 +264,19 @@ const displayTapesGallery = (artifactsArray) => {
 
     // TODO div to wrap reel svgs with timeline, adjust paths for time update
     // TODO make reels a bit smaller
-    tapesAudio.ontimeupdate = () => {
+    const setTapesAudio = () => {
+        console.log(tapesAudio.currentTime);
         let percentage = (100 * tapesAudio.currentTime) / tapesAudio.duration;
         if (isNaN(percentage)) {
             percentage = 0;
         }
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
+
+        let angle = 360 * (percentage * 0.04);
+        let rotation = "rotate(" + angle + ")";
+
+        reelSvgStart.setAttribute("transform", rotation);
     }
 
     playerTimeline.addEventListener("change", () => {
