@@ -224,9 +224,8 @@ const displayTapesGallery = (artifactsArray) => {
     const galleryWrapper = document.getElementById("galleryWrapper");
     const playerButton = document.getElementById("playerButton");
     const playerTimeline = document.getElementById("timeline");
-    const reelSvgStart = document.getElementById("reelSvgStart");
-    const reelSvgEnd = document.getElementById("reelSvgEnd");
-    let tapesAudio = document.getElementById("tapesAudio");
+    const tapesAudio = document.getElementById("tapesAudio");
+
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
 
@@ -263,9 +262,11 @@ const displayTapesGallery = (artifactsArray) => {
     }
 
     // TODO div to wrap reel svgs with timeline, adjust paths for time update
-    // TODO make reels a bit smaller
     const setTapesAudio = () => {
-        console.log(tapesAudio.currentTime);
+        const reelSvgStart = document.getElementById("reelSvgStart");
+        const reelSvgEnd = document.getElementById("reelSvgEnd");
+        const reelCircleStart = document.getElementById("reelCircleStart");
+        const reelCircleEnd = document.getElementById("reelCircleEnd");
         let percentage = (100 * tapesAudio.currentTime) / tapesAudio.duration;
         if (isNaN(percentage)) {
             percentage = 0;
@@ -273,10 +274,16 @@ const displayTapesGallery = (artifactsArray) => {
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
 
-        let angle = 360 * (percentage * 0.04);
+        let angle = 360 * (percentage * -0.04);
         let rotation = "rotate(" + angle + ")";
+        // set radius using a sliding scale where 0% is 37 and 100% is 79
+        let endRadius = 0.6 * percentage + 37;
+        let startRadius = 79 - (endRadius - 37)
 
         reelSvgStart.setAttribute("transform", rotation);
+        reelCircleStart.setAttribute("r", startRadius);
+        reelSvgEnd.setAttribute("transform", rotation);
+        reelCircleEnd.setAttribute("r", endRadius);
     }
 
     playerTimeline.addEventListener("change", () => {
