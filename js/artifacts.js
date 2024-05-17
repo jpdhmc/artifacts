@@ -225,6 +225,7 @@ const displayTapesGallery = (artifactsArray) => {
     const playerButton = document.getElementById("playerButton");
     const playerTimeline = document.getElementById("timeline");
     const tapesAudio = document.getElementById("tapesAudio");
+    let audioTimeInterval;
 
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
@@ -244,7 +245,6 @@ const displayTapesGallery = (artifactsArray) => {
     });
 
     playerButton.addEventListener("click", () => {
-        let audioTimeInterval;
         if (tapesAudio.paused) {
             tapesAudio.play();
             // change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
