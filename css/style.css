@@ -171,12 +171,12 @@ html, body {
 }
 
 .rightButtons {
-    background-color: white;
+    background-color: rgba(0,0,0,0.5);
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
     flex: 1 1 20%;
-    margin: 5% 3% 5% 3%;
+    padding: 5% 3% 5% 3%;
     height: 90%;
     width: 3%;
     overflow: auto;
@@ -187,9 +187,11 @@ html, body {
 #tapesGallery {
     justify-content: center;
     position: relative;
-    width: 80%;
-    height: 80%;
+    width: 90%;
+    height: 90%;
     display: none;
+    flex-direction: column;
+    align-items: center;
 }
 
 .tapeIcon {
@@ -210,7 +212,6 @@ html, body {
     border-radius: 1em;
     width: 45%;
     height: 45%;
-    align-self: flex-start;
 }
 
 #playerButton {
@@ -227,6 +228,7 @@ html, body {
 }
 
 #timeline {
+    appearance: none;
     -webkit-appearance: none;
     width: 100%;
     height: 4%;
@@ -273,6 +275,13 @@ html, body {
 #reelSvgStart, #reelSvgEnd {
     max-width: 30%;
     z-index: 2;
+}
+
+#tapesImages {
+    background-color: rgba(54, 54, 54, 0.815);
+    border-radius: 1em;
+    width: 65%;
+    height: 45%;
 }
 
 .galleryButtons {

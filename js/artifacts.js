@@ -172,7 +172,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             newCategory.innerHTML = imgCategory;
             galleryButtons.appendChild(newCategory);
             newCategory.addEventListener("click", () => {
-                tabButtons = Array.from(galleryButtons.getElementsByTagName("button"))
+                tabButtons = Array.from(galleryButtons.getElementsByTagName("button"));
                 tabButtons.forEach(tabButton => {
                     tabButton.classList = "tabButton";
                 })
@@ -261,7 +261,7 @@ const displayTapesGallery = (artifactsArray) => {
         // change to pause icon
     }
 
-    // TODO div to wrap reel svgs with timeline, adjust paths for time update
+    // Handles the timeline and svgs depending on audio time
     const setTapesAudio = () => {
         const reelSvgStart = document.getElementById("reelSvgStart");
         const reelSvgEnd = document.getElementById("reelSvgEnd");
