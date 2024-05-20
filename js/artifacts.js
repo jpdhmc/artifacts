@@ -219,6 +219,7 @@ const displayVhsGallery = (artifactsArray) => {
     vhsGallery.style.display = "flex";
 }
 
+// Build and display the 3 in tapes gallery
 const displayTapesGallery = (artifactsArray) => {
     const tapesGallery = document.getElementById("tapesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
@@ -234,12 +235,16 @@ const displayTapesGallery = (artifactsArray) => {
     tapesButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(tapesButtons);
 
-    artifactsArray.forEach(artifact => {
+    artifactsArray.filter(artifact => artifact.category === "tapesAudio").forEach(artifact => {
+        console.log(artifact.category);
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
             tapesAudio.src = artifact.filePath;
+            // get images to display in secondary gallery if tags matching
+            let selectedTapesImages = artifactsArray.filter(imageArtifact => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
+            console.log(selectedTapesImages);
         });
         tapesButtons.appendChild(tapeIcon);
     });

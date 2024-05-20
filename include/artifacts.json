@@ -139,44 +139,52 @@
         {
             "name": "BIGDOG",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/BIGDOG.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/BIGDOG.wav"
         },
         {
             "name": "dog2",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/dog2.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/dog2.wav"
         },
         {
             "name": "dog3",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/dog3.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/dog3.wav"
         },
         {
             "name": "dog4",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/dog4.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/dog4.wav"
         },
         {
             "name": "dog5",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/dog5.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/dog5.wav"
         },
         {
             "name": "dog6",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/dog6.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/dog6.wav"
         },
         {
             "name": "Waltz",
             "gallery": "tapes",
-            "category": "coolAudio",
-            "filePath": "img/gallery/tapes/coolAudio/Waltz.wav"
+            "category": "tapesAudio",
+            "filePath": "img/gallery/tapes/tapesAudio/Waltz=animal yippee.wav",
+            "tags": "animal yippee"
+        },
+        {
+            "name": "goose",
+            "gallery": "tapes",
+            "category": "tapesImages",
+            "filePath": "img/gallery/tapes/tapesImages/goose=animal yippee.jpg",
+            "tags": "animal yippee"
         }
     ]
 }
