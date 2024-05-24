@@ -111,8 +111,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 
 // Build and display the film slides gallery
 const displayFilmSlidesGallery = (artifactsArray) => {
-    // TODO change strength of poster move effect
-    handlePosterMovers(true)
     const filmSlidesGallery = document.getElementById("filmSlidesGallery");
     const filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
@@ -123,8 +121,6 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     filmSlidesGalleryWrapper.appendChild(galleryButtons);
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
-
-    handleCloseExpandedWrapper();
 
     // Create the button for removing gallery filtering
     const allCategory = document.createElement("button");
@@ -226,6 +222,7 @@ const displayTapesGallery = (artifactsArray) => {
     const playerButton = document.getElementById("playerButton");
     const playerTimeline = document.getElementById("timeline");
     const tapesAudio = document.getElementById("tapesAudio");
+    const tapesImagesGallery = document.getElementById("tapesImages");
     let audioTimeInterval;
 
     galleryWrapper.style.display = "flex";
@@ -244,7 +241,20 @@ const displayTapesGallery = (artifactsArray) => {
             tapesAudio.src = artifact.filePath;
             // get images to display in secondary gallery if tags matching
             let selectedTapesImages = artifactsArray.filter(imageArtifact => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
-            console.log(selectedTapesImages);
+            selectedTapesImages.forEach(tapesImage => {
+                let newFigure = document.createElement("figure");
+                let newFigCaption = document.createElement("figcaption");
+                let newImg = document.createElement("img");
+                newImg.src = tapesImage.filePath;
+                newFigure.classList.add("temp");
+                newFigCaption.innerHTML = tapesImage.name;
+                newFigure.appendChild(newImg);
+                newFigure.appendChild(newFigCaption);
+                newImg.addEventListener("click", () => {
+                    expandImage(newFigure);
+                })
+                tapesImagesGallery.appendChild(newFigure);
+            })
         });
         tapesButtons.appendChild(tapeIcon);
     });
@@ -300,11 +310,11 @@ const displayTapesGallery = (artifactsArray) => {
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedFigure) => {
-    handlePosterMovers(false);
     const expandedWrapper = document.getElementById("expandedWrapper");
     const expandedFigure = document.getElementById("expandedFigure");
     expandedFigure.innerHTML = selectedFigure.innerHTML;
     expandedWrapper.style.display = "flex";
+    handleCloseExpandedWrapper();
 }
 
 // Handle the closing/cleaning up for the expanded image
@@ -312,7 +322,6 @@ const handleCloseExpandedWrapper = () => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
-        handlePosterMovers(true);
     })
 }
 

@@ -180,6 +180,13 @@
             "tags": "animal yippee"
         },
         {
+            "name": "frog",
+            "gallery": "tapes",
+            "category": "tapesImages",
+            "filePath": "img/gallery/tapes/tapesImages/frog=animal yippee.jpg",
+            "tags": "animal yippee"
+        },
+        {
             "name": "goose",
             "gallery": "tapes",
             "category": "tapesImages",
