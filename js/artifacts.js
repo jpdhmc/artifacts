@@ -239,8 +239,15 @@ const displayTapesGallery = (artifactsArray) => {
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
-            const tapesCaption = document.getElementById("tapesCaption")
+            if (document.getElementById("tapesCaption") != null) {
+                document.getElementById("tapesCaption").remove();
+            }
+            const audioPlayer = document.getElementById("audioPlayer");
+            const tapesCaption = document.createElement("span");
             tapesCaption.innerHTML = artifact.name;
+            tapesCaption.id = "tapesCaption";
+            tapesCaption.classList.add("temp");
+            audioPlayer.appendChild(tapesCaption);
 
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
