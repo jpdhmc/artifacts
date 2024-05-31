@@ -1,6 +1,6 @@
 /**
  * Main js logic file
- * 
+ *
  * @author John Den Hartog
  */
 class Artifact {
@@ -18,35 +18,35 @@ const init = () => {
     handleIndexPaths(artifactsArray);
     handlePosterMovers(true);
     document.getElementById("homeButton").addEventListener("click", () => {
-        goHome(artifactsArray)
+        goHome(artifactsArray);
     });
-}
+};
 
 // Fetches artifacts json and creates Artifact objects
 const generateArtifacts = () => {
-    let artifactsArray = []
+    let artifactsArray = [];
     fetch("../include/artifacts.json")
         .then((response) => {
             return response.json();
-        }).then(galleryJson => {
-            galleryJson.artifacts.forEach(jsonArtifact => {
+        }).then((galleryJson) => {
+            galleryJson.artifacts.forEach((jsonArtifact) => {
                 const newArtifact = new Artifact(jsonArtifact.name, jsonArtifact.gallery, jsonArtifact.category, jsonArtifact.filePath, jsonArtifact.tags);
                 artifactsArray.push(newArtifact);
-            })
+            });
         });
 
     // Video files hosted on external websites
     fetch("../include/vidFiles.json")
         .then((response) => {
             return response.json();
-        }).then(vidJson => {
-            vidJson.videos.forEach(vidFile => {
+        }).then((vidJson) => {
+            vidJson.videos.forEach((vidFile) => {
                 const newVidArtifact = new Artifact(vidFile.name, vidFile.gallery, vidFile.location, vidFile.link, vidFile.tags);
                 artifactsArray.push(newVidArtifact);
             });
         });
     return artifactsArray;
-}
+};
 
 // Transitions poster depending on selected gallery and calls its function
 // TODO fix bug where you can click on a different button quickly before transition finishes
@@ -58,7 +58,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 
 
     let desiredArtifacts = [];
-    artifactsArray.forEach(artifact => {
+    artifactsArray.forEach((artifact) => {
         if (artifact.gallery == selectedGallery) {
             desiredArtifacts.push(artifact);
         }
@@ -79,7 +79,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 
                 // Hide svg glow
                 showIndexPaths(false);
-            }
+            };
 
             posterVideo.onended = () => {
                 indexPoster.style.display = "block";
@@ -102,43 +102,43 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                     case "tapes":
                         displayTapesGallery(desiredArtifacts);
                 }
-            }
+            };
         }
     }
     );
     handlePosterMovers(false);
-}
+};
 
 // Build and display the film slides gallery
 const displayFilmSlidesGallery = (artifactsArray) => {
     const filmSlidesGallery = document.getElementById("filmSlidesGallery");
     const filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
 
-    const galleryButtons = document.createElement("div");
-    galleryButtons.classList.add("galleryButtons", "temp")
+    const categoryButtons = document.createElement("div");
+    categoryButtons.classList.add("categoryButtons", "temp");
     let categoryList = [];
 
-    filmSlidesGalleryWrapper.appendChild(galleryButtons);
+    filmSlidesGalleryWrapper.appendChild(categoryButtons);
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
 
     // Create the button for removing gallery filtering
     const allCategory = document.createElement("button");
     allCategory.classList.add("tabButton", "tabButtonActive");
-    allCategory.id = "allCategory"
+    allCategory.id = "allCategory";
     allCategory.innerHTML = "All Categories";
-    galleryButtons.appendChild(allCategory);
+    categoryButtons.appendChild(allCategory);
     allCategory.addEventListener("click", () => {
-        tabButtons = Array.from(galleryButtons.getElementsByTagName("button"));
-        tabButtons.forEach(tabButton => {
+        tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
+        tabButtons.forEach((tabButton) => {
             tabButton.classList = "tabButton";
-        })
-        allCategory.className = "tabButton tabButtonActive"
+        });
+        allCategory.className = "tabButton tabButtonActive";
         filterGallery("allCategory", filmSlidesGallery);
     });
 
 
-    artifactsArray.forEach(galleryObject => {
+    artifactsArray.forEach((galleryObject) => {
         let imgCategory = galleryObject.category;
         let imgPath = galleryObject.filePath;
         let imgName = galleryObject.name;
@@ -166,18 +166,18 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             newCategory.className = "tabButton";
             newCategory.id = imgCategory;
             newCategory.innerHTML = imgCategory;
-            galleryButtons.appendChild(newCategory);
+            categoryButtons.appendChild(newCategory);
             newCategory.addEventListener("click", () => {
-                tabButtons = Array.from(galleryButtons.getElementsByTagName("button"));
-                tabButtons.forEach(tabButton => {
+                tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
+                tabButtons.forEach((tabButton) => {
                     tabButton.classList = "tabButton";
-                })
+                });
                 newCategory.className = "tabButton tabButtonActive";
                 filterGallery(newCategory.id, filmSlidesGallery);
             });
         }
     });
-}
+};
 
 // Build and display the vhs gallery
 const displayVhsGallery = (artifactsArray) => {
@@ -192,7 +192,7 @@ const displayVhsGallery = (artifactsArray) => {
     vhsButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(vhsButtons);
 
-    artifactsArray.forEach(videoArtifact => {
+    artifactsArray.forEach((videoArtifact) => {
         let vhsIconWrapper = document.createElement("div");
 
         let vhsIcon = document.createElement("img");
@@ -213,7 +213,7 @@ const displayVhsGallery = (artifactsArray) => {
     });
     galleryWrapper.style.display = "flex";
     vhsGallery.style.display = "flex";
-}
+};
 
 // Build and display the 3 in tapes gallery
 const displayTapesGallery = (artifactsArray) => {
@@ -234,7 +234,7 @@ const displayTapesGallery = (artifactsArray) => {
     tapesButtons.classList.add("rightButtons", "temp");
     galleryWrapper.appendChild(tapesButtons);
 
-    artifactsArray.filter(artifact => artifact.category === "tapesAudio").forEach(artifact => {
+    artifactsArray.filter((artifact) => artifact.category === "tapesAudio").forEach((artifact) => {
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
@@ -252,8 +252,8 @@ const displayTapesGallery = (artifactsArray) => {
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
             // get images to display in secondary gallery if tags matching
-            let selectedTapesImages = artifactsArray.filter(imageArtifact => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
-            selectedTapesImages.forEach(tapesImage => {
+            let selectedTapesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
+            selectedTapesImages.forEach((tapesImage) => {
                 let newFigure = document.createElement("figure");
                 let newFigCaption = document.createElement("figcaption");
                 let newImg = document.createElement("img");
@@ -286,7 +286,7 @@ const displayTapesGallery = (artifactsArray) => {
     });
     tapesAudio.onended = () => {
         // change to pause icon
-    }
+    };
 
     // Volume
     volumeSlider.addEventListener("change", () => {
@@ -321,7 +321,7 @@ const displayTapesGallery = (artifactsArray) => {
         reelCircleStart.setAttribute("r", startRadius);
         reelSvgEnd.setAttribute("transform", rotation);
         reelCircleEnd.setAttribute("r", endRadius);
-    }
+    };
 
     playerTimeline.addEventListener("change", () => {
         let time = (playerTimeline.value * tapesAudio.duration) / 100;
@@ -337,7 +337,7 @@ const displayTapesGallery = (artifactsArray) => {
         tapesAudio.play();
         audioTimeInterval = setInterval(setTapesAudio, 80);
     });
-}
+};
 
 // Called when an image in the gallery is clicked, displays the full size image 
 // TODO Maybe make it so this can handle img and video depending on whats passed to it
@@ -347,7 +347,7 @@ const expandImage = (selectedFigure) => {
     expandedFigure.innerHTML = selectedFigure.innerHTML;
     expandedWrapper.style.display = "flex";
     handleCloseExpandedWrapper();
-}
+};
 
 // Handle the closing/cleaning up for the expanded image
 const handleCloseExpandedWrapper = () => {
@@ -355,7 +355,7 @@ const handleCloseExpandedWrapper = () => {
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
     });
-}
+};
 
 // Delete temp gallery elements that are created when one is selected and return to index
 const goHome = (artifactsArray) => {
@@ -388,11 +388,11 @@ const goHome = (artifactsArray) => {
                     posterWrapper.style.opacity = 1;
                 }
             });
-            indexPoster.src = "img/stills/deskStill.jpg"
+            indexPoster.src = "img/stills/deskStill.jpg";
         }
     });
     posterWrapper.style.opacity = 0;
-}
+};
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory, currentGallery) => {
@@ -407,25 +407,31 @@ const filterGallery = (filterCategory, currentGallery) => {
             currentFig.style.display = "none";
         }
     }
-}
+};
 
 // Poster interactive zooming and panning
 const handlePosterMovers = (isHandling) => {
     const posterMover = document.getElementById("posterMover");
     // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
     if (isHandling) {
-        posterMover.addEventListener("mouseover", mouseoverEvent = () => { posterMover.style.transform = "scale(1.1,1.1)" });
-        posterMover.addEventListener("mouseout", mouseoutEvent = () => { posterMover.style.transform = "scale(1,1)" });
+        posterMover.addEventListener("mouseover", mouseoverEvent = () => {
+            posterMover.style.transform = "scale(1.1,1.1)";
+        });
+        posterMover.addEventListener("mouseout", mouseoutEvent = () => {
+            posterMover.style.transform = "scale(1,1)";
+        });
 
         // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posterMover.addEventListener("mousemove", mousemoveEvent = (e) => { posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover) });
+        posterMover.addEventListener("mousemove", mousemoveEvent = (e) => {
+            posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover);
+        });
     } else {
         posterMover.removeEventListener("mouseover", mouseoverEvent);
         posterMover.removeEventListener("mouseout", mouseoutEvent);
         posterMover.removeEventListener("mousemove", mousemoveEvent);
         posterMover.style.transform = "scale(1,1)";
     }
-}
+};
 
 // Shows/hides the index svg glows and selectable buttons
 const handleIndexPaths = (artifactsArray) => {
@@ -442,17 +448,17 @@ const handleIndexPaths = (artifactsArray) => {
                 e.target.style.strokeOpacity = 0;
             }
             e.target.removeEventListener("transitionend", endGlow);
-        }
+        };
 
         for (let i = 0; i < allPathGlows.length; i++) {
             let pathGlow = allPathGlows[i];
             // If we are not already mousing over
             if (pathGlow.style.strokeOpacity != 1) {
-                pathGlow.addEventListener("transitionend", endGlow)
+                pathGlow.addEventListener("transitionend", endGlow);
                 pathGlow.style.strokeOpacity = 0.5;
             }
         }
-    }
+    };
     let glowTimer = setInterval(timerFunc, 6000);
 
     // Path selector logic
@@ -461,7 +467,7 @@ const handleIndexPaths = (artifactsArray) => {
         let pathGlowClass = path.id + "Glow";
         let pathGlows = document.getElementsByClassName(pathGlowClass);
         path.addEventListener("click", () => {
-            galleryButtonClick(path.id, artifactsArray)
+            galleryButtonClick(path.id, artifactsArray);
         })
         path.addEventListener("mouseover", () => {
             for (let i = 0; i < pathGlows.length; i++) {

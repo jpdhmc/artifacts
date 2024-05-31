@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
+/* Home/reused */
 html, body {
     margin: 0px;
 }
@@ -112,6 +113,36 @@ html, body {
     object-fit: contain;
 }
 
+figcaption {
+    text-align: center;
+    background-color: white;
+    font-family: 'Open Sans', sans-serif;
+    max-width: 8vw;
+    overflow-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.rightButtons {
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: center;
+    flex: 1 1 20%;
+    padding: 5% 3% 5% 3%;
+    height: 90%;
+    width: 3%;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge scrollbar */
+    scrollbar-width: none;  /* Firefox scrollbar */
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+#filmSlidesGallery::-webkit-scrollbar, .vhsButtons::-webkit-scrollbar {
+    display: none;
+}
+
+/* Film slides */
 #filmSlidesGallery {
     position: relative;
     width: 50%;
@@ -125,10 +156,49 @@ html, body {
     scrollbar-width: none;  /* Firefox scrollbar */
 }
 
+#filmSlidesGallery img {
+    width: 8vw;
+    height: 8vw;
+    min-width: 6em;
+    min-height: 6em;
+    object-fit: cover;
+    border-radius: 4%;
+}
+
+.categoryButtons {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 10%;
+    margin-right: 25%;
+    margin-bottom: 20%;
+}
+
+.tabButton {
+    border: none;
+    cursor: pointer;
+    background-color: #2F4F4F;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.25em;
+}
+
+.tabButtonActive {
+    background-color: #778899;
+}
+
+.tabButton:hover {
+    background-color: lightgray;
+}
+
+#filmSlidesGallery figure {
+    margin: 1.5%;
+    transition: 0.3s ease;
+}
+
 #filmSlidesGallery figure:hover {
     transform: scale(1.2);
 }
 
+/* VHS gallery */
 #vhsGallery {
     position: relative;
     aspect-ratio: 16/9;
@@ -170,20 +240,7 @@ html, body {
     font-size: 1.5em;
 }
 
-.rightButtons {
-    background-color: rgba(0,0,0,0.6);
-    display: flex;
-    flex-flow: column nowrap;
-    align-items: center;
-    flex: 1 1 20%;
-    padding: 5% 3% 5% 3%;
-    height: 90%;
-    width: 3%;
-    overflow: auto;
-    -ms-overflow-style: none;  /* IE and Edge scrollbar */
-    scrollbar-width: none;  /* Firefox scrollbar */
-}
-
+/* Tapes gallery */
 #tapesGallery {
     justify-content: center;
     position: relative;
@@ -367,64 +424,7 @@ html, body {
     border-radius: 4%;
 }
 
-.galleryButtons {
-    display: flex;
-    flex-direction: column;
-    flex: 0 0 10%;
-    margin-right: 25%;
-    margin-bottom: 20%;
-}
-
-
-.tabButton {
-    border: none;
-    cursor: pointer;
-    background-color: #2F4F4F;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.25em;
-}
-
-.tabButtonActive {
-    background-color: #778899;
-}
-
-.tabButton:hover {
-    background-color: lightgray;
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-#filmSlidesGallery::-webkit-scrollbar {
-    display: none;
-}
-
-.vhsButtons::-webkit-scrollbar {
-    display: none;
-}
-
-#filmSlidesGallery figure {
-    margin: 1.5%;
-    transition: 0.3s ease;
-}
-
-figcaption {
-    text-align: center;
-    background-color: white;
-    font-family: 'Open Sans', sans-serif;
-    max-width: 8vw;
-    overflow-wrap: break-word;
-    white-space: nowrap;
-    overflow: hidden;
-}
-
-#filmSlidesGallery img {
-    width: 8vw;
-    height: 8vw;
-    min-width: 6em;
-    min-height: 6em;
-    object-fit: cover;
-    border-radius: 4%;
-}
-
+/* Animations */
 @keyframes grow {
     from {transform: scale(0);}
     to {transform: scale(1);}
