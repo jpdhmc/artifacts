@@ -215,8 +215,21 @@ html, body {
 }
 
 #playerButton {
-    grid-row: 1 / 1;
-    grid-column: 1 / 1;
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+    border: 0;
+    width: 20%;
+    height: 20%;
+    cursor: pointer;
+    padding: 0;
+}
+
+#volumeButton {
+    grid-row: 1 / 2;
+    grid-column: 1 / 2;
     display: flex;
     align-items: center;
     background-color: transparent;
@@ -259,8 +272,8 @@ html, body {
 }
 
 #reelLine {
-    grid-row: 2 / 2;
-    grid-column: 1 / 1;
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
     display: flex;
     width: 95%;
     height: 50%;

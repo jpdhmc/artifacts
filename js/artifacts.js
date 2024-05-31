@@ -134,7 +134,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             tabButton.classList = "tabButton";
         })
         allCategory.className = "tabButton tabButtonActive"
-        filterGallery("allCategory");
+        filterGallery("allCategory", filmSlidesGallery);
     });
 
 
@@ -173,7 +173,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
                     tabButton.classList = "tabButton";
                 })
                 newCategory.className = "tabButton tabButtonActive";
-                filterGallery(newCategory.id);
+                filterGallery(newCategory.id, filmSlidesGallery);
             });
         }
     });
@@ -233,12 +233,13 @@ const displayTapesGallery = (artifactsArray) => {
     galleryWrapper.appendChild(tapesButtons);
 
     artifactsArray.filter(artifact => artifact.category === "tapesAudio").forEach(artifact => {
-        console.log(artifact.category);
         let tapeIcon = document.createElement("img");
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
+            console.log(artifact.category);
             tapesAudio.src = artifact.filePath;
+            tapesImagesGallery.innerHTML = "";
             // get images to display in secondary gallery if tags matching
             let selectedTapesImages = artifactsArray.filter(imageArtifact => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
             selectedTapesImages.forEach(tapesImage => {
@@ -260,9 +261,10 @@ const displayTapesGallery = (artifactsArray) => {
     });
 
     playerButton.addEventListener("click", () => {
+        console.log("play");
         if (tapesAudio.paused) {
             tapesAudio.play();
-            // change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+            // TODO change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
             audioTimeInterval = setInterval(setTapesAudio, 80);
 
         } else {
@@ -332,8 +334,8 @@ const goHome = (artifactsArray) => {
     const posterWrapper = document.getElementById("posterWrapper");
     const homeButton = document.getElementById("homeButton");
     const expandedWrapper = document.getElementById("expandedWrapper");
-    let tempElements = document.querySelectorAll(".temp")
-    let galleryElements = document.querySelectorAll(".gallery")
+    const galleryElements = document.querySelectorAll(".gallery");
+    let tempElements = document.querySelectorAll(".temp");
     expandedWrapper.style.display = "none";
     handlePosterMovers(false);
     handlePosterMovers(true);
@@ -363,9 +365,8 @@ const goHome = (artifactsArray) => {
 }
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
-const filterGallery = (filterCategory) => {
-    const filmSlidesGallery = document.getElementById("filmSlidesGallery");
-    let figures = Array.from(filmSlidesGallery.getElementsByTagName("figure"));
+const filterGallery = (filterCategory, currentGallery) => {
+    let figures = Array.from(currentGallery.getElementsByTagName("figure"));
     for (let i = 0; i < figures.length; i++) {
         let currentFig = figures[i];
         if (filterCategory == "allCategory") {
