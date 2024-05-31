@@ -203,15 +203,15 @@ html, body {
 }
 
 #audioPlayer {
+    aspect-ratio: 1.72 / 1;
     display: grid;
     grid-template-columns: auto;
-    grid-template-rows: auto auto;
+    grid-template-rows: 40% 60%;
     justify-items: center;
     align-items: center;
     background-color: rgba(54, 54, 54, 0.815);
     border-radius: 1em;
     width: 45%;
-    height: 45%;
 }
 
 #playerButton {
@@ -240,7 +240,25 @@ html, body {
     padding: 0;
 }
 
+#reelLine {
+    grid-row: 2 / 3;
+    grid-column: 1 / 2;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-direction: row;
+    align-items: center;
+}
+
+#reelSvgStart, #reelSvgEnd {
+    max-width: 30%;
+    z-index: 2;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+
 #timeline {
+    align-self: flex-end;
     appearance: none;
     -webkit-appearance: none;
     width: 100%;
@@ -248,7 +266,7 @@ html, body {
     border-radius: 1em;
     margin-left: -11%;
     margin-right: -11%;
-    margin-bottom: -4.5%;
+    margin-bottom: 4%;
     position: relative;
     background-color: black;
     background-size: 0 100%;
@@ -269,25 +287,6 @@ html, body {
     border: none;
     box-shadow: none;
     background: transparent;
-}
-
-#reelLine {
-    grid-row: 2 / 3;
-    grid-column: 1 / 2;
-    display: flex;
-    width: 95%;
-    height: 50%;
-    flex-direction: row;
-    align-items: center;
-}
-
-#timeline {
-    align-self: flex-end;
-}
-
-#reelSvgStart, #reelSvgEnd {
-    max-width: 30%;
-    z-index: 2;
 }
 
 #tapesImages {
