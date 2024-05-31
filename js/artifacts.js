@@ -19,7 +19,7 @@ const init = () => {
     handlePosterMovers(true);
     document.getElementById("homeButton").addEventListener("click", () => {
         goHome(artifactsArray)
-    })
+    });
 }
 
 // Fetches artifacts json and creates Artifact objects
@@ -43,8 +43,8 @@ const generateArtifacts = () => {
             vidJson.videos.forEach(vidFile => {
                 const newVidArtifact = new Artifact(vidFile.name, vidFile.gallery, vidFile.location, vidFile.link, vidFile.tags);
                 artifactsArray.push(newVidArtifact);
-            })
-        })
+            });
+        });
     return artifactsArray;
 }
 
@@ -62,7 +62,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         if (artifact.gallery == selectedGallery) {
             desiredArtifacts.push(artifact);
         }
-    })
+    });
 
     posterVideo.src = "img/transitions/" + selectedGallery + "Transition.mp4";
 
@@ -157,7 +157,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         filmSlidesGallery.appendChild(newFigure);
         newImg.addEventListener("click", () => {
             expandImage(newFigure);
-        })
+        });
 
         // Build category tabs
         if (!categoryList.includes(imgCategory)) {
@@ -207,10 +207,10 @@ const displayVhsGallery = (artifactsArray) => {
 
         vhsIconWrapper.addEventListener("click", () => {
             vhsFrame.src = videoArtifact.filePath;
-        })
+        });
 
         vhsButtons.appendChild(vhsIconWrapper);
-    })
+    });
     galleryWrapper.style.display = "flex";
     vhsGallery.style.display = "flex";
 }
@@ -220,6 +220,7 @@ const displayTapesGallery = (artifactsArray) => {
     const tapesGallery = document.getElementById("tapesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
     const playerButton = document.getElementById("playerButton");
+    const volumeButton = document.getElementById("volumeButton");
     const playerTimeline = document.getElementById("timeline");
     const tapesAudio = document.getElementById("tapesAudio");
     const tapesImagesGallery = document.getElementById("tapesImages");
@@ -238,6 +239,9 @@ const displayTapesGallery = (artifactsArray) => {
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
+            const tapesCaption = document.getElementById("tapesCaption")
+            tapesCaption.innerHTML = artifact.name;
+
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
             // get images to display in secondary gallery if tags matching
@@ -253,9 +257,9 @@ const displayTapesGallery = (artifactsArray) => {
                 newFigure.appendChild(newFigCaption);
                 newImg.addEventListener("click", () => {
                     expandImage(newFigure);
-                })
+                });
                 tapesImagesGallery.appendChild(newFigure);
-            })
+            });
         });
         tapesButtons.appendChild(tapeIcon);
     });
@@ -282,8 +286,9 @@ const displayTapesGallery = (artifactsArray) => {
         volumeValue = volumeSlider.value / 100;
         tapesAudio.volume = volumeValue;
     });
-    volumeSlider.addEventListener("mouseover", () => {
-
+    volumeButton.addEventListener("mouseover", () => {
+        // TODO this - expand slider out on mouse over
+        volumeSlider.style.width = "20%";
     });
 
     // Handles the timeline and svgs depending on audio time
@@ -317,16 +322,14 @@ const displayTapesGallery = (artifactsArray) => {
     });
 
     playerTimeline.addEventListener("mousedown", () => {
-        console.log("down");
         tapesAudio.pause();
         clearInterval(audioTimeInterval);
-    })
+    });
 
     playerTimeline.addEventListener("mouseup", () => {
-        console.log("up");
         tapesAudio.play();
         audioTimeInterval = setInterval(setTapesAudio, 80);
-    })
+    });
 }
 
 // Called when an image in the gallery is clicked, displays the full size image 
@@ -344,7 +347,7 @@ const handleCloseExpandedWrapper = () => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
-    })
+    });
 }
 
 // Delete temp gallery elements that are created when one is selected and return to index

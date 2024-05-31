@@ -203,7 +203,7 @@ html, body {
 }
 
 #audioPlayer {
-    aspect-ratio: 1.72 / 1;
+    aspect-ratio: 2 / 1;
     display: grid;
     grid-template-columns: auto;
     grid-template-rows: 40% 60%;
@@ -211,7 +211,7 @@ html, body {
     align-items: center;
     background-color: rgba(54, 54, 54, 0.815);
     border-radius: 1em;
-    width: 45%;
+    width: 50%;
 }
 
 #playerButton {
@@ -235,9 +235,10 @@ html, body {
     justify-self: end;
     background-color: transparent;
     border: 0;
-    width: 20%;
-    height: 20%;
-    margin-right: 18%;
+    width: 10%;
+    height: 10%;
+    position: relative;
+    right: 20%;
     cursor: pointer;
     padding: 0;
 }
@@ -301,6 +302,7 @@ html, body {
     -webkit-appearance: none;
     width: 20%;
     height: 4%;
+    margin-right: 3%;
     border-radius: 1em;
     background-color: black;
     background-size: 100% 100%;
@@ -321,6 +323,19 @@ html, body {
     border: none;
     box-shadow: none;
     background: transparent;
+}
+
+#tapesCaption {
+    display: block;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    position: relative;
+    top: 50%;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    max-width: 100%;
+    overflow-wrap: break-word;
+    white-space: nowrap;
 }
 
 #tapesImages {
