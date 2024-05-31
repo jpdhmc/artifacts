@@ -237,7 +237,6 @@ const displayTapesGallery = (artifactsArray) => {
         tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
         tapeIcon.classList.add("tapeIcon", "temp");
         tapeIcon.addEventListener("click", () => {
-            console.log(artifact.category);
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
             // get images to display in secondary gallery if tags matching
@@ -289,7 +288,6 @@ const displayTapesGallery = (artifactsArray) => {
             percentage = 0;
         }
         playerTimeline.style.backgroundSize = percentage + "% 100%";
-        playerTimeline.value = percentage;
 
         let angle = 360 * (percentage * -0.04);
         let rotation = "rotate(" + angle + ")";
