@@ -223,6 +223,7 @@ const displayTapesGallery = (artifactsArray) => {
     const playerTimeline = document.getElementById("timeline");
     const tapesAudio = document.getElementById("tapesAudio");
     const tapesImagesGallery = document.getElementById("tapesImages");
+    const volumeSlider = document.getElementById("volumeSlider");
     let audioTimeInterval;
 
     galleryWrapper.style.display = "flex";
@@ -259,8 +260,8 @@ const displayTapesGallery = (artifactsArray) => {
         tapesButtons.appendChild(tapeIcon);
     });
 
+    // Play/pause
     playerButton.addEventListener("click", () => {
-        console.log("play");
         if (tapesAudio.paused) {
             tapesAudio.play();
             // TODO change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
@@ -272,10 +273,18 @@ const displayTapesGallery = (artifactsArray) => {
             clearInterval(audioTimeInterval);
         }
     });
-
     tapesAudio.onended = () => {
         // change to pause icon
     }
+
+    // Volume
+    volumeSlider.addEventListener("change", () => {
+        volumeValue = volumeSlider.value / 100;
+        tapesAudio.volume = volumeValue;
+    });
+    volumeSlider.addEventListener("mouseover", () => {
+
+    });
 
     // Handles the timeline and svgs depending on audio time
     const setTapesAudio = () => {
@@ -288,12 +297,13 @@ const displayTapesGallery = (artifactsArray) => {
             percentage = 0;
         }
         playerTimeline.style.backgroundSize = percentage + "% 100%";
+        playerTimeline.value = percentage;
 
         let angle = 360 * (percentage * -0.04);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
         let endRadius = 0.6 * percentage + 37;
-        let startRadius = 79 - (endRadius - 37)
+        let startRadius = 79 - (endRadius - 37);
 
         reelSvgStart.setAttribute("transform", rotation);
         reelCircleStart.setAttribute("r", startRadius);
@@ -304,6 +314,18 @@ const displayTapesGallery = (artifactsArray) => {
     playerTimeline.addEventListener("change", () => {
         let time = (playerTimeline.value * tapesAudio.duration) / 100;
         tapesAudio.currentTime = time;
+    });
+
+    playerTimeline.addEventListener("mousedown", () => {
+        console.log("down");
+        tapesAudio.pause();
+        clearInterval(audioTimeInterval);
+    })
+
+    playerTimeline.addEventListener("mouseup", () => {
+        console.log("up");
+        tapesAudio.play();
+        audioTimeInterval = setInterval(setTapesAudio, 80);
     })
 }
 

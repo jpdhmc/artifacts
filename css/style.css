@@ -171,7 +171,7 @@ html, body {
 }
 
 .rightButtons {
-    background-color: rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.6);
     display: flex;
     flex-flow: column nowrap;
     align-items: center;
@@ -237,6 +237,7 @@ html, body {
     border: 0;
     width: 20%;
     height: 20%;
+    margin-right: 18%;
     cursor: pointer;
     padding: 0;
 }
@@ -274,7 +275,7 @@ html, body {
     background-repeat: no-repeat;
 }
 
-#timeline:hover {
+#timeline:hover, #volumeSlider:hover {
     cursor: pointer;
 }
 
@@ -287,6 +288,35 @@ html, body {
 }
 
 #timeline::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+}
+
+#volumeSlider {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+    appearance: none;
+    -webkit-appearance: none;
+    width: 20%;
+    height: 4%;
+    border-radius: 1em;
+    background-color: black;
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    justify-self: end;
+}
+
+#volumeSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 0.3em;
+    height: 1.3em;
+    transition: all .1s;
+    background-color: black;
+}
+
+#volumeSlider::-webkit-slider-runnable-track {
     -webkit-appearance: none;
     border: none;
     box-shadow: none;
