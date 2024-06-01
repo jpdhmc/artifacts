@@ -123,13 +123,14 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     filmSlidesGalleryWrapper.style.display = "flex";
 
     // Create the button for removing gallery filtering
+    let tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
     const allCategory = document.createElement("button");
     allCategory.classList.add("tabButton", "tabButtonActive");
     allCategory.id = "allCategory";
     allCategory.innerHTML = "All Categories";
     categoryButtons.appendChild(allCategory);
     allCategory.addEventListener("click", () => {
-        tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
+        const tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
         tabButtons.forEach((tabButton) => {
             tabButton.classList = "tabButton";
         });
@@ -168,7 +169,6 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             newCategory.innerHTML = imgCategory;
             categoryButtons.appendChild(newCategory);
             newCategory.addEventListener("click", () => {
-                tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
                 tabButtons.forEach((tabButton) => {
                     tabButton.classList = "tabButton";
                 });
@@ -290,7 +290,7 @@ const displayTapesGallery = (artifactsArray) => {
 
     // Volume
     volumeSlider.addEventListener("change", () => {
-        volumeValue = volumeSlider.value / 100;
+        let volumeValue = volumeSlider.value / 100;
         tapesAudio.volume = volumeValue;
     });
     volumeButton.addEventListener("mouseover", () => {
@@ -378,10 +378,10 @@ const goHome = (artifactsArray) => {
 
             indexPoster.addEventListener("load", imgLoad = (e) => {
                 if (e.target == indexPoster) {
-                    for (i = 0; i < tempElements.length; i++) {
+                    for (let i = 0; i < tempElements.length; i++) {
                         tempElements[i].remove();
                     }
-                    for (i = 0; i < galleryElements.length; i++) {
+                    for (let i = 0; i < galleryElements.length; i++) {
                         galleryElements[i].style.display = "none";
                     }
                     galleryWrapper.style.display = "none";
@@ -468,21 +468,21 @@ const handleIndexPaths = (artifactsArray) => {
         let pathGlows = document.getElementsByClassName(pathGlowClass);
         path.addEventListener("click", () => {
             galleryButtonClick(path.id, artifactsArray);
-        })
+        });
         path.addEventListener("mouseover", () => {
             for (let i = 0; i < pathGlows.length; i++) {
                 let pathGlow = pathGlows[i];
                 pathGlow.style.strokeOpacity = 1;
             }
-        })
+        });
         path.addEventListener("mouseout", () => {
             for (let i = 0; i < pathGlows.length; i++) {
                 let pathGlow = pathGlows[i];
                 pathGlow.style.strokeOpacity = 0;
             }
-        })
+        });
     }
-}
+};
 
 // Show or hide index glows
 const showIndexPaths = (showing) => {
@@ -496,13 +496,13 @@ const showIndexPaths = (showing) => {
     } else {
         glowSVG.style.display = "none";
     }
-}
+};
 
 // Calculate transform of elements based on relative mouse position, to be called on mousemove
 const calculateTransformOrigin = (ev, element) => {
     let trOrigin = ((ev.pageX - element.offsetLeft) / element.offsetWidth) * 100 + "% "
-        + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%"
+        + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%";
     return trOrigin;
-}
+};
 
 window.onload = init;
