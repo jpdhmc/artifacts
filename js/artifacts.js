@@ -20,6 +20,18 @@ const init = () => {
     document.getElementById("homeButton").addEventListener("click", () => {
         goHome(artifactsArray);
     });
+    document.getElementById("toggleRightButtons").addEventListener("click", toggleSidebar);
+};
+
+const toggleSidebar = () => {
+    const toggleRightButtons = document.getElementById("toggleRightButtons");
+    const rightButtons = document.getElementById("rightButtons");
+    rightButtons.style.display = "flex";
+    if (rightButtons.style.left != "100vw") {
+        rightButtons.style.left = "100vw";
+    } else {
+        rightButtons.style.left = "0";
+    }
 };
 
 // Fetches artifacts json and creates Artifact objects
@@ -48,6 +60,143 @@ const generateArtifacts = () => {
     return artifactsArray;
 };
 
+// Shows/hides the index svg glows and selectable buttons
+const handleIndexPaths = (artifactsArray) => {
+    const glowSVG = document.getElementById("indexGlow");
+    const paths = document.getElementsByClassName("indexPathSelector");
+    const allPathGlows = document.getElementsByClassName("indexPath");
+    glowSVG.style.display = "block";
+
+    // Path glow timer
+    const timerFunc = () => {
+        const endGlow = (e) => {
+            // Check in case mouseover occurred during transition
+            if (e.target.style.strokeOpacity != 1) {
+                e.target.style.strokeOpacity = 0;
+            }
+            e.target.removeEventListener("transitionend", endGlow);
+        };
+
+        for (let i = 0; i < allPathGlows.length; i++) {
+            let pathGlow = allPathGlows[i];
+            // If we are not already mousing over
+            if (pathGlow.style.strokeOpacity != 1) {
+                pathGlow.addEventListener("transitionend", endGlow);
+                pathGlow.style.strokeOpacity = 0.5;
+            }
+        }
+    };
+    let glowTimer = setInterval(timerFunc, 6000);
+
+    // Path selector logic
+    for (let i = 0; i < paths.length; i++) {
+        let path = paths[i];
+        let pathGlowClass = path.id + "Glow";
+        let pathGlows = document.getElementsByClassName(pathGlowClass);
+        path.addEventListener("click", () => {
+            galleryButtonClick(path.id, artifactsArray);
+        });
+        path.addEventListener("mouseover", () => {
+            for (let i = 0; i < pathGlows.length; i++) {
+                let pathGlow = pathGlows[i];
+                pathGlow.style.strokeOpacity = 1;
+            }
+        });
+        path.addEventListener("mouseout", () => {
+            for (let i = 0; i < pathGlows.length; i++) {
+                let pathGlow = pathGlows[i];
+                pathGlow.style.strokeOpacity = 0;
+            }
+        });
+    }
+};
+
+// Poster interactive zooming and panning
+const handlePosterMovers = (isHandling) => {
+    const posterMover = document.getElementById("posterMover");
+    // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
+    if (isHandling) {
+        posterMover.addEventListener("mouseover", mouseoverEvent = () => {
+            posterMover.style.transform = "scale(1.1,1.1)";
+        });
+        posterMover.addEventListener("mouseout", mouseoutEvent = () => {
+            posterMover.style.transform = "scale(1,1)";
+        });
+
+        // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
+        posterMover.addEventListener("mousemove", mousemoveEvent = (e) => {
+            posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover);
+        });
+    } else {
+        posterMover.removeEventListener("mouseover", mouseoverEvent);
+        posterMover.removeEventListener("mouseout", mouseoutEvent);
+        posterMover.removeEventListener("mousemove", mousemoveEvent);
+        posterMover.style.transform = "scale(1,1)";
+    }
+
+    // Calculate transform of elements based on relative mouse position, to be called on mousemove
+    const calculateTransformOrigin = (ev, element) => {
+        let trOrigin = ((ev.pageX - element.offsetLeft) / element.offsetWidth) * 100 + "% "
+            + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%";
+        return trOrigin;
+    };
+};
+
+// Delete temp gallery elements that are created when one is selected and return to index
+const goHome = (artifactsArray) => {
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    const indexPoster = document.getElementById("indexPoster");
+    const posterWrapper = document.getElementById("posterWrapper");
+    const homeButton = document.getElementById("homeButton");
+    const expandedWrapper = document.getElementById("expandedWrapper");
+    const galleryElements = document.querySelectorAll(".gallery");
+    const rightButtons = document.getElementById("rightButtons");
+    const toggleRightButtons = document.getElementById("toggleRightButtons");
+    let tempElements = document.querySelectorAll(".temp");
+    expandedWrapper.style.display = "none";
+    handlePosterMovers(false);
+    handlePosterMovers(true);
+    showIndexPaths(true);
+
+    posterWrapper.addEventListener("transitionend", fadeTransition = (e) => {
+        if (e.target == posterWrapper) {
+            posterWrapper.removeEventListener("transitionend", fadeTransition);
+            homeButton.style.display = "none";
+
+            indexPoster.addEventListener("load", imgLoad = (e) => {
+                if (e.target == indexPoster) {
+                    for (let i = 0; i < tempElements.length; i++) {
+                        tempElements[i].remove();
+                    }
+                    for (let i = 0; i < galleryElements.length; i++) {
+                        galleryElements[i].style.display = "none";
+                    }
+                    galleryWrapper.style.display = "none";
+                    rightButtons.style.display = "none";
+                    toggleRightButtons.style.display = "none";
+                    posterWrapper.style.opacity = 1;
+                }
+            });
+            indexPoster.src = "img/stills/deskStill.jpg";
+        }
+    });
+    posterWrapper.style.opacity = 0;
+};
+
+// Show or hide index glows
+const showIndexPaths = (showing) => {
+    const glowSVG = document.getElementById("indexGlow");
+    const allPathGlows = document.getElementsByClassName("indexPath");
+    if (showing) {
+        for (let i = 0; i < allPathGlows.length; i++) {
+            allPathGlows[i].style.strokeOpacity = 0;
+        }
+        glowSVG.style.display = "block";
+    } else {
+        glowSVG.style.display = "none";
+    }
+};
+
 // Transitions poster depending on selected gallery and calls its function
 // TODO fix bug where you can click on a different button quickly before transition finishes
 const galleryButtonClick = (selectedGallery, artifactsArray) => {
@@ -55,7 +204,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
     const homeButton = document.getElementById("homeButton");
-
+    const toggleRightButtons = document.getElementById("toggleRightButtons");
 
     let desiredArtifacts = [];
     artifactsArray.forEach((artifact) => {
@@ -92,6 +241,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                         break;
                     case "vhs":
                         displayVhsGallery(desiredArtifacts);
+                        toggleRightButtons.style.display = "block";
                         break;
                     case "printedMedia":
                         displayPrintedMediaGallery(desiredArtifacts);
@@ -101,6 +251,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                         break;
                     case "tapes":
                         displayTapesGallery(desiredArtifacts);
+                        toggleRightButtons.style.display = "block";
                 }
             };
         }
@@ -188,9 +339,7 @@ const displayVhsGallery = (artifactsArray) => {
     vhsFrame.classList.add("temp");
     vhsGallery.appendChild(vhsFrame);
 
-    const vhsButtons = document.createElement("div");
-    vhsButtons.classList.add("rightButtons", "temp");
-    galleryWrapper.appendChild(vhsButtons);
+    const vhsButtons = document.getElementById("rightButtons");
 
     artifactsArray.forEach((videoArtifact) => {
         let vhsIconWrapper = document.createElement("div");
@@ -213,6 +362,7 @@ const displayVhsGallery = (artifactsArray) => {
     });
     galleryWrapper.style.display = "flex";
     vhsGallery.style.display = "flex";
+    vhsButtons.style.display = "flex";
 };
 
 // Build and display the 3 in tapes gallery
@@ -225,14 +375,12 @@ const displayTapesGallery = (artifactsArray) => {
     const tapesAudio = document.getElementById("tapesAudio");
     const tapesImagesGallery = document.getElementById("tapesImages");
     const volumeSlider = document.getElementById("volumeSlider");
+    const tapesButtons = document.getElementById("rightButtons");
     let audioTimeInterval;
 
     galleryWrapper.style.display = "flex";
     tapesGallery.style.display = "flex";
-
-    const tapesButtons = document.createElement("div");
-    tapesButtons.classList.add("rightButtons", "temp");
-    galleryWrapper.appendChild(tapesButtons);
+    tapesButtons.style.display = "flex";
 
     artifactsArray.filter((artifact) => artifact.category === "tapesAudio").forEach((artifact) => {
         let tapeIcon = document.createElement("img");
@@ -357,42 +505,7 @@ const handleCloseExpandedWrapper = () => {
     });
 };
 
-// Delete temp gallery elements that are created when one is selected and return to index
-const goHome = (artifactsArray) => {
-    const galleryWrapper = document.getElementById("galleryWrapper");
-    const indexPoster = document.getElementById("indexPoster");
-    const posterWrapper = document.getElementById("posterWrapper");
-    const homeButton = document.getElementById("homeButton");
-    const expandedWrapper = document.getElementById("expandedWrapper");
-    const galleryElements = document.querySelectorAll(".gallery");
-    let tempElements = document.querySelectorAll(".temp");
-    expandedWrapper.style.display = "none";
-    handlePosterMovers(false);
-    handlePosterMovers(true);
-    showIndexPaths(true);
 
-    posterWrapper.addEventListener("transitionend", fadeTransition = (e) => {
-        if (e.target == posterWrapper) {
-            posterWrapper.removeEventListener("transitionend", fadeTransition);
-            homeButton.style.display = "none";
-
-            indexPoster.addEventListener("load", imgLoad = (e) => {
-                if (e.target == indexPoster) {
-                    for (let i = 0; i < tempElements.length; i++) {
-                        tempElements[i].remove();
-                    }
-                    for (let i = 0; i < galleryElements.length; i++) {
-                        galleryElements[i].style.display = "none";
-                    }
-                    galleryWrapper.style.display = "none";
-                    posterWrapper.style.opacity = 1;
-                }
-            });
-            indexPoster.src = "img/stills/deskStill.jpg";
-        }
-    });
-    posterWrapper.style.opacity = 0;
-};
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory, currentGallery) => {
@@ -407,102 +520,6 @@ const filterGallery = (filterCategory, currentGallery) => {
             currentFig.style.display = "none";
         }
     }
-};
-
-// Poster interactive zooming and panning
-const handlePosterMovers = (isHandling) => {
-    const posterMover = document.getElementById("posterMover");
-    // If true assigns the event listeners, if false removes listeners and resets scale for smooth transition back
-    if (isHandling) {
-        posterMover.addEventListener("mouseover", mouseoverEvent = () => {
-            posterMover.style.transform = "scale(1.1,1.1)";
-        });
-        posterMover.addEventListener("mouseout", mouseoutEvent = () => {
-            posterMover.style.transform = "scale(1,1)";
-        });
-
-        // Uses mousemove event to calculate horizontal and vertical position of the mouse relative to the posterWrapper element
-        posterMover.addEventListener("mousemove", mousemoveEvent = (e) => {
-            posterMover.style.transformOrigin = calculateTransformOrigin(e, posterMover);
-        });
-    } else {
-        posterMover.removeEventListener("mouseover", mouseoverEvent);
-        posterMover.removeEventListener("mouseout", mouseoutEvent);
-        posterMover.removeEventListener("mousemove", mousemoveEvent);
-        posterMover.style.transform = "scale(1,1)";
-    }
-};
-
-// Shows/hides the index svg glows and selectable buttons
-const handleIndexPaths = (artifactsArray) => {
-    const glowSVG = document.getElementById("indexGlow");
-    const paths = document.getElementsByClassName("indexPathSelector");
-    const allPathGlows = document.getElementsByClassName("indexPath");
-    glowSVG.style.display = "block";
-
-    // Path glow timer
-    const timerFunc = () => {
-        const endGlow = (e) => {
-            // Check in case mouseover occurred during transition
-            if (e.target.style.strokeOpacity != 1) {
-                e.target.style.strokeOpacity = 0;
-            }
-            e.target.removeEventListener("transitionend", endGlow);
-        };
-
-        for (let i = 0; i < allPathGlows.length; i++) {
-            let pathGlow = allPathGlows[i];
-            // If we are not already mousing over
-            if (pathGlow.style.strokeOpacity != 1) {
-                pathGlow.addEventListener("transitionend", endGlow);
-                pathGlow.style.strokeOpacity = 0.5;
-            }
-        }
-    };
-    let glowTimer = setInterval(timerFunc, 6000);
-
-    // Path selector logic
-    for (let i = 0; i < paths.length; i++) {
-        let path = paths[i];
-        let pathGlowClass = path.id + "Glow";
-        let pathGlows = document.getElementsByClassName(pathGlowClass);
-        path.addEventListener("click", () => {
-            galleryButtonClick(path.id, artifactsArray);
-        });
-        path.addEventListener("mouseover", () => {
-            for (let i = 0; i < pathGlows.length; i++) {
-                let pathGlow = pathGlows[i];
-                pathGlow.style.strokeOpacity = 1;
-            }
-        });
-        path.addEventListener("mouseout", () => {
-            for (let i = 0; i < pathGlows.length; i++) {
-                let pathGlow = pathGlows[i];
-                pathGlow.style.strokeOpacity = 0;
-            }
-        });
-    }
-};
-
-// Show or hide index glows
-const showIndexPaths = (showing) => {
-    const glowSVG = document.getElementById("indexGlow");
-    const allPathGlows = document.getElementsByClassName("indexPath");
-    if (showing) {
-        for (let i = 0; i < allPathGlows.length; i++) {
-            allPathGlows[i].style.strokeOpacity = 0;
-        }
-        glowSVG.style.display = "block";
-    } else {
-        glowSVG.style.display = "none";
-    }
-};
-
-// Calculate transform of elements based on relative mouse position, to be called on mousemove
-const calculateTransformOrigin = (ev, element) => {
-    let trOrigin = ((ev.pageX - element.offsetLeft) / element.offsetWidth) * 100 + "% "
-        + ((ev.pageY - element.offsetTop) / element.offsetHeight) * 100 + "%";
-    return trOrigin;
 };
 
 window.onload = init;
