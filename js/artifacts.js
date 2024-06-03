@@ -23,17 +23,6 @@ const init = () => {
     document.getElementById("toggleRightButtons").addEventListener("click", toggleSidebar);
 };
 
-const toggleSidebar = () => {
-    const toggleRightButtons = document.getElementById("toggleRightButtons");
-    const rightButtons = document.getElementById("rightButtons");
-    rightButtons.style.display = "flex";
-    if (rightButtons.style.left != "100vw") {
-        rightButtons.style.left = "100vw";
-    } else {
-        rightButtons.style.left = "0";
-    }
-};
-
 // Fetches artifacts json and creates Artifact objects
 const generateArtifacts = () => {
     let artifactsArray = [];
@@ -183,6 +172,19 @@ const goHome = (artifactsArray) => {
     posterWrapper.style.opacity = 0;
 };
 
+const toggleSidebar = () => {
+    const toggleRightButtons = document.getElementById("toggleRightButtons");
+    const rightButtons = document.getElementById("rightButtons");
+    rightButtons.style.display = "flex";
+    if (rightButtons.style.left != "100vw") {
+        rightButtons.style.left = "100vw";
+        toggleRightButtons.style.right = "1%";
+    } else {
+        rightButtons.style.left = "0";
+        toggleRightButtons.style.right = "23.5%";
+    }
+};
+
 // Show or hide index glows
 const showIndexPaths = (showing) => {
     const glowSVG = document.getElementById("indexGlow");
@@ -252,6 +254,9 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                     case "tapes":
                         displayTapesGallery(desiredArtifacts);
                         toggleRightButtons.style.display = "block";
+                        break;
+                    case "objects":
+                        displayObjectsGallery(desiredArtifacts);
                 }
             };
         }
@@ -487,25 +492,22 @@ const displayTapesGallery = (artifactsArray) => {
     });
 };
 
+// Build and display the objects gallery
+const displayObjectsGallery = (artifactsArray) => {
+
+}
+
 // Called when an image in the gallery is clicked, displays the full size image 
-// TODO Maybe make it so this can handle img and video depending on whats passed to it
 const expandImage = (selectedFigure) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     const expandedFigure = document.getElementById("expandedFigure");
     expandedFigure.innerHTML = selectedFigure.innerHTML;
     expandedWrapper.style.display = "flex";
-    handleCloseExpandedWrapper();
-};
-
-// Handle the closing/cleaning up for the expanded image
-const handleCloseExpandedWrapper = () => {
-    const expandedWrapper = document.getElementById("expandedWrapper");
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";
+        expandedWrapper.removeEventListener("click", closer);
     });
 };
-
-
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory, currentGallery) => {
