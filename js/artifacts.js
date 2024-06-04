@@ -181,7 +181,7 @@ const toggleSidebar = () => {
         toggleRightButtons.style.right = "1%";
     } else {
         rightButtons.style.left = "0";
-        toggleRightButtons.style.right = "23.5%";
+        toggleRightButtons.style.right = "25%";
     }
 };
 
@@ -245,8 +245,9 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                         displayVhsGallery(desiredArtifacts);
                         toggleRightButtons.style.display = "block";
                         break;
-                    case "printedMedia":
-                        displayPrintedMediaGallery(desiredArtifacts);
+                    case "printed":
+                        displayPrintedGallery(desiredArtifacts);
+                        toggleRightButtons.style.display = "block";
                         break;
                     case "cassettes":
                         displayCassettesGallery(desiredArtifacts);
@@ -492,10 +493,29 @@ const displayTapesGallery = (artifactsArray) => {
     });
 };
 
+// Build and display the printed media gallery
+const displayPrintedGallery = (artifactsArray) => {
+    const printedButtons = document.getElementById("rightButtons");
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    const printedGallery = document.getElementById("printedGallery");
+    let categoryList = [];
+
+    galleryWrapper.style.display = "flex";
+    printedGallery.style.display = "flex";
+    printedButtons.style.display = "flex";
+
+    artifactsArray.forEach((printedArtifact) => {
+        imgCategory = printedArtifact.category;
+        if (!categoryList.includes(imgCategory)) {
+            categoryList.push(imgCategory);
+        }
+    });
+};
+
 // Build and display the objects gallery
 const displayObjectsGallery = (artifactsArray) => {
 
-}
+};
 
 // Called when an image in the gallery is clicked, displays the full size image 
 const expandImage = (selectedFigure) => {

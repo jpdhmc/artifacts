@@ -163,6 +163,7 @@ figcaption {
     justify-content: space-around;
     align-items: center;
     overflow: auto;
+    scroll-snap-type: y mandatory;
     -ms-overflow-style: none;  /* IE and Edge scrollbar */
     scrollbar-width: none;  /* Firefox scrollbar */
 }
@@ -203,6 +204,7 @@ figcaption {
 #filmSlidesGallery figure {
     margin: 1.5%;
     transition: 0.3s ease;
+    scroll-snap-align: end;
 }
 
 #filmSlidesGallery figure:hover {
@@ -434,6 +436,22 @@ figcaption {
     min-height: 6em;
     object-fit: cover;
     border-radius: 4%;
+}
+
+/* Printed Gallery */
+#printedGallery {
+    position: relative;
+    left: 3.5%;
+    width: 80%;
+    height: 100%;
+    display: none;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    align-items: center;
+    overflow: auto;
+    scroll-snap-type: y mandatory;
+    -ms-overflow-style: none;  /* IE and Edge scrollbar */
+    scrollbar-width: none;  /* Firefox scrollbar */
 }
 
 /* Objects Gallery */
