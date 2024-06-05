@@ -147,6 +147,32 @@ figcaption {
     z-index: 2;
 }
 
+.iconWrapper {
+    position: relative;
+    width: 90%;
+    height: auto;
+    transition: 0.3s ease;
+    margin-top: 4%;
+}
+
+.iconWrapper:hover {
+    transform: scale(1.1);
+}
+
+.iconImg {
+    width: 100%;
+    height: auto;
+}
+
+.iconText {
+    display: block;
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
 /* Hide scrollbar for Chrome, Safari and Opera */
 #filmSlidesGallery::-webkit-scrollbar, .vhsButtons::-webkit-scrollbar {
     display: none;
@@ -226,32 +252,6 @@ figcaption {
     margin-right: 4%;
     border: none;
     margin-left: 4%;
-}
-
-.vhsIconWrapper {
-    position: relative;
-    width: 90%;
-    height: auto;
-    transition: 0.3s ease;
-    margin-top: 4%;
-}
-
-.vhsIconWrapper:hover {
-    transform: scale(1.1);
-}
-
-.vhsIcon {
-    width: 100%;
-    height: auto;
-}
-
-.vhsText {
-    display: block;
-    position: absolute;
-    top: 30%;
-    width: 100%;
-    text-align: center;
-    font-size: 1.5em;
 }
 
 /* Tapes gallery */
@@ -441,7 +441,8 @@ figcaption {
 /* Printed Gallery */
 #printedGallery {
     position: relative;
-    left: 3.5%;
+    padding-left: 8%;
+    padding-right: 9%;
     width: 80%;
     height: 100%;
     display: none;
@@ -453,6 +454,26 @@ figcaption {
     -ms-overflow-style: none;  /* IE and Edge scrollbar */
     scrollbar-width: none;  /* Firefox scrollbar */
 }
+
+.printedFigure {
+    background-color: white;
+    margin: 1.5%;
+    transition: 0.3s ease;
+    scroll-snap-align: end;
+}
+
+.printedFigure:hover {
+    transform: scale(1.2);
+}
+
+.printedFigure img {
+    width: 8vw;
+    height: 8vw;
+    min-width: 6em;
+    min-height: 6em;
+    object-fit: cover;
+}
+
 
 /* Objects Gallery */
 #objectsGallery {

@@ -355,9 +355,9 @@ const displayVhsGallery = (artifactsArray) => {
         vhsIconWrapper.appendChild(vhsIcon);
         vhsIconWrapper.appendChild(vhsName);
         vhsIcon.src = "img/icon/vhsIconClosed.png";
-        vhsIconWrapper.classList.add("vhsIconWrapper", "temp");
-        vhsIcon.classList.add("vhsIcon", "temp");
-        vhsName.classList.add("vhsText", "temp");
+        vhsIconWrapper.classList.add("iconWrapper", "temp");
+        vhsIcon.classList.add("iconImg", "temp");
+        vhsName.classList.add("iconText", "temp");
         vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
 
         vhsIconWrapper.addEventListener("click", () => {
@@ -504,12 +504,64 @@ const displayPrintedGallery = (artifactsArray) => {
     printedGallery.style.display = "flex";
     printedButtons.style.display = "flex";
 
+    // Create button for filtering by all categories
+    const allCategoryWrapper = document.createElement("div");
+    const allCategoryName = document.createElement("div");
+    const allCategoryIcon = document.createElement("img");
+    allCategoryWrapper.classList.add("iconWrapper", "temp");
+    allCategoryIcon.classList.add("iconImg", "temp");
+    allCategoryName.classList.add("iconText", "temp");
+    allCategoryIcon.src = "img/icon/folderIcon.png";
+    allCategoryName.innerHTML = "All Categories";
+    allCategoryWrapper.appendChild(allCategoryIcon);
+    allCategoryWrapper.appendChild(allCategoryName);
+    allCategoryWrapper.addEventListener("click", () => {
+        filterGallery("allCategory", printedGallery);
+    });
+    printedButtons.appendChild(allCategoryWrapper);
+
+    
     artifactsArray.forEach((printedArtifact) => {
-        imgCategory = printedArtifact.category;
+        let imgCategory = printedArtifact.category;
+        let imgPath = printedArtifact.filePath;
+        let imgName = printedArtifact.name;
+
+        // Populate gallery with figures for all images
+        let newFigure = document.createElement("figure");
+        let newFigCaption = document.createElement("figcaption");
+        let newImg = document.createElement("img");
+        newFigure.dataset.category = imgCategory;
+        newFigure.classList.add("printedFigure", "temp");
+        newImg.src = imgPath;
+        newFigCaption.innerHTML = imgName;
+
+        newFigure.appendChild(newImg);
+        newFigure.appendChild(newFigCaption);
+        printedGallery.appendChild(newFigure);
+        newFigure.addEventListener("click", () => {
+            expandImage(newFigure);
+        });
+
+        // Create buttons for filtering by category
         if (!categoryList.includes(imgCategory)) {
+            let newCategoryWrapper = document.createElement("div");
+            let newCategoryName = document.createElement("div");
+            let newCategoryIcon = document.createElement("img");
+            newCategoryWrapper.classList.add("iconWrapper", "temp")
+            newCategoryIcon.classList.add("iconImg", "temp");
+            newCategoryName.classList.add("iconText", "temp");
+            newCategoryIcon.src = "img/icon/folderIcon.png";
+            newCategoryName.innerHTML = imgCategory;
+            newCategoryWrapper.appendChild(newCategoryIcon);
+            newCategoryWrapper.appendChild(newCategoryName);
+            newCategoryWrapper.addEventListener("click", () => {
+                filterGallery(imgCategory, printedGallery);
+            });
+            printedButtons.appendChild(newCategoryWrapper);
             categoryList.push(imgCategory);
         }
     });
+
 };
 
 // Build and display the objects gallery
