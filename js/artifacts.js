@@ -181,7 +181,7 @@ const toggleSidebar = () => {
         toggleRightButtons.style.right = "1%";
     } else {
         rightButtons.style.left = "0";
-        toggleRightButtons.style.right = "25%";
+        toggleRightButtons.style.right = "21%";
     }
 };
 

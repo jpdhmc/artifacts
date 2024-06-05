@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
 
 /* Home/reused */
+* {
+    box-sizing: border-box;
+}
+
 html, body {
     margin: 0px;
 }
@@ -130,7 +134,7 @@ figcaption {
     display: none;
     flex-flow: column nowrap;
     align-items: center;
-    padding: 5% 3% 5% 3%;
+    padding: 1% 2%;
     height: 100%;
     width: 20%;
     overflow: auto;
@@ -142,7 +146,7 @@ figcaption {
 #toggleRightButtons {
     display: none;
     position: fixed;
-    right: 25%;
+    right: 21%;
     transition: 0.3s;
     z-index: 2;
 }
@@ -152,7 +156,7 @@ figcaption {
     width: 90%;
     height: auto;
     transition: 0.3s ease;
-    margin-top: 4%;
+    /* margin-top: 4%; */
 }
 
 .iconWrapper:hover {
@@ -249,9 +253,9 @@ figcaption {
     aspect-ratio: 16/9;
     width: 100%;
     height: 100%;
-    margin-right: 4%;
+    padding-right: 6%;
     border: none;
-    margin-left: 4%;
+    padding-left: 6%;
 }
 
 /* Tapes gallery */
@@ -441,10 +445,12 @@ figcaption {
 /* Printed Gallery */
 #printedGallery {
     position: relative;
-    padding-left: 8%;
+    padding-left: 9%;
     padding-right: 9%;
+    margin-bottom: 5%;
+    margin-top: 5%;
     width: 80%;
-    height: 100%;
+    height: 90%;
     display: none;
     flex-flow: row wrap;
     justify-content: space-around;
@@ -457,7 +463,6 @@ figcaption {
 
 .printedFigure {
     background-color: white;
-    margin: 1.5%;
     transition: 0.3s ease;
     scroll-snap-align: end;
 }
