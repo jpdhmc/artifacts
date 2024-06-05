@@ -240,6 +240,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                 switch (selectedGallery) {
                     case "filmSlides":
                         displayFilmSlidesGallery(desiredArtifacts);
+                        toggleRightButtons.style.display = "block";
                         break;
                     case "vhs":
                         displayVhsGallery(desiredArtifacts);
@@ -270,30 +271,28 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
 const displayFilmSlidesGallery = (artifactsArray) => {
     const filmSlidesGallery = document.getElementById("filmSlidesGallery");
     const filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
-
-    const categoryButtons = document.createElement("div");
-    categoryButtons.classList.add("categoryButtons", "temp");
+    const filmSlidesButtons = document.getElementById("rightButtons");
     let categoryList = [];
 
-    filmSlidesGalleryWrapper.appendChild(categoryButtons);
+    filmSlidesButtons.style.display = "flex";
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
 
-    // Create the button for removing gallery filtering
-    let tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
-    const allCategory = document.createElement("button");
-    allCategory.classList.add("tabButton", "tabButtonActive");
-    allCategory.id = "allCategory";
-    allCategory.innerHTML = "All Categories";
-    categoryButtons.appendChild(allCategory);
-    allCategory.addEventListener("click", () => {
-        const tabButtons = Array.from(categoryButtons.getElementsByTagName("button"));
-        tabButtons.forEach((tabButton) => {
-            tabButton.classList = "tabButton";
-        });
-        allCategory.className = "tabButton tabButtonActive";
+    // Create button for filtering by all categories
+    const allCategoryWrapper = document.createElement("div");
+    const allCategoryName = document.createElement("div");
+    const allCategoryIcon = document.createElement("img");
+    allCategoryWrapper.classList.add("iconWrapper", "temp");
+    allCategoryIcon.classList.add("iconImg", "temp");
+    allCategoryName.classList.add("iconText", "temp");
+    allCategoryIcon.src = "img/icon/folderIcon.png";
+    allCategoryName.innerHTML = "All Categories";
+    allCategoryWrapper.appendChild(allCategoryIcon);
+    allCategoryWrapper.appendChild(allCategoryName);
+    allCategoryWrapper.addEventListener("click", () => {
         filterGallery("allCategory", filmSlidesGallery);
     });
+    filmSlidesButtons.appendChild(allCategoryWrapper);
 
 
     artifactsArray.forEach((galleryObject) => {
@@ -317,21 +316,23 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             expandImage(newFigure);
         });
 
-        // Build category tabs
+        // Create buttons for filtering by category
         if (!categoryList.includes(imgCategory)) {
-            categoryList.push(imgCategory);
-            let newCategory = document.createElement("button");
-            newCategory.className = "tabButton";
-            newCategory.id = imgCategory;
-            newCategory.innerHTML = imgCategory;
-            categoryButtons.appendChild(newCategory);
-            newCategory.addEventListener("click", () => {
-                tabButtons.forEach((tabButton) => {
-                    tabButton.classList = "tabButton";
-                });
-                newCategory.className = "tabButton tabButtonActive";
-                filterGallery(newCategory.id, filmSlidesGallery);
+            let newCategoryWrapper = document.createElement("div");
+            let newCategoryName = document.createElement("div");
+            let newCategoryIcon = document.createElement("img");
+            newCategoryWrapper.classList.add("iconWrapper", "temp")
+            newCategoryIcon.classList.add("iconImg", "temp");
+            newCategoryName.classList.add("iconText", "temp");
+            newCategoryIcon.src = "img/icon/folderIcon.png";
+            newCategoryName.innerHTML = imgCategory;
+            newCategoryWrapper.appendChild(newCategoryIcon);
+            newCategoryWrapper.appendChild(newCategoryName);
+            newCategoryWrapper.addEventListener("click", () => {
+                filterGallery(imgCategory, filmSlidesGallery);
             });
+            filmSlidesButtons.appendChild(newCategoryWrapper);
+            categoryList.push(imgCategory);
         }
     });
 };

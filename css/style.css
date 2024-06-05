@@ -215,22 +215,6 @@ figcaption {
     margin-bottom: 20%;
 }
 
-.tabButton {
-    border: none;
-    cursor: pointer;
-    background-color: #2F4F4F;
-    font-family: 'Open Sans', sans-serif;
-    font-size: 1.25em;
-}
-
-.tabButtonActive {
-    background-color: #778899;
-}
-
-.tabButton:hover {
-    background-color: lightgray;
-}
-
 #filmSlidesGallery figure {
     margin: 1.5%;
     transition: 0.3s ease;
@@ -239,6 +223,10 @@ figcaption {
 
 #filmSlidesGallery figure:hover {
     transform: scale(1.2);
+}
+
+#filmSlidesGallery figCaption {
+    display: none;
 }
 
 /* VHS gallery */
