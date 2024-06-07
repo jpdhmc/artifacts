@@ -172,6 +172,7 @@ const goHome = (artifactsArray) => {
     posterWrapper.style.opacity = 0;
 };
 
+// Open/close the right button menu
 const toggleSidebar = () => {
     const toggleRightButtons = document.getElementById("toggleRightButtons");
     const rightButtons = document.getElementById("rightButtons");
@@ -450,7 +451,6 @@ const displayTapesGallery = (artifactsArray) => {
     });
     volumeButton.addEventListener("mouseover", () => {
         // TODO this - expand slider out on mouse over
-        volumeSlider.style.width = "20%";
     });
 
     // Handles the timeline and svgs depending on audio time
@@ -564,6 +564,11 @@ const displayPrintedGallery = (artifactsArray) => {
     });
 
 };
+
+// Build and display the cassettes gallery
+const displayCassettesGallery = (artifactsArray) => {
+    
+}
 
 // Build and display the objects gallery
 const displayObjectsGallery = (artifactsArray) => {

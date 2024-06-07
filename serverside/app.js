@@ -30,7 +30,6 @@ const traverseDirectory = (directory) => {
             let title = fileOrFolder.split(".")[0].split("=")[0];
             // this is to allow us to use special character in filenames
             if (title.includes("[")) {
-                console.log("included");
                 title = title.replace("[qm]", "?");
                 title = title.replace("[dq]", "\"");
                 title = title.replace("[sl]", "/");

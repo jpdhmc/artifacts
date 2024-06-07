@@ -1,6 +1,45 @@
 {
     "artifacts": [
         {
+            "name": "dog4",
+            "gallery": "cassettes",
+            "category": "cassettesAudio",
+            "filePath": "img/gallery/cassettes/cassettesAudio/dog4.wav"
+        },
+        {
+            "name": "dog5",
+            "gallery": "cassettes",
+            "category": "cassettesAudio",
+            "filePath": "img/gallery/cassettes/cassettesAudio/dog5.wav"
+        },
+        {
+            "name": "dog6",
+            "gallery": "cassettes",
+            "category": "cassettesAudio",
+            "filePath": "img/gallery/cassettes/cassettesAudio/dog6.wav"
+        },
+        {
+            "name": "Waltz",
+            "gallery": "cassettes",
+            "category": "cassettesAudio",
+            "filePath": "img/gallery/cassettes/cassettesAudio/Waltz=animal yippee.wav",
+            "tags": "animal yippee"
+        },
+        {
+            "name": "frog",
+            "gallery": "cassettes",
+            "category": "cassettesImages",
+            "filePath": "img/gallery/cassettes/cassettesImages/frog=animal yippee.jpg",
+            "tags": "animal yippee"
+        },
+        {
+            "name": "goose",
+            "gallery": "cassettes",
+            "category": "cassettesImages",
+            "filePath": "img/gallery/cassettes/cassettesImages/goose=animal yippee.jpg",
+            "tags": "animal yippee"
+        },
+        {
             "name": "bird",
             "gallery": "filmSlides",
             "category": "anotherCategory",
@@ -112,11 +151,11 @@
             "tags": "dog animal"
         },
         {
-            "name": "one",
+            "name": "luna",
             "gallery": "filmSlides",
             "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/one=dog luna=se.jpg",
-            "tags": "dog luna"
+            "filePath": "img/gallery/filmSlides/categoryOne/luna=dog.jpg",
+            "tags": "dog"
         },
         {
             "name": "reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
@@ -171,14 +210,14 @@
             "name": "fossa",
             "gallery": "filmSlides",
             "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fossa=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/filmSlides/categoryThree/fossa=animal cool_pic.jpg",
             "tags": "animal cool_pic"
         },
         {
             "name": "fox2",
             "gallery": "filmSlides",
             "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic.jpg",
             "tags": "animal cool_pic"
         },
         {
@@ -320,11 +359,11 @@
             "tags": "dog animal"
         },
         {
-            "name": "one",
+            "name": "luna",
             "gallery": "printed",
             "category": "secondCategory",
-            "filePath": "img/gallery/printed/secondCategory/one=dog luna=se.jpg",
-            "tags": "dog luna"
+            "filePath": "img/gallery/printed/secondCategory/luna=dog.jpg",
+            "tags": "dog"
         },
         {
             "name": "reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
