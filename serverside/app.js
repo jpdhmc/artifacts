@@ -34,7 +34,7 @@ const traverseDirectory = (directory) => {
                 title = title.replace("[dq]", "\"");
                 title = title.replace("[sl]", "/");
                 title = title.replace("[co]", ":");
-                title = title.replace("[as]", "&#183");
+                title = title.replace("[as]", "\'");
                 title = title.replace("[pe]", ".");
             }
             let tags = fileOrFolder.split(".")[0].split("=")[1];

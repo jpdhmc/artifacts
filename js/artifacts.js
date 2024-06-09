@@ -20,7 +20,7 @@ const init = () => {
     document.getElementById("homeButton").addEventListener("click", () => {
         goHome(artifactsArray);
     });
-    document.getElementById("toggleRightButtons").addEventListener("click", toggleSidebar);
+    document.getElementById("toggleRightButtons").addEventListener("mouseover", toggleSidebar);
 };
 
 // Fetches artifacts json and creates Artifact objects
@@ -177,13 +177,15 @@ const toggleSidebar = () => {
     const toggleRightButtons = document.getElementById("toggleRightButtons");
     const rightButtons = document.getElementById("rightButtons");
     rightButtons.style.display = "flex";
-    if (rightButtons.style.left != "100vw") {
+    rightButtons.style.left = "0";
+    toggleRightButtons.style.display = "none";
+
+    rightButtons.addEventListener("mouseleave", leaveButtons = () => {
         rightButtons.style.left = "100vw";
         toggleRightButtons.style.right = "1%";
-    } else {
-        rightButtons.style.left = "0";
-        toggleRightButtons.style.right = "21%";
-    }
+        toggleRightButtons.style.display = "block";
+        rightButtons.removeEventListener("mouseleave", leaveButtons);
+    });
 };
 
 // Show or hide index glows
@@ -237,29 +239,23 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                 indexPoster.style.display = "block";
                 posterVideo.style.display = "none";
                 homeButton.style.display = "block";
+                toggleRightButtons.style.display = "block";
 
                 switch (selectedGallery) {
                     case "filmSlides":
                         displayFilmSlidesGallery(desiredArtifacts);
-                        toggleRightButtons.style.display = "block";
                         break;
                     case "vhs":
                         displayVhsGallery(desiredArtifacts);
-                        toggleRightButtons.style.display = "block";
                         break;
                     case "printed":
                         displayPrintedGallery(desiredArtifacts);
-                        toggleRightButtons.style.display = "block";
                         break;
                     case "cassettes":
                         displayCassettesGallery(desiredArtifacts);
                         break;
                     case "tapes":
                         displayTapesGallery(desiredArtifacts);
-                        toggleRightButtons.style.display = "block";
-                        break;
-                    case "objects":
-                        displayObjectsGallery(desiredArtifacts);
                 }
             };
         }
@@ -377,12 +373,12 @@ const displayVhsGallery = (artifactsArray) => {
 const displayTapesGallery = (artifactsArray) => {
     const tapesGallery = document.getElementById("tapesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
-    const playerButton = document.getElementById("playerButton");
-    const volumeButton = document.getElementById("volumeButton");
-    const playerTimeline = document.getElementById("timeline");
+    const playerButton = document.getElementById("tapesPlayerButton");
+    const volumeButton = document.getElementById("tapesVolumeButton");
+    const playerTimeline = document.getElementById("tapesTimeline");
     const tapesAudio = document.getElementById("tapesAudio");
     const tapesImagesGallery = document.getElementById("tapesImages");
-    const volumeSlider = document.getElementById("volumeSlider");
+    const volumeSlider = document.getElementById("tapesVolumeSlider");
     const tapesButtons = document.getElementById("rightButtons");
     let audioTimeInterval;
 
@@ -398,7 +394,7 @@ const displayTapesGallery = (artifactsArray) => {
             if (document.getElementById("tapesCaption") != null) {
                 document.getElementById("tapesCaption").remove();
             }
-            const audioPlayer = document.getElementById("audioPlayer");
+            const audioPlayer = document.getElementById("tapesAudioPlayer");
             const tapesCaption = document.createElement("span");
             tapesCaption.innerHTML = artifact.name;
             tapesCaption.id = "tapesCaption";
@@ -455,10 +451,10 @@ const displayTapesGallery = (artifactsArray) => {
 
     // Handles the timeline and svgs depending on audio time
     const setTapesAudio = () => {
-        const reelSvgStart = document.getElementById("reelSvgStart");
-        const reelSvgEnd = document.getElementById("reelSvgEnd");
-        const reelCircleStart = document.getElementById("reelCircleStart");
-        const reelCircleEnd = document.getElementById("reelCircleEnd");
+        const reelSvgStart = document.getElementById("tapesReelSvgStart");
+        const reelSvgEnd = document.getElementById("tapesReelSvgEnd");
+        const reelCircleStart = document.getElementById("tapesReelCircleStart");
+        const reelCircleEnd = document.getElementById("tapesReelCircleEnd");
         let percentage = (100 * tapesAudio.currentTime) / tapesAudio.duration;
         if (isNaN(percentage)) {
             percentage = 0;
@@ -466,7 +462,7 @@ const displayTapesGallery = (artifactsArray) => {
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
 
-        let angle = 360 * (percentage * -0.04);
+        let angle = 360 * (percentage * -0.06);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
         let endRadius = 0.6 * percentage + 37;
@@ -492,6 +488,128 @@ const displayTapesGallery = (artifactsArray) => {
         tapesAudio.play();
         audioTimeInterval = setInterval(setTapesAudio, 80);
     });
+};
+
+// Build and display the cassettes gallery
+const displayCassettesGallery = (artifactsArray) => {
+    const cassettesGallery = document.getElementById("cassettesGallery");
+    const galleryWrapper = document.getElementById("galleryWrapper");
+    const playerButton = document.getElementById("cassettesPlayerButton");
+    const volumeButton = document.getElementById("cassettesVolumeButton");
+    const playerTimeline = document.getElementById("cassettesTimeline");
+    const cassettesAudio = document.getElementById("cassettesAudio");
+    const cassettesImagesGallery = document.getElementById("cassettesImages");
+    const volumeSlider = document.getElementById("cassettesVolumeSlider");
+    const cassettesButtons = document.getElementById("rightButtons");
+    let audioTimeInterval;
+
+    galleryWrapper.style.display = "flex";
+    cassettesGallery.style.display = "flex";
+    cassettesButtons.style.display = "flex";
+
+    artifactsArray.filter((artifact) => artifact.category === "cassettesAudio").forEach((artifact) => {
+        let cassettesIcon = document.createElement("img");
+        cassettesIcon.src = "img/icon/cassettes/" + artifact.name + ".png";
+        cassettesIcon.classList.add("cassettesIcon", "temp");
+        cassettesIcon.addEventListener("click", () => {
+            if (document.getElementById("cassettesCaption") != null) {
+                document.getElementById("cassettesCaption").remove();
+            }
+            const audioPlayer = document.getElementById("cassettesAudioPlayer");
+            const cassettesCaption = document.createElement("span");
+            cassettesCaption.innerHTML = artifact.name;
+            cassettesCaption.id = "cassettesCaption";
+            cassettesCaption.classList.add("temp");
+            audioPlayer.appendChild(cassettesCaption);
+
+            cassettesAudio.src = artifact.filePath;
+            cassettesImagesGallery.innerHTML = "";
+
+            // Get images to display in secondary gallery if tags matching
+            let selectedCassettesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "cassettesImages" && imageArtifact.tags === artifact.tags);
+            selectedCassettesImages.forEach((cassettesImage) => {
+                let newFigure = document.createElement("figure");
+                let newFigCaption = document.createElement("figcaption");
+                let newImg = document.createElement("img");
+                newImg.src = cassettesImage.filePath;
+                newFigure.classList.add("temp");
+                newFigCaption.innerHTML = cassettesImage.name;
+                newFigure.appendChild(newImg);
+                newFigure.appendChild(newFigCaption);
+                newImg.addEventListener("click", () => {
+                    expandImage(newFigure);
+                });
+                cassettesImagesGallery.appendChild(newFigure);
+            });
+        });
+        cassettesButtons.appendChild(cassettesIcon);
+    });
+
+        // Play/pause
+        playerButton.addEventListener("click", () => {
+            if (cassettesAudio.paused) {
+                cassettesAudio.play();
+                // TODO change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+                audioTimeInterval = setInterval(setCassettesAudio, 80);
+    
+            } else {
+                cassettesAudio.pause();
+                // change to play icon
+                clearInterval(audioTimeInterval);
+            }
+        });
+        cassettesAudio.onended = () => {
+            // change to pause icon
+        };
+    
+        // Volume
+        volumeSlider.addEventListener("change", () => {
+            let volumeValue = volumeSlider.value / 100;
+            cassettesAudio.volume = volumeValue;
+        });
+        volumeButton.addEventListener("mouseover", () => {
+            // TODO this - expand slider out on mouse over
+        });
+    
+        // Handles the timeline and svgs depending on audio time
+        const setCassettesAudio = () => {
+            const reelSvgStart = document.getElementById("cassettesReelSvgStart");
+            const reelSvgEnd = document.getElementById("cassettesReelSvgEnd");
+            const reelCircleStart = document.getElementById("cassettesReelCircleStart");
+            const reelCircleEnd = document.getElementById("cassettesReelCircleEnd");
+            let percentage = (100 * cassettesAudio.currentTime) / cassettesAudio.duration;
+            if (isNaN(percentage)) {
+                percentage = 0;
+            }
+            playerTimeline.style.backgroundSize = percentage + "% 100%";
+            playerTimeline.value = percentage;
+    
+            let angle = 360 * (percentage * -0.06);
+            let rotation = "rotate(" + angle + ")";
+            // set radius using a sliding scale where 0% is 37 and 100% is 79
+            let endRadius = 0.6 * percentage + 37;
+            let startRadius = 79 - (endRadius - 37);
+    
+            reelSvgStart.setAttribute("transform", rotation);
+            reelCircleStart.setAttribute("r", startRadius);
+            reelSvgEnd.setAttribute("transform", rotation);
+            reelCircleEnd.setAttribute("r", endRadius);
+        };
+    
+        playerTimeline.addEventListener("change", () => {
+            let time = (playerTimeline.value * cassettesAudio.duration) / 100;
+            cassettesAudio.currentTime = time;
+        });
+    
+        playerTimeline.addEventListener("mousedown", () => {
+            cassettesAudio.pause();
+            clearInterval(audioTimeInterval);
+        });
+    
+        playerTimeline.addEventListener("mouseup", () => {
+            cassettesAudio.play();
+            audioTimeInterval = setInterval(setCassettesAudio, 80);
+        });
 };
 
 // Build and display the printed media gallery
@@ -521,7 +639,7 @@ const displayPrintedGallery = (artifactsArray) => {
     });
     printedButtons.appendChild(allCategoryWrapper);
 
-    
+
     artifactsArray.forEach((printedArtifact) => {
         let imgCategory = printedArtifact.category;
         let imgPath = printedArtifact.filePath;
@@ -562,16 +680,6 @@ const displayPrintedGallery = (artifactsArray) => {
             categoryList.push(imgCategory);
         }
     });
-
-};
-
-// Build and display the cassettes gallery
-const displayCassettesGallery = (artifactsArray) => {
-    
-}
-
-// Build and display the objects gallery
-const displayObjectsGallery = (artifactsArray) => {
 
 };
 
