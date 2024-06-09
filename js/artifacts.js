@@ -425,14 +425,18 @@ const displayTapesGallery = (artifactsArray) => {
 
     // Play/pause
     playerButton.addEventListener("click", () => {
+        const tapesKnob = document.getElementById("tapesKnob");
+        const tapesKnobMark = document.getElementById("tapesKnobMark");
         if (tapesAudio.paused) {
             tapesAudio.play();
-            // TODO change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+            tapesKnob.setAttribute("transform", "rotate(10)");
+            tapesKnobMark.setAttribute("transform", "rotate(10)");
             audioTimeInterval = setInterval(setTapesAudio, 80);
 
         } else {
             tapesAudio.pause();
-            // change to play icon
+            tapesKnob.setAttribute("transform", "rotate(-10)");
+            tapesKnobMark.setAttribute("transform", "rotate(-10)");
             clearInterval(audioTimeInterval);
         }
     });
@@ -462,7 +466,7 @@ const displayTapesGallery = (artifactsArray) => {
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
 
-        let angle = 360 * (percentage * -0.06);
+        let angle = 360 * (percentage * -0.04);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
         let endRadius = 0.6 * percentage + 37;
@@ -549,7 +553,7 @@ const displayCassettesGallery = (artifactsArray) => {
         playerButton.addEventListener("click", () => {
             if (cassettesAudio.paused) {
                 cassettesAudio.play();
-                // TODO change to pause icon - maybe just depressed/undepressed svg button to sell the tape recorder feel
+                
                 audioTimeInterval = setInterval(setCassettesAudio, 80);
     
             } else {
@@ -584,7 +588,7 @@ const displayCassettesGallery = (artifactsArray) => {
             playerTimeline.style.backgroundSize = percentage + "% 100%";
             playerTimeline.value = percentage;
     
-            let angle = 360 * (percentage * -0.06);
+            let angle = 360 * (percentage * -0.04);
             let rotation = "rotate(" + angle + ")";
             // set radius using a sliding scale where 0% is 37 and 100% is 79
             let endRadius = 0.6 * percentage + 37;
