@@ -429,19 +429,21 @@ const displayTapesGallery = (artifactsArray) => {
         const tapesKnobMark = document.getElementById("tapesKnobMark");
         if (tapesAudio.paused) {
             tapesAudio.play();
-            tapesKnob.setAttribute("transform", "rotate(10)");
-            tapesKnobMark.setAttribute("transform", "rotate(10)");
+            tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
+            tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
             audioTimeInterval = setInterval(setTapesAudio, 80);
 
         } else {
             tapesAudio.pause();
-            tapesKnob.setAttribute("transform", "rotate(-10)");
-            tapesKnobMark.setAttribute("transform", "rotate(-10)");
+            tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+            tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
             clearInterval(audioTimeInterval);
         }
     });
     tapesAudio.onended = () => {
-        // change to pause icon
+        tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+        tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
+        clearInterval(audioTimeInterval);
     };
 
     // Volume
@@ -469,8 +471,8 @@ const displayTapesGallery = (artifactsArray) => {
         let angle = 360 * (percentage * -0.04);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
-        let endRadius = 0.6 * percentage + 37;
-        let startRadius = 79 - (endRadius - 37);
+        let endRadius = 0.42 * percentage + 37;
+        let startRadius = 79 - (0.42 * percentage);
 
         reelSvgStart.setAttribute("transform", rotation);
         reelCircleStart.setAttribute("r", startRadius);
