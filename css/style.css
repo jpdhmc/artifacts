@@ -130,25 +130,34 @@ figcaption {
 #rightButtons {
     background-color: rgba(0,0,0,0.6);
     position: relative;
-    left: 100vw;
+    left: 18vw;
     display: none;
     flex-flow: column nowrap;
     align-items: center;
     padding: 1% 2%;
+    padding-left: 2.5%;
     height: 100%;
     width: 20%;
     overflow: auto;
-    transition: 0.3s;
+    animation: bounceHorizontal 2s ease-in infinite;
+    transition: left 0.3s;
     -ms-overflow-style: none;  /* IE and Edge scrollbar */
     scrollbar-width: none;  /* Firefox scrollbar */
 }
 
 #toggleRightButtons {
-    display: none;
+    display: block;
     position: fixed;
-    right: 1%;
-    transition: 0.3s;
+    right: 0vw;
+    transition: right 0.3s;
+    animation: bounceHorizontal 2s ease-in infinite;
+    top: 50%;
     z-index: 2;
+    background-color: transparent;
+    pointer-events: none;
+    border: 0;
+    width: 2vw;
+    padding: 0;
 }
 
 .iconWrapper {
@@ -487,4 +496,16 @@ figcaption {
 @keyframes shrink {
     from {transform: scale(1);}
     to {transform: scale(0);}
+}
+
+@keyframes bounceHorizontal {
+    0% {transform: translateX(0);}
+    20% {transform: translateX(0);}
+    40% {transform: translateX(-2vw);}
+    50% {transform: translateX(0);}
+    60% {transform: translateX(-0.7vw);}
+    70% {transform: translateX(0);}
+    75% {transform: translateX(-0.3vw);}
+    80% {transform: translateX(0vw);}
+    100% {transform: translateX(0);}
 }

@@ -22,8 +22,8 @@ const traverseDirectory = (directory) => {
         if (fileOrFolderStats.isDirectory()) {
             // if directory, recursively traverse it
             traverseDirectory(fullPath);
-        } else {
-            // if file, create an object to represent it and place it in the filesArray
+        } else if (!fileOrFolder.includes(".jpg")) {
+            // if file + not a fullsized img, create an object to represent it and place it in the filesArray
             let parentFolder = path.relative(imgFolderPath, directory);
             let galleryFolder = parentFolder.split("\\")[0];
             let categoryFolder = parentFolder.split("\\")[1];

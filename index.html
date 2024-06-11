@@ -110,6 +110,8 @@
                 <div class="galleryWrapper" id="galleryWrapper">
                     <div class="expandedWrapper" id="expandedWrapper">
                         <figure id="expandedFigure">
+                            <img id="expandedImg" src="">
+                            <figcaption id="expandedCaption"></figcaption>
                         </figure>
                     </div>
                     <div id="filmSlidesGallery" class="gallery">
@@ -275,9 +277,12 @@
                     </div>
                     <div id="objectsGallery" class="gallery">
                     </div>
-                    <div id="rightButtons" class="rightButtons"></div>
+                    <div id="rightButtons" class="rightButtons">
+                    </div>
+                    <svg id="toggleRightButtons" viewbox="0 0 100 105" xmlns="http://www.w3.org/2000/svg">
+                        <path style="fill:#9b9b9b;stroke-width:10;stroke-linecap:round;stroke-linejoin:round;fill-opacity:.89999998" d="M4.945 95h90.11A4.934 4.934 0 0 1 100 99.945v.11A4.934 4.934 0 0 1 95.055 105H4.945A4.934 4.934 0 0 1 0 100.055v-.11A4.934 4.934 0 0 1 4.945 95ZM5 80h90c2.77 0 5 2.23 5 5s-2.23 5-5 5H5c-2.77 0-5-2.23-5-5s2.23-5 5-5Zm0-15h90c2.77 0 5 2.23 5 5s-2.23 5-5 5H5c-2.77 0-5-2.23-5-5s2.23-5 5-5ZM44.688 5.312l-42.92 42.92A6.036 6.036 112.5 0 0 0 52.5v2.495A5.005 5.005 45 0 0 5.005 60h90.17a4.917 4.917 134.493 0 0 4.916-5.004l-.047-2.645a6.177 6.177 66.95 0 0-1.814-4.265L55.32 5.305a7.524 7.524 179.957 0 0-10.633.008Z" transform="rotate(90 50 52.5) matrix(1 0 0 -1 0 105)"/>
+                    </svg>
                 </div>
-                <button id="toggleRightButtons">Menu</button>
             </div>
             <video playsinline autoplay muted preload="auto" poster="img/stills/deskStill.jpg" id="posterVideo">
                 <source src="" type="video/webm">

@@ -20,7 +20,7 @@ const init = () => {
     document.getElementById("homeButton").addEventListener("click", () => {
         goHome(artifactsArray);
     });
-    document.getElementById("toggleRightButtons").addEventListener("mouseover", toggleSidebar);
+    document.getElementById("rightButtons").addEventListener("mouseover", toggleSidebar);
 };
 
 // Fetches artifacts json and creates Artifact objects
@@ -140,7 +140,6 @@ const goHome = (artifactsArray) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     const galleryElements = document.querySelectorAll(".gallery");
     const rightButtons = document.getElementById("rightButtons");
-    const toggleRightButtons = document.getElementById("toggleRightButtons");
     let tempElements = document.querySelectorAll(".temp");
     expandedWrapper.style.display = "none";
     handlePosterMovers(false);
@@ -162,7 +161,6 @@ const goHome = (artifactsArray) => {
                     }
                     galleryWrapper.style.display = "none";
                     rightButtons.style.display = "none";
-                    toggleRightButtons.style.display = "none";
                     posterWrapper.style.opacity = 1;
                 }
             });
@@ -174,16 +172,15 @@ const goHome = (artifactsArray) => {
 
 // Open/close the right button menu
 const toggleSidebar = () => {
-    const toggleRightButtons = document.getElementById("toggleRightButtons");
     const rightButtons = document.getElementById("rightButtons");
-    rightButtons.style.display = "flex";
-    rightButtons.style.left = "0";
-    toggleRightButtons.style.display = "none";
-
+    const toggleRightButtons = document.getElementById("toggleRightButtons");
+    toggleRightButtons.style.animation = "initial";
+    toggleRightButtons.style.right = "18vw";
+    rightButtons.style.animation = "initial";
+    rightButtons.style.left = "0vw";
     rightButtons.addEventListener("mouseleave", leaveButtons = () => {
-        rightButtons.style.left = "100vw";
-        toggleRightButtons.style.right = "1%";
-        toggleRightButtons.style.display = "block";
+        toggleRightButtons.style.right = "0vw";
+        rightButtons.style.left = "18vw";
         rightButtons.removeEventListener("mouseleave", leaveButtons);
     });
 };
@@ -209,7 +206,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
     const homeButton = document.getElementById("homeButton");
-    const toggleRightButtons = document.getElementById("toggleRightButtons");
 
     let desiredArtifacts = [];
     artifactsArray.forEach((artifact) => {
@@ -239,7 +235,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                 indexPoster.style.display = "block";
                 posterVideo.style.display = "none";
                 homeButton.style.display = "block";
-                toggleRightButtons.style.display = "block";
 
                 switch (selectedGallery) {
                     case "filmSlides":
@@ -310,7 +305,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
         newFigure.appendChild(newFigCaption);
         filmSlidesGallery.appendChild(newFigure);
         newImg.addEventListener("click", () => {
-            expandImage(newFigure);
+            expandImage(galleryObject);
         });
 
         // Create buttons for filtering by category
@@ -415,7 +410,7 @@ const displayTapesGallery = (artifactsArray) => {
                 newFigure.appendChild(newImg);
                 newFigure.appendChild(newFigCaption);
                 newImg.addEventListener("click", () => {
-                    expandImage(newFigure);
+                    expandImage(tapesImage);
                 });
                 tapesImagesGallery.appendChild(newFigure);
             });
@@ -431,7 +426,7 @@ const displayTapesGallery = (artifactsArray) => {
             tapesAudio.play();
             tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
             tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
-            audioTimeInterval = setInterval(setTapesAudio, 80);
+            audioTimeInterval = setInterval(setTapesAudio, 40);
 
         } else {
             tapesAudio.pause();
@@ -468,7 +463,7 @@ const displayTapesGallery = (artifactsArray) => {
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
 
-        let angle = 360 * (percentage * -0.04);
+        let angle = 360 * (percentage * -0.32);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
         let endRadius = 0.42 * percentage + 37;
@@ -492,7 +487,7 @@ const displayTapesGallery = (artifactsArray) => {
 
     playerTimeline.addEventListener("mouseup", () => {
         tapesAudio.play();
-        audioTimeInterval = setInterval(setTapesAudio, 80);
+        audioTimeInterval = setInterval(setTapesAudio, 40);
     });
 };
 
@@ -543,7 +538,7 @@ const displayCassettesGallery = (artifactsArray) => {
                 newFigure.appendChild(newImg);
                 newFigure.appendChild(newFigCaption);
                 newImg.addEventListener("click", () => {
-                    expandImage(newFigure);
+                    expandImage(cassettesImage);
                 });
                 cassettesImagesGallery.appendChild(newFigure);
             });
@@ -593,8 +588,8 @@ const displayCassettesGallery = (artifactsArray) => {
             let angle = 360 * (percentage * -0.04);
             let rotation = "rotate(" + angle + ")";
             // set radius using a sliding scale where 0% is 37 and 100% is 79
-            let endRadius = 0.6 * percentage + 37;
-            let startRadius = 79 - (endRadius - 37);
+            let endRadius = 0.42 * percentage + 37;
+            let startRadius = 79 - (0.42 * percentage);
     
             reelSvgStart.setAttribute("transform", rotation);
             reelCircleStart.setAttribute("r", startRadius);
@@ -664,7 +659,7 @@ const displayPrintedGallery = (artifactsArray) => {
         newFigure.appendChild(newFigCaption);
         printedGallery.appendChild(newFigure);
         newFigure.addEventListener("click", () => {
-            expandImage(newFigure);
+            expandImage(printedArtifact);
         });
 
         // Create buttons for filtering by category
@@ -690,10 +685,12 @@ const displayPrintedGallery = (artifactsArray) => {
 };
 
 // Called when an image in the gallery is clicked, displays the full size image 
-const expandImage = (selectedFigure) => {
+const expandImage = (selectedArtifact) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
-    const expandedFigure = document.getElementById("expandedFigure");
-    expandedFigure.innerHTML = selectedFigure.innerHTML;
+    const expandedImg = document.getElementById("expandedImg");
+    const expandedCaption = document.getElementById("expandedCaption")
+    expandedImg.src = "img/gallery/" + selectedArtifact.gallery + "/" + selectedArtifact.category + "/" + selectedArtifact.name + ".jpg"
+    expandedCaption.innerHTML = selectedArtifact.name;
     expandedWrapper.style.display = "flex";
     expandedWrapper.addEventListener("click", closer = (event) => {
         expandedWrapper.style.display = "none";

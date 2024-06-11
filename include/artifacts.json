@@ -26,316 +26,214 @@
             "tags": "animal yippee"
         },
         {
-            "name": "frog",
+            "name": "fox2",
             "gallery": "cassettes",
             "category": "cassettesImages",
-            "filePath": "img/gallery/cassettes/cassettesImages/frog=animal yippee.jpg",
+            "filePath": "img/gallery/cassettes/cassettesImages/fox2=animal yippee.png",
+            "tags": "animal yippee"
+        },
+        {
+            "name": "fox3",
+            "gallery": "cassettes",
+            "category": "cassettesImages",
+            "filePath": "img/gallery/cassettes/cassettesImages/fox3=animal yippee.png",
             "tags": "animal yippee"
         },
         {
             "name": "goose",
             "gallery": "cassettes",
             "category": "cassettesImages",
-            "filePath": "img/gallery/cassettes/cassettesImages/goose=animal yippee.jpg",
+            "filePath": "img/gallery/cassettes/cassettesImages/goose=animal yippee.png",
             "tags": "animal yippee"
         },
         {
-            "name": "bird",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/bird=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
-            "name": "borzoi2",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/borzoi2=big_nose animal dog.jpg",
-            "tags": "big_nose animal dog"
-        },
-        {
-            "name": "borzoi",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/borzoi=animal dog.jpg",
-            "tags": "animal dog"
-        },
-        {
-            "name": "fossa2",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fossa2=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa3",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fossa3=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa4",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fossa4=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fossa=animal cool_pic=se.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
             "name": "fox2",
             "gallery": "filmSlides",
             "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fox2=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/filmSlides/anotherCategory/fox2=animal cool_pic.png",
             "tags": "animal cool_pic"
         },
         {
             "name": "fox3",
             "gallery": "filmSlides",
             "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fox3=animal.jpg",
+            "filePath": "img/gallery/filmSlides/anotherCategory/fox3=animal.png",
             "tags": "animal"
-        },
-        {
-            "name": "fox",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/fox=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
         },
         {
             "name": "goose",
             "gallery": "filmSlides",
             "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/goose=animal.jpg",
+            "filePath": "img/gallery/filmSlides/anotherCategory/goose=animal.png",
             "tags": "animal"
         },
         {
-            "name": "il_fullxfull",
+            "name": "bird",
             "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/il_fullxfull.3248772718_4eq0.png"
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/bird=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "borzoi2",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/borzoi2=big_nose animal dog.png",
+            "tags": "big_nose animal dog"
+        },
+        {
+            "name": "borzoi",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/borzoi=animal dog.png",
+            "tags": "animal dog"
+        },
+        {
+            "name": "fossa2",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fossa2=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fossa3",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fossa3=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fossa4",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fossa4=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fossa",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fossa=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "fox2",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fox2=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "fox3",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fox3=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fox",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/fox=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "goose",
+            "gallery": "filmSlides",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/goose=animal.png",
+            "tags": "animal"
         },
         {
             "name": "luna",
             "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/luna=luna dog animal.png",
+            "category": "categoryOne",
+            "filePath": "img/gallery/filmSlides/categoryOne/luna=luna dog animal.png",
             "tags": "luna dog animal"
         },
         {
-            "name": "realwagallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
-            "gallery": "filmSlides",
-            "category": "anotherCategory",
-            "filePath": "img/gallery/filmSlides/anotherCategory/realwagallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage=cat animal=se.jpg",
-            "tags": "cat animal"
-        },
-        {
-            "name": "four",
-            "gallery": "filmSlides",
-            "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/four=cat animal cool_pic.jpg",
-            "tags": "cat animal cool_pic"
-        },
-        {
-            "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
-            "gallery": "filmSlides",
-            "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua=dog animal.png",
-            "tags": "dog animal"
-        },
-        {
-            "name": "luna",
-            "gallery": "filmSlides",
-            "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/luna=dog.jpg",
-            "tags": "dog"
-        },
-        {
-            "name": "reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
-            "gallery": "filmSlides",
-            "category": "categoryOne",
-            "filePath": "img/gallery/filmSlides/categoryOne/reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage=cat animal=se.jpg",
-            "tags": "cat animal"
-        },
-        {
-            "name": "bird",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/bird=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
-            "name": "borzoi2",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/borzoi2=big_nose animal dog.jpg",
-            "tags": "big_nose animal dog"
-        },
-        {
-            "name": "borzoi",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/borzoi=animal dog.jpg",
-            "tags": "animal dog"
-        },
-        {
-            "name": "fossa2",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fossa2=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa3",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fossa3=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa4",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fossa4=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fossa",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fossa=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
             "name": "fox2",
             "gallery": "filmSlides",
             "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic.jpg",
+            "filePath": "img/gallery/filmSlides/categoryThree/fox2=animal cool_pic.png",
             "tags": "animal cool_pic"
-        },
-        {
-            "name": "fox3",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fox3=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "fox",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/fox=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
-            "name": "goose",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/goose=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "il_fullxfull",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/il_fullxfull.3248772718_4eq0.png"
-        },
-        {
-            "name": "luna",
-            "gallery": "filmSlides",
-            "category": "categoryThree",
-            "filePath": "img/gallery/filmSlides/categoryThree/luna=luna dog animal.png",
-            "tags": "luna dog animal"
         },
         {
             "name": "bird",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/bird=animal cool_pic.jpg",
+            "filePath": "img/gallery/printed/firstCategory/bird=animal cool_pic.png",
             "tags": "animal cool_pic"
         },
         {
             "name": "borzoi2",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/borzoi2=big_nose animal dog.jpg",
+            "filePath": "img/gallery/printed/firstCategory/borzoi2=big_nose animal dog.png",
             "tags": "big_nose animal dog"
         },
         {
             "name": "borzoi",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/borzoi=animal dog.jpg",
+            "filePath": "img/gallery/printed/firstCategory/borzoi=animal dog.png",
             "tags": "animal dog"
         },
         {
             "name": "fossa2",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fossa2=animal.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fossa2=animal.png",
             "tags": "animal"
         },
         {
             "name": "fossa3",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fossa3=animal.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fossa3=animal.png",
             "tags": "animal"
         },
         {
             "name": "fossa4",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fossa4=animal.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fossa4=animal.png",
             "tags": "animal"
         },
         {
             "name": "fossa",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fossa=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fossa=animal cool_pic.png",
             "tags": "animal cool_pic"
         },
         {
             "name": "fox2",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fox2=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fox2=animal cool_pic.png",
             "tags": "animal cool_pic"
         },
         {
             "name": "fox3",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fox3=animal.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fox3=animal.png",
             "tags": "animal"
         },
         {
             "name": "fox",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/fox=animal cool_pic.jpg",
+            "filePath": "img/gallery/printed/firstCategory/fox=animal cool_pic.png",
             "tags": "animal cool_pic"
         },
         {
             "name": "goose",
             "gallery": "printed",
             "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/goose=animal.jpg",
+            "filePath": "img/gallery/printed/firstCategory/goose=animal.png",
             "tags": "animal"
-        },
-        {
-            "name": "il_fullxfull",
-            "gallery": "printed",
-            "category": "firstCategory",
-            "filePath": "img/gallery/printed/firstCategory/il_fullxfull.3248772718_4eq0.png"
         },
         {
             "name": "luna",
@@ -345,115 +243,95 @@
             "tags": "luna dog animal"
         },
         {
-            "name": "four",
+            "name": "fossa2",
             "gallery": "printed",
             "category": "secondCategory",
-            "filePath": "img/gallery/printed/secondCategory/four=cat animal cool_pic.jpg",
-            "tags": "cat animal cool_pic"
+            "filePath": "img/gallery/printed/secondCategory/fossa2=animal.png",
+            "tags": "animal"
         },
         {
-            "name": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua",
+            "name": "fossa3",
             "gallery": "printed",
             "category": "secondCategory",
-            "filePath": "img/gallery/printed/secondCategory/Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua=dog animal.png",
-            "tags": "dog animal"
+            "filePath": "img/gallery/printed/secondCategory/fossa3=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fossa4",
+            "gallery": "printed",
+            "category": "secondCategory",
+            "filePath": "img/gallery/printed/secondCategory/fossa4=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fox2",
+            "gallery": "printed",
+            "category": "secondCategory",
+            "filePath": "img/gallery/printed/secondCategory/fox2=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "fox3",
+            "gallery": "printed",
+            "category": "secondCategory",
+            "filePath": "img/gallery/printed/secondCategory/fox3=animal.png",
+            "tags": "animal"
+        },
+        {
+            "name": "fox",
+            "gallery": "printed",
+            "category": "secondCategory",
+            "filePath": "img/gallery/printed/secondCategory/fox=animal cool_pic.png",
+            "tags": "animal cool_pic"
+        },
+        {
+            "name": "goose",
+            "gallery": "printed",
+            "category": "secondCategory",
+            "filePath": "img/gallery/printed/secondCategory/goose=animal.png",
+            "tags": "animal"
         },
         {
             "name": "luna",
             "gallery": "printed",
             "category": "secondCategory",
-            "filePath": "img/gallery/printed/secondCategory/luna=dog.jpg",
-            "tags": "dog"
-        },
-        {
-            "name": "reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
-            "gallery": "printed",
-            "category": "secondCategory",
-            "filePath": "img/gallery/printed/secondCategory/reallyreally reallyreallyreally reallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage=cat animal=se.jpg",
-            "tags": "cat animal"
-        },
-        {
-            "name": "bird",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/bird=animal cool_pic.jpg",
-            "tags": "animal cool_pic"
-        },
-        {
-            "name": "borzoi2",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/borzoi2=big_nose animal dog.jpg",
-            "tags": "big_nose animal dog"
-        },
-        {
-            "name": "borzoi",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/borzoi=animal dog.jpg",
-            "tags": "animal dog"
+            "filePath": "img/gallery/printed/secondCategory/luna=luna dog animal.png",
+            "tags": "luna dog animal"
         },
         {
             "name": "fossa2",
             "gallery": "printed",
             "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fossa2=animal.jpg",
+            "filePath": "img/gallery/printed/thirdCategory/fossa2=animal.png",
             "tags": "animal"
         },
         {
-            "name": "fossa3?'",
+            "name": "fossa3",
             "gallery": "printed",
             "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fossa3[qm][as]=animal.jpg",
+            "filePath": "img/gallery/printed/thirdCategory/fossa3=animal.png",
             "tags": "animal"
         },
         {
             "name": "fossa4",
             "gallery": "printed",
             "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fossa4=animal.jpg",
+            "filePath": "img/gallery/printed/thirdCategory/fossa4=animal.png",
             "tags": "animal"
-        },
-        {
-            "name": "fossa",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fossa=animal cool_pic=se.jpg",
-            "tags": "animal cool_pic"
         },
         {
             "name": "fox2",
             "gallery": "printed",
             "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fox2=animal cool_pic=se.jpg",
+            "filePath": "img/gallery/printed/thirdCategory/fox2=animal cool_pic.png",
             "tags": "animal cool_pic"
-        },
-        {
-            "name": "fox3",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fox3=animal.jpg",
-            "tags": "animal"
         },
         {
             "name": "fox",
             "gallery": "printed",
             "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/fox=animal cool_pic.jpg",
+            "filePath": "img/gallery/printed/thirdCategory/fox=animal cool_pic.png",
             "tags": "animal cool_pic"
-        },
-        {
-            "name": "goose",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/goose=animal.jpg",
-            "tags": "animal"
-        },
-        {
-            "name": "il_fullxfull",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/il_fullxfull.3248772718_4eq0.png"
         },
         {
             "name": "luna",
@@ -461,13 +339,6 @@
             "category": "thirdCategory",
             "filePath": "img/gallery/printed/thirdCategory/luna=luna dog animal.png",
             "tags": "luna dog animal"
-        },
-        {
-            "name": "realwagallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage",
-            "gallery": "printed",
-            "category": "thirdCategory",
-            "filePath": "img/gallery/printed/thirdCategory/realwagallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallyreallylongtitle forthisimage=cat animal=se.jpg",
-            "tags": "cat animal"
         },
         {
             "name": "BIGDOG",
@@ -513,17 +384,24 @@
             "tags": "animal yippee"
         },
         {
-            "name": "frog",
+            "name": "fox2",
             "gallery": "tapes",
             "category": "tapesImages",
-            "filePath": "img/gallery/tapes/tapesImages/frog=animal yippee.jpg",
+            "filePath": "img/gallery/tapes/tapesImages/fox2=animal yippee.png",
+            "tags": "animal yippee"
+        },
+        {
+            "name": "fox3",
+            "gallery": "tapes",
+            "category": "tapesImages",
+            "filePath": "img/gallery/tapes/tapesImages/fox3=animal yippee.png",
             "tags": "animal yippee"
         },
         {
             "name": "goose",
             "gallery": "tapes",
             "category": "tapesImages",
-            "filePath": "img/gallery/tapes/tapesImages/goose=animal yippee.jpg",
+            "filePath": "img/gallery/tapes/tapesImages/goose=animal yippee.png",
             "tags": "animal yippee"
         }
     ]
