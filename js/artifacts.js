@@ -415,29 +415,6 @@ const displayTapesGallery = (artifactsArray) => {
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
 
-            // Play/pause
-            playerButton.addEventListener("click", () => {
-                const tapesKnob = document.getElementById("tapesKnob");
-                const tapesKnobMark = document.getElementById("tapesKnobMark");
-                if (tapesAudio.paused) {
-                    tapesAudio.play();
-                    tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
-                    tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
-                    audioTimeInterval = setInterval(setTapesAudio, 40);
-
-                } else {
-                    tapesAudio.pause();
-                    tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
-                    tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
-                    clearInterval(audioTimeInterval);
-                }
-            });
-            tapesAudio.onended = () => {
-                tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
-                tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
-                clearInterval(audioTimeInterval);
-            };
-
             // get images to display in secondary gallery if tags matching
             let selectedTapesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
             selectedTapesImages.forEach((tapesImage) => {
@@ -457,6 +434,29 @@ const displayTapesGallery = (artifactsArray) => {
         });
         tapesButtons.appendChild(tapeIcon);
     });
+
+    // Play/pause
+    playerButton.addEventListener("click", () => {
+        const tapesKnob = document.getElementById("tapesKnob");
+        const tapesKnobMark = document.getElementById("tapesKnobMark");
+        if (tapesAudio.paused && tapesAudio.readyState == 4) {
+            tapesAudio.play();
+            tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
+            tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
+            audioTimeInterval = setInterval(setTapesAudio, 40);
+
+        } else {
+            tapesAudio.pause();
+            tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+            tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
+            clearInterval(audioTimeInterval);
+        }
+    });
+    tapesAudio.onended = () => {
+        tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+        tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
+        clearInterval(audioTimeInterval);
+    };
 
     // Volume
     volumeSlider.addEventListener("change", () => {
@@ -542,18 +542,6 @@ const displayCassettesGallery = (artifactsArray) => {
             cassettesAudio.src = artifact.filePath;
             cassettesImagesGallery.innerHTML = "";
 
-            // Play/pause
-            playerButton.addEventListener("click", () => {
-                if (cassettesAudio.paused) {
-                    cassettesAudio.play();
-                    audioTimeInterval = setInterval(setCassettesAudio, 80);
-                } else {
-                    cassettesAudio.pause();
-                    // change to play icon
-                    clearInterval(audioTimeInterval);
-                }
-            });
-
             // Get images to display in secondary gallery if tags matching
             let selectedCassettesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "cassettesImages" && imageArtifact.tags === artifact.tags);
             selectedCassettesImages.forEach((cassettesImage) => {
@@ -572,6 +560,18 @@ const displayCassettesGallery = (artifactsArray) => {
             });
         });
         cassettesButtons.appendChild(cassettesIcon);
+    });
+
+    // Play/pause
+    playerButton.addEventListener("click", () => {
+        if (cassettesAudio.paused && cassettesAudio.readyState == 4) {
+            cassettesAudio.play();
+            audioTimeInterval = setInterval(setCassettesAudio, 80);
+        } else {
+            cassettesAudio.pause();
+            // change to play icon
+            clearInterval(audioTimeInterval);
+        }
     });
     cassettesAudio.onended = () => {
         // change to pause icon
