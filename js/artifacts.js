@@ -140,7 +140,9 @@ const goHome = (artifactsArray) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     const galleryElements = document.querySelectorAll(".gallery");
     const rightButtons = document.getElementById("rightButtons");
-    let tempElements = document.querySelectorAll(".temp");
+    const audioElements = document.querySelectorAll("audio");
+    const tempElements = document.querySelectorAll(".temp");
+    const playerButtons = document.querySelectorAll(".playerButton")
     expandedWrapper.style.display = "none";
     handlePosterMovers(false);
     handlePosterMovers(true);
@@ -155,6 +157,13 @@ const goHome = (artifactsArray) => {
                 if (e.target == indexPoster) {
                     for (let i = 0; i < tempElements.length; i++) {
                         tempElements[i].remove();
+                    }
+                    for (let i = 0; i < audioElements.length; i++) {
+                        audioElements[i].pause();
+                        audioElements[i].src = "";
+                    }
+                    for (let i = 0; i < playerButtons.length; i++) {
+                        playerButtons[i].removeEventListener("click", playAudio);
                     }
                     for (let i = 0; i < galleryElements.length; i++) {
                         galleryElements[i].style.display = "none";
@@ -436,7 +445,7 @@ const displayTapesGallery = (artifactsArray) => {
     });
 
     // Play/pause
-    playerButton.addEventListener("click", () => {
+    playerButton.addEventListener("click", playAudio = () => {
         const tapesKnob = document.getElementById("tapesKnob");
         const tapesKnobMark = document.getElementById("tapesKnobMark");
         if (tapesAudio.paused && tapesAudio.readyState == 4) {
@@ -563,7 +572,7 @@ const displayCassettesGallery = (artifactsArray) => {
     });
 
     // Play/pause
-    playerButton.addEventListener("click", () => {
+    playerButton.addEventListener("click", playAudio = () => {
         if (cassettesAudio.paused && cassettesAudio.readyState == 4) {
             cassettesAudio.play();
             audioTimeInterval = setInterval(setCassettesAudio, 80);
