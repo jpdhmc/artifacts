@@ -276,13 +276,19 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     const allCategoryIcon = document.createElement("img");
     allCategoryWrapper.classList.add("iconWrapper", "temp");
     allCategoryIcon.classList.add("iconImg", "temp");
-    allCategoryName.classList.add("iconText", "temp");
-    allCategoryIcon.src = "img/icon/folderIcon.png";
+    allCategoryName.classList.add("iconText", "slidesIconText", "temp");
+    allCategoryIcon.src = "img/icon/slidesBox.png";
     allCategoryName.innerHTML = "All Categories";
     allCategoryWrapper.appendChild(allCategoryIcon);
     allCategoryWrapper.appendChild(allCategoryName);
     allCategoryWrapper.addEventListener("click", () => {
         filterGallery("allCategory", filmSlidesGallery);
+    });
+    allCategoryWrapper.addEventListener("mouseover", () => {
+        allCategoryIcon.src = "img/icon/slidesBoxOpen.png"
+    });
+    allCategoryWrapper.addEventListener("mouseout", () => {
+        allCategoryIcon.src = "img/icon/slidesBox.png";
     });
     filmSlidesButtons.appendChild(allCategoryWrapper);
 
@@ -315,13 +321,19 @@ const displayFilmSlidesGallery = (artifactsArray) => {
             let newCategoryIcon = document.createElement("img");
             newCategoryWrapper.classList.add("iconWrapper", "temp")
             newCategoryIcon.classList.add("iconImg", "temp");
-            newCategoryName.classList.add("iconText", "temp");
-            newCategoryIcon.src = "img/icon/folderIcon.png";
+            newCategoryName.classList.add("iconText", "slidesIconText", "temp");
+            newCategoryIcon.src = "img/icon/slidesBox.png";
             newCategoryName.innerHTML = imgCategory;
             newCategoryWrapper.appendChild(newCategoryIcon);
             newCategoryWrapper.appendChild(newCategoryName);
             newCategoryWrapper.addEventListener("click", () => {
                 filterGallery(imgCategory, filmSlidesGallery);
+            });
+            newCategoryWrapper.addEventListener("mouseover", () => {
+                newCategoryIcon.src = "img/icon/slidesBoxOpen.png"
+            });
+            newCategoryWrapper.addEventListener("mouseout", () => {
+                newCategoryIcon.src = "img/icon/slidesBox.png";
             });
             filmSlidesButtons.appendChild(newCategoryWrapper);
             categoryList.push(imgCategory);
@@ -352,11 +364,15 @@ const displayVhsGallery = (artifactsArray) => {
         vhsIcon.classList.add("iconImg", "temp");
         vhsName.classList.add("iconText", "temp");
         vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
-
         vhsIconWrapper.addEventListener("click", () => {
             vhsFrame.src = videoArtifact.filePath;
         });
-
+        // vhsIconWrapper.addEventListener("mouseover", () => {
+        //     vhsIcon.src = "img/icon/vhsIconOpen.png"
+        // });
+        // vhsIconWrapper.addEventListener("mouseout", () => {
+        //     vhsIcon.src = "img/icon/vhsIconClosed.png"
+        // });
         vhsButtons.appendChild(vhsIconWrapper);
     });
     galleryWrapper.style.display = "flex";
@@ -398,6 +414,30 @@ const displayTapesGallery = (artifactsArray) => {
 
             tapesAudio.src = artifact.filePath;
             tapesImagesGallery.innerHTML = "";
+
+            // Play/pause
+            playerButton.addEventListener("click", () => {
+                const tapesKnob = document.getElementById("tapesKnob");
+                const tapesKnobMark = document.getElementById("tapesKnobMark");
+                if (tapesAudio.paused) {
+                    tapesAudio.play();
+                    tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
+                    tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
+                    audioTimeInterval = setInterval(setTapesAudio, 40);
+
+                } else {
+                    tapesAudio.pause();
+                    tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+                    tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
+                    clearInterval(audioTimeInterval);
+                }
+            });
+            tapesAudio.onended = () => {
+                tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
+                tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
+                clearInterval(audioTimeInterval);
+            };
+
             // get images to display in secondary gallery if tags matching
             let selectedTapesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
             selectedTapesImages.forEach((tapesImage) => {
@@ -417,29 +457,6 @@ const displayTapesGallery = (artifactsArray) => {
         });
         tapesButtons.appendChild(tapeIcon);
     });
-
-    // Play/pause
-    playerButton.addEventListener("click", () => {
-        const tapesKnob = document.getElementById("tapesKnob");
-        const tapesKnobMark = document.getElementById("tapesKnobMark");
-        if (tapesAudio.paused) {
-            tapesAudio.play();
-            tapesKnob.setAttribute("transform", "rotate(60, 171, 100)");
-            tapesKnobMark.setAttribute("transform", "rotate(60, 171, 100)");
-            audioTimeInterval = setInterval(setTapesAudio, 40);
-
-        } else {
-            tapesAudio.pause();
-            tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
-            tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
-            clearInterval(audioTimeInterval);
-        }
-    });
-    tapesAudio.onended = () => {
-        tapesKnob.setAttribute("transform", "rotate(0, 171, 100)");
-        tapesKnobMark.setAttribute("transform", "rotate(0, 171, 100)");
-        clearInterval(audioTimeInterval);
-    };
 
     // Volume
     volumeSlider.addEventListener("change", () => {
@@ -522,9 +539,20 @@ const displayCassettesGallery = (artifactsArray) => {
             cassettesCaption.id = "cassettesCaption";
             cassettesCaption.classList.add("temp");
             audioPlayer.appendChild(cassettesCaption);
-
             cassettesAudio.src = artifact.filePath;
             cassettesImagesGallery.innerHTML = "";
+
+            // Play/pause
+            playerButton.addEventListener("click", () => {
+                if (cassettesAudio.paused) {
+                    cassettesAudio.play();
+                    audioTimeInterval = setInterval(setCassettesAudio, 80);
+                } else {
+                    cassettesAudio.pause();
+                    // change to play icon
+                    clearInterval(audioTimeInterval);
+                }
+            });
 
             // Get images to display in secondary gallery if tags matching
             let selectedCassettesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "cassettesImages" && imageArtifact.tags === artifact.tags);
@@ -545,72 +573,55 @@ const displayCassettesGallery = (artifactsArray) => {
         });
         cassettesButtons.appendChild(cassettesIcon);
     });
+    cassettesAudio.onended = () => {
+        // change to pause icon
+    };
 
-        // Play/pause
-        playerButton.addEventListener("click", () => {
-            if (cassettesAudio.paused) {
-                cassettesAudio.play();
-                
-                audioTimeInterval = setInterval(setCassettesAudio, 80);
-    
-            } else {
-                cassettesAudio.pause();
-                // change to play icon
-                clearInterval(audioTimeInterval);
-            }
-        });
-        cassettesAudio.onended = () => {
-            // change to pause icon
-        };
-    
-        // Volume
-        volumeSlider.addEventListener("change", () => {
-            let volumeValue = volumeSlider.value / 100;
-            cassettesAudio.volume = volumeValue;
-        });
-        volumeButton.addEventListener("mouseover", () => {
-            // TODO this - expand slider out on mouse over
-        });
-    
-        // Handles the timeline and svgs depending on audio time
-        const setCassettesAudio = () => {
-            const reelSvgStart = document.getElementById("cassettesReelSvgStart");
-            const reelSvgEnd = document.getElementById("cassettesReelSvgEnd");
-            const reelCircleStart = document.getElementById("cassettesReelCircleStart");
-            const reelCircleEnd = document.getElementById("cassettesReelCircleEnd");
-            let percentage = (100 * cassettesAudio.currentTime) / cassettesAudio.duration;
-            if (isNaN(percentage)) {
-                percentage = 0;
-            }
-            playerTimeline.style.backgroundSize = percentage + "% 100%";
-            playerTimeline.value = percentage;
-    
-            let angle = 360 * (percentage * -0.04);
-            let rotation = "rotate(" + angle + ")";
-            // set radius using a sliding scale where 0% is 37 and 100% is 79
-            let endRadius = 0.42 * percentage + 37;
-            let startRadius = 79 - (0.42 * percentage);
-    
-            reelSvgStart.setAttribute("transform", rotation);
-            reelCircleStart.setAttribute("r", startRadius);
-            reelSvgEnd.setAttribute("transform", rotation);
-            reelCircleEnd.setAttribute("r", endRadius);
-        };
-    
-        playerTimeline.addEventListener("change", () => {
-            let time = (playerTimeline.value * cassettesAudio.duration) / 100;
-            cassettesAudio.currentTime = time;
-        });
-    
-        playerTimeline.addEventListener("mousedown", () => {
-            cassettesAudio.pause();
-            clearInterval(audioTimeInterval);
-        });
-    
-        playerTimeline.addEventListener("mouseup", () => {
-            cassettesAudio.play();
-            audioTimeInterval = setInterval(setCassettesAudio, 80);
-        });
+    // Volume
+    volumeSlider.addEventListener("change", () => {
+        let volumeValue = volumeSlider.value / 100;
+        cassettesAudio.volume = volumeValue;
+    });
+
+    // Handles the timeline and svgs depending on audio time
+    const setCassettesAudio = () => {
+        const reelSvgStart = document.getElementById("cassettesReelSvgStart");
+        const reelSvgEnd = document.getElementById("cassettesReelSvgEnd");
+        const reelCircleStart = document.getElementById("cassettesReelCircleStart");
+        const reelCircleEnd = document.getElementById("cassettesReelCircleEnd");
+        let percentage = (100 * cassettesAudio.currentTime) / cassettesAudio.duration;
+        if (isNaN(percentage)) {
+            percentage = 0;
+        }
+        playerTimeline.style.backgroundSize = percentage + "% 100%";
+        playerTimeline.value = percentage;
+
+        let angle = 360 * (percentage * -0.04);
+        let rotation = "rotate(" + angle + ")";
+        // set radius using a sliding scale where 0% is 37 and 100% is 79
+        let endRadius = 0.42 * percentage + 37;
+        let startRadius = 79 - (0.42 * percentage);
+
+        reelSvgStart.setAttribute("transform", rotation);
+        reelCircleStart.setAttribute("r", startRadius);
+        reelSvgEnd.setAttribute("transform", rotation);
+        reelCircleEnd.setAttribute("r", endRadius);
+    };
+
+    playerTimeline.addEventListener("change", () => {
+        let time = (playerTimeline.value * cassettesAudio.duration) / 100;
+        cassettesAudio.currentTime = time;
+    });
+
+    playerTimeline.addEventListener("mousedown", () => {
+        cassettesAudio.pause();
+        clearInterval(audioTimeInterval);
+    });
+
+    playerTimeline.addEventListener("mouseup", () => {
+        cassettesAudio.play();
+        audioTimeInterval = setInterval(setCassettesAudio, 80);
+    });
 };
 
 // Build and display the printed media gallery
@@ -684,7 +695,7 @@ const displayPrintedGallery = (artifactsArray) => {
 
 };
 
-// Called when an image in the gallery is clicked, displays the full size image 
+// Called when an image in the gallery is clicked, displays the full size image (jpg)
 const expandImage = (selectedArtifact) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     const expandedImg = document.getElementById("expandedImg");

@@ -32,9 +32,17 @@ html, body {
 #homeButton {
     display: none;
     position: fixed;
+    width: 3vw;
     top: 0;
     left: 0;
     z-index: 2;
+    background-color: transparent;
+    border: none;
+    transition: transform 0.5s;
+}
+
+#homeButton:hover {
+    transform: scale(1.1);
 }
 
 #indexPoster {
@@ -205,6 +213,10 @@ figcaption {
     scroll-snap-type: y mandatory;
     -ms-overflow-style: none;  /* IE and Edge scrollbar */
     scrollbar-width: none;  /* Firefox scrollbar */
+}
+
+.slidesIconText {
+    top: 50%;
 }
 
 #filmSlidesGallery img {
