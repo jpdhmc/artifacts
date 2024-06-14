@@ -173,7 +173,7 @@ figcaption {
     width: 90%;
     height: auto;
     transition: 0.3s ease;
-    /* margin-top: 4%; */
+    margin-bottom: 8%;
 }
 
 .iconWrapper:hover {
@@ -217,6 +217,11 @@ figcaption {
 
 .slidesIconText {
     top: 50%;
+    width: 100%;
+    padding-left: 14%;
+    padding-right: 14%;
+    text-shadow: 1px 1px 2px white;
+    text-wrap: wrap;
 }
 
 #filmSlidesGallery img {
@@ -265,6 +270,11 @@ figcaption {
     padding-right: 6%;
     border: none;
     padding-left: 6%;
+}
+
+.vhsIconText {
+    top: 50%;
+    text-shadow: 1px 1px 2px white;
 }
 
 /* Tapes/Cassettes gallery */
@@ -481,7 +491,6 @@ figcaption {
 }
 
 .printedFigure {
-    background-color: white;
     transition: 0.3s ease;
     scroll-snap-align: end;
 }
@@ -490,12 +499,30 @@ figcaption {
     transform: scale(1.2);
 }
 
+.printedFigure:hover figcaption {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+}
+
 .printedFigure img {
     width: 8vw;
     height: 8vw;
     min-width: 6em;
     min-height: 6em;
     object-fit: cover;
+}
+
+.printedFigure figcaption {
+    background-color: transparent;
+    color: transparent;
+}
+
+.printedIconText {
+    color: black;
+    text-shadow: 1px 1px 2px white;
+    width: 100%;
+    padding-left: 14%;
+    padding-right: 14%;
 }
 
 

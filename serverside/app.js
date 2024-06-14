@@ -30,12 +30,12 @@ const traverseDirectory = (directory) => {
             let title = fileOrFolder.split(".")[0].split("=")[0];
             // this is to allow us to use special character in filenames
             if (title.includes("[")) {
-                title = title.replace("[qm]", "?");
-                title = title.replace("[dq]", "\"");
-                title = title.replace("[sl]", "/");
-                title = title.replace("[co]", ":");
-                title = title.replace("[as]", "\'");
-                title = title.replace("[pe]", ".");
+                title = title.replaceAll("[qm]", "?");
+                title = title.replaceAll("[dq]", "\"");
+                title = title.replaceAll("[sl]", "/");
+                title = title.replaceAll("[co]", ":");
+                title = title.replaceAll("[as]", "\'");
+                title = title.replaceAll("[pe]", ".");
             }
             let tags = fileOrFolder.split(".")[0].split("=")[1];
             let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;

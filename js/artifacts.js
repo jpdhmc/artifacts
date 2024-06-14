@@ -83,6 +83,7 @@ const handleIndexPaths = (artifactsArray) => {
         let pathGlowClass = path.id + "Glow";
         let pathGlows = document.getElementsByClassName(pathGlowClass);
         path.addEventListener("click", () => {
+            showIndexPaths(false);
             galleryButtonClick(path.id, artifactsArray);
         });
         path.addEventListener("mouseover", () => {
@@ -163,7 +164,11 @@ const goHome = (artifactsArray) => {
                         audioElements[i].src = "";
                     }
                     for (let i = 0; i < playerButtons.length; i++) {
-                        playerButtons[i].removeEventListener("click", playAudio);
+                        try {
+                            playerButtons[i].removeEventListener("click", playAudio);
+                        } catch (error) {
+                            console.error("playaudio not initialized yet");
+                        }
                     }
                     for (let i = 0; i < galleryElements.length; i++) {
                         galleryElements[i].style.display = "none";
@@ -198,12 +203,19 @@ const toggleSidebar = () => {
 const showIndexPaths = (showing) => {
     const glowSVG = document.getElementById("indexGlow");
     const allPathGlows = document.getElementsByClassName("indexPath");
+    const pathSelectors = document.getElementsByClassName("indexPathSelector");
     if (showing) {
+        for (let i = 0; i < pathSelectors.length; i++) {
+            pathSelectors[i].style.display = "none";
+        }
         for (let i = 0; i < allPathGlows.length; i++) {
             allPathGlows[i].style.strokeOpacity = 0;
         }
         glowSVG.style.display = "block";
     } else {
+        for (let i = 0; i < pathSelectors.length; i++) {
+            pathSelectors[i].style.display = "initial";
+        }
         glowSVG.style.display = "none";
     }
 };
@@ -235,9 +247,6 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
             posterVideo.onplay = () => {
                 indexPoster.style.display = "none";
                 indexPoster.src = "img/stills/" + selectedGallery + "Still.jpg";
-
-                // Hide svg glow
-                showIndexPaths(false);
             };
 
             posterVideo.onended = () => {
@@ -371,17 +380,17 @@ const displayVhsGallery = (artifactsArray) => {
         vhsIcon.src = "img/icon/vhsIconClosed.png";
         vhsIconWrapper.classList.add("iconWrapper", "temp");
         vhsIcon.classList.add("iconImg", "temp");
-        vhsName.classList.add("iconText", "temp");
+        vhsName.classList.add("iconText", "vhsIconText", "temp");
         vhsName.innerHTML = videoArtifact.name + "<br>" + videoArtifact.category;
         vhsIconWrapper.addEventListener("click", () => {
             vhsFrame.src = videoArtifact.filePath;
         });
-        // vhsIconWrapper.addEventListener("mouseover", () => {
-        //     vhsIcon.src = "img/icon/vhsIconOpen.png"
-        // });
-        // vhsIconWrapper.addEventListener("mouseout", () => {
-        //     vhsIcon.src = "img/icon/vhsIconClosed.png"
-        // });
+        vhsIconWrapper.addEventListener("mouseover", () => {
+            vhsIcon.src = "img/icon/vhsIconOpen.png"
+        });
+        vhsIconWrapper.addEventListener("mouseout", () => {
+            vhsIcon.src = "img/icon/vhsIconClosed.png"
+        });
         vhsButtons.appendChild(vhsIconWrapper);
     });
     galleryWrapper.style.display = "flex";
@@ -425,7 +434,7 @@ const displayTapesGallery = (artifactsArray) => {
             tapesImagesGallery.innerHTML = "";
 
             // get images to display in secondary gallery if tags matching
-            let selectedTapesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "tapesImages" && imageArtifact.tags === artifact.tags);
+            let selectedTapesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "tapesImages" && imageArtifact.tags.includes(artifact.tags));
             selectedTapesImages.forEach((tapesImage) => {
                 let newFigure = document.createElement("figure");
                 let newFigCaption = document.createElement("figcaption");
@@ -552,7 +561,7 @@ const displayCassettesGallery = (artifactsArray) => {
             cassettesImagesGallery.innerHTML = "";
 
             // Get images to display in secondary gallery if tags matching
-            let selectedCassettesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "cassettesImages" && imageArtifact.tags === artifact.tags);
+            let selectedCassettesImages = artifactsArray.filter((imageArtifact) => imageArtifact.category === "cassettesImages" && imageArtifact.tags.includes(artifact.tags));
             selectedCassettesImages.forEach((cassettesImage) => {
                 let newFigure = document.createElement("figure");
                 let newFigCaption = document.createElement("figcaption");
@@ -650,7 +659,7 @@ const displayPrintedGallery = (artifactsArray) => {
     const allCategoryIcon = document.createElement("img");
     allCategoryWrapper.classList.add("iconWrapper", "temp");
     allCategoryIcon.classList.add("iconImg", "temp");
-    allCategoryName.classList.add("iconText", "temp");
+    allCategoryName.classList.add("iconText", "printedIconText", "temp");
     allCategoryIcon.src = "img/icon/folderIcon.png";
     allCategoryName.innerHTML = "All Categories";
     allCategoryWrapper.appendChild(allCategoryIcon);
@@ -689,7 +698,7 @@ const displayPrintedGallery = (artifactsArray) => {
             let newCategoryIcon = document.createElement("img");
             newCategoryWrapper.classList.add("iconWrapper", "temp")
             newCategoryIcon.classList.add("iconImg", "temp");
-            newCategoryName.classList.add("iconText", "temp");
+            newCategoryName.classList.add("iconText", "printedIconText", "temp");
             newCategoryIcon.src = "img/icon/folderIcon.png";
             newCategoryName.innerHTML = imgCategory;
             newCategoryWrapper.appendChild(newCategoryIcon);
@@ -709,7 +718,10 @@ const expandImage = (selectedArtifact) => {
     const expandedWrapper = document.getElementById("expandedWrapper");
     const expandedImg = document.getElementById("expandedImg");
     const expandedCaption = document.getElementById("expandedCaption")
-    expandedImg.src = "img/gallery/" + selectedArtifact.gallery + "/" + selectedArtifact.category + "/" + selectedArtifact.name + ".jpg"
+    let expandedFilepath = selectedArtifact.filePath.split(".")[0].split("=")[0] + ".jpg";
+    console.log(expandedFilepath);
+
+    expandedImg.src = expandedFilepath;
     expandedCaption.innerHTML = selectedArtifact.name;
     expandedWrapper.style.display = "flex";
     expandedWrapper.addEventListener("click", closer = (event) => {
