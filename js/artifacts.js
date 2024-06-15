@@ -144,7 +144,10 @@ const goHome = (artifactsArray) => {
     const audioElements = document.querySelectorAll("audio");
     const tempElements = document.querySelectorAll(".temp");
     const playerButtons = document.querySelectorAll(".playerButton")
+    const scrollIndicator = document.getElementById("scrollIndicator");
     expandedWrapper.style.display = "none";
+    scrollIndicator.style.display = "none";
+    scrollIndicator.style.left = "initial";
     handlePosterMovers(false);
     handlePosterMovers(true);
     showIndexPaths(true);
@@ -206,7 +209,7 @@ const showIndexPaths = (showing) => {
     const pathSelectors = document.getElementsByClassName("indexPathSelector");
     if (showing) {
         for (let i = 0; i < pathSelectors.length; i++) {
-            pathSelectors[i].style.display = "none";
+            pathSelectors[i].style.display = "initial";
         }
         for (let i = 0; i < allPathGlows.length; i++) {
             allPathGlows[i].style.strokeOpacity = 0;
@@ -214,7 +217,7 @@ const showIndexPaths = (showing) => {
         glowSVG.style.display = "block";
     } else {
         for (let i = 0; i < pathSelectors.length; i++) {
-            pathSelectors[i].style.display = "initial";
+            pathSelectors[i].style.display = "none";
         }
         glowSVG.style.display = "none";
     }
@@ -282,16 +285,19 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     const filmSlidesGallery = document.getElementById("filmSlidesGallery");
     const filmSlidesGalleryWrapper = document.getElementById("galleryWrapper");
     const filmSlidesButtons = document.getElementById("rightButtons");
+    const scrollIndicator = document.getElementById("scrollIndicator");
     let categoryList = [];
 
     filmSlidesButtons.style.display = "flex";
     filmSlidesGallery.style.display = "flex";
     filmSlidesGalleryWrapper.style.display = "flex";
+    scrollIndicator.style.display = "block";
 
     // Create button for filtering by all categories
     const allCategoryWrapper = document.createElement("div");
     const allCategoryName = document.createElement("div");
     const allCategoryIcon = document.createElement("img");
+    
     allCategoryWrapper.classList.add("iconWrapper", "temp");
     allCategoryIcon.classList.add("iconImg", "temp");
     allCategoryName.classList.add("iconText", "slidesIconText", "temp");
@@ -301,6 +307,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     allCategoryWrapper.appendChild(allCategoryName);
     allCategoryWrapper.addEventListener("click", () => {
         filterGallery("allCategory", filmSlidesGallery);
+        scrollIndicator.style.display = "block";
     });
     allCategoryWrapper.addEventListener("mouseover", () => {
         allCategoryIcon.src = "img/icon/slidesBoxOpen.png"
@@ -308,6 +315,7 @@ const displayFilmSlidesGallery = (artifactsArray) => {
     allCategoryWrapper.addEventListener("mouseout", () => {
         allCategoryIcon.src = "img/icon/slidesBox.png";
     });
+    
     filmSlidesButtons.appendChild(allCategoryWrapper);
 
 
@@ -416,10 +424,17 @@ const displayTapesGallery = (artifactsArray) => {
     tapesButtons.style.display = "flex";
 
     artifactsArray.filter((artifact) => artifact.category === "tapesAudio").forEach((artifact) => {
+        let tapeIconWrapper = document.createElement("div");
         let tapeIcon = document.createElement("img");
-        tapeIcon.src = "img/icon/tapes/" + artifact.name + ".png";
-        tapeIcon.classList.add("tapeIcon", "temp");
-        tapeIcon.addEventListener("click", () => {
+        let tapeName = document.createElement("div");
+        tapeIconWrapper.appendChild(tapeIcon);
+        tapeIconWrapper.appendChild(tapeName);
+        tapeIcon.src = "img/icon/tapes/" + artifact.name +".png";
+        tapeIconWrapper.classList.add("iconWrapper", "tapeIconWrapper", "temp");
+        tapeIcon.classList.add("iconImg", "temp");
+        tapeName.classList.add("iconText", "tapeIconText", "temp");
+        tapeName.innerHTML = artifact.name;
+        tapeIconWrapper.addEventListener("click", () => {
             if (document.getElementById("tapesCaption") != null) {
                 document.getElementById("tapesCaption").remove();
             }
@@ -450,7 +465,7 @@ const displayTapesGallery = (artifactsArray) => {
                 tapesImagesGallery.appendChild(newFigure);
             });
         });
-        tapesButtons.appendChild(tapeIcon);
+        tapesButtons.appendChild(tapeIconWrapper);
     });
 
     // Play/pause
@@ -647,11 +662,14 @@ const displayPrintedGallery = (artifactsArray) => {
     const printedButtons = document.getElementById("rightButtons");
     const galleryWrapper = document.getElementById("galleryWrapper");
     const printedGallery = document.getElementById("printedGallery");
+    const scrollIndicator = document.getElementById("scrollIndicator");
     let categoryList = [];
 
     galleryWrapper.style.display = "flex";
     printedGallery.style.display = "flex";
     printedButtons.style.display = "flex";
+    scrollIndicator.style.display = "block";
+    scrollIndicator.style.left = "38%";
 
     // Create button for filtering by all categories
     const allCategoryWrapper = document.createElement("div");
@@ -666,6 +684,7 @@ const displayPrintedGallery = (artifactsArray) => {
     allCategoryWrapper.appendChild(allCategoryName);
     allCategoryWrapper.addEventListener("click", () => {
         filterGallery("allCategory", printedGallery);
+        scrollIndicator.style.display = "block";
     });
     printedButtons.appendChild(allCategoryWrapper);
 
@@ -732,6 +751,7 @@ const expandImage = (selectedArtifact) => {
 
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory, currentGallery) => {
+    const scrollIndicator = document.getElementById("scrollIndicator");
     let figures = Array.from(currentGallery.getElementsByTagName("figure"));
     for (let i = 0; i < figures.length; i++) {
         let currentFig = figures[i];
@@ -742,6 +762,11 @@ const filterGallery = (filterCategory, currentGallery) => {
         } else {
             currentFig.style.display = "none";
         }
+    }
+    if (currentGallery.scrollHeight > currentGallery.clientHeight) {
+        scrollIndicator.style.display = "block";
+    } else {
+        scrollIndicator.style.display = "none";
     }
 };
 
