@@ -752,6 +752,7 @@ const expandImage = (selectedArtifact) => {
 // Called when a gallery tab is clicked, repopulates the gallery with images filtered by category
 const filterGallery = (filterCategory, currentGallery) => {
     const scrollIndicator = document.getElementById("scrollIndicator");
+    scrollIndicator.style.display = "none";
     let figures = Array.from(currentGallery.getElementsByTagName("figure"));
     for (let i = 0; i < figures.length; i++) {
         let currentFig = figures[i];
