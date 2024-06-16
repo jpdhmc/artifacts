@@ -380,7 +380,6 @@ const displayVhsGallery = (artifactsArray) => {
 
     artifactsArray.forEach((videoArtifact) => {
         let vhsIconWrapper = document.createElement("div");
-
         let vhsIcon = document.createElement("img");
         let vhsName = document.createElement("div");
         vhsIconWrapper.appendChild(vhsIcon);
@@ -493,11 +492,18 @@ const displayTapesGallery = (artifactsArray) => {
 
     // Volume
     volumeSlider.addEventListener("change", () => {
+        const highVolume = document.getElementById("highVolume");
+        const lowVolume = document.getElementById("lowVolume");
         let volumeValue = volumeSlider.value / 100;
         tapesAudio.volume = volumeValue;
-    });
-    volumeButton.addEventListener("mouseover", () => {
-        // TODO this - expand slider out on mouse over
+        console.log(volumeValue);
+        if (volumeValue >= 0.5) {
+            lowVolume.style.display = "none";
+            highVolume.style.display = "block";
+        } else {
+            highVolume.style.display = "none";
+            lowVolume.style.display = "block";
+        }
     });
 
     // Handles the timeline and svgs depending on audio time
@@ -546,7 +552,6 @@ const displayCassettesGallery = (artifactsArray) => {
     const cassettesGallery = document.getElementById("cassettesGallery");
     const galleryWrapper = document.getElementById("galleryWrapper");
     const playerButton = document.getElementById("cassettesPlayerButton");
-    const volumeButton = document.getElementById("cassettesVolumeButton");
     const playerTimeline = document.getElementById("cassettesTimeline");
     const cassettesAudio = document.getElementById("cassettesAudio");
     const cassettesImagesGallery = document.getElementById("cassettesImages");
@@ -559,10 +564,17 @@ const displayCassettesGallery = (artifactsArray) => {
     cassettesButtons.style.display = "flex";
 
     artifactsArray.filter((artifact) => artifact.category === "cassettesAudio").forEach((artifact) => {
+        let cassettesIconWrapper = document.createElement("div");
         let cassettesIcon = document.createElement("img");
-        cassettesIcon.src = "img/icon/cassettes/" + artifact.name + ".png";
+        let cassettesIconName = document.createElement("div");
+        cassettesIconWrapper.classList.add("iconWrapper", "temp");
         cassettesIcon.classList.add("cassettesIcon", "temp");
-        cassettesIcon.addEventListener("click", () => {
+        cassettesIconName.classList.add("iconText", "cassettesIconText", "temp");
+        cassettesIcon.src = "img/icon/cassetteIcon.png";
+        cassettesIconName.innerHTML = artifact.name;
+        cassettesIconWrapper.appendChild(cassettesIcon);
+        cassettesIconWrapper.appendChild(cassettesIconName);
+        cassettesIconWrapper.addEventListener("click", () => {
             if (document.getElementById("cassettesCaption") != null) {
                 document.getElementById("cassettesCaption").remove();
             }
@@ -592,14 +604,14 @@ const displayCassettesGallery = (artifactsArray) => {
                 cassettesImagesGallery.appendChild(newFigure);
             });
         });
-        cassettesButtons.appendChild(cassettesIcon);
+        cassettesButtons.appendChild(cassettesIconWrapper);
     });
 
     // Play/pause
     playerButton.addEventListener("click", playAudio = () => {
         if (cassettesAudio.paused && cassettesAudio.readyState == 4) {
             cassettesAudio.play();
-            audioTimeInterval = setInterval(setCassettesAudio, 80);
+            audioTimeInterval = setInterval(setCassettesAudio, 40);
         } else {
             cassettesAudio.pause();
             // change to play icon
@@ -629,7 +641,7 @@ const displayCassettesGallery = (artifactsArray) => {
         playerTimeline.style.backgroundSize = percentage + "% 100%";
         playerTimeline.value = percentage;
 
-        let angle = 360 * (percentage * -0.04);
+        let angle = 360 * (percentage * -0.64);
         let rotation = "rotate(" + angle + ")";
         // set radius using a sliding scale where 0% is 37 and 100% is 79
         let endRadius = 0.42 * percentage + 37;
@@ -653,7 +665,7 @@ const displayCassettesGallery = (artifactsArray) => {
 
     playerTimeline.addEventListener("mouseup", () => {
         cassettesAudio.play();
-        audioTimeInterval = setInterval(setCassettesAudio, 80);
+        audioTimeInterval = setInterval(setCassettesAudio, 40);
     });
 };
 
@@ -738,7 +750,6 @@ const expandImage = (selectedArtifact) => {
     const expandedImg = document.getElementById("expandedImg");
     const expandedCaption = document.getElementById("expandedCaption")
     let expandedFilepath = selectedArtifact.filePath.split(".")[0].split("=")[0] + ".jpg";
-    console.log(expandedFilepath);
 
     expandedImg.src = expandedFilepath;
     expandedCaption.innerHTML = selectedArtifact.name;

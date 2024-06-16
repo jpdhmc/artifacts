@@ -91,7 +91,7 @@ html, body {
     animation: shrink 0.3s;
 }
 
-.expandedWrapper {
+#expandedWrapper {
     display: none;
     justify-content: center;
     align-items: center;
@@ -123,6 +123,18 @@ html, body {
     max-width: 90vw;
     max-height: 90vh;
     object-fit: contain;
+}
+
+#expandedPreviousButton {
+    display: none;
+    position: absolute;
+    left: 10%;
+}
+
+#expandedNextButton {
+    display: none;
+    position: absolute;
+    right: 10%;
 }
 
 figcaption {
@@ -309,11 +321,19 @@ figcaption {
 }
 
 .cassettesIcon {
-    aspect-ratio: 1/1;
     width: 100%;
     height: auto;
     margin-top: 2%;
-    margin-bottom: 3%;
+    margin-bottom: 20%;
+}
+
+.cassettesIconText {
+    color: white;
+    text-shadow: 1px 1px 2px black;
+    width: 100%;
+    top: 75%;
+    padding-left: 4%;
+    padding-right: 4%;
 }
 
 .audioPlayer {
@@ -349,12 +369,16 @@ figcaption {
     justify-self: end;
     background-color: transparent;
     border: 0;
-    width: 10%;
-    height: 10%;
+    width: 5%;
     position: relative;
-    right: 20%;
+    right: 25%;
     cursor: pointer;
     padding: 0;
+}
+
+#lowVolume {
+    display: none;
+    transform: translateY(8%);
 }
 
 .reelLine {
@@ -457,7 +481,7 @@ figcaption {
     grid-column: 1 / 2;
     grid-row: 1 / 2;
     position: relative;
-    top: 50%;
+    top: 43%;
     color: white;
     font-family: 'Open Sans', sans-serif;
     max-width: 100%;
@@ -483,6 +507,13 @@ figcaption {
 
 #tapesImages figure, #cassettesImages figure {
     margin: 1.5%;
+    transition: 0.3s ease;
+}
+
+#tapesImages figure:hover, #cassettesImages figure:hover {
+    margin: 1.5%;
+    transition: 0.3s ease;
+    transform:scale(1.1);
 }
 
 #tapesImages figure img, #cassettesImages figure img {

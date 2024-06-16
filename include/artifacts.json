@@ -1,50 +1,53 @@
 {
     "artifacts": [
         {
-            "name": "dog4",
+            "name": "Debbie Dortzback Immanuel Church - 1975",
             "gallery": "cassettes",
             "category": "cassettesAudio",
-            "filePath": "img/gallery/cassettes/cassettesAudio/dog4.wav"
+            "filePath": "img/gallery/cassettes/cassettesAudio/Debbie Dortzback Immanuel Church - 1975=DD.mp3",
+            "tags": "DD"
         },
         {
-            "name": "dog5",
+            "name": "Debbie Dortzback Women's Centennial Tea - 1975",
             "gallery": "cassettes",
             "category": "cassettesAudio",
-            "filePath": "img/gallery/cassettes/cassettesAudio/dog5.wav"
+            "filePath": "img/gallery/cassettes/cassettesAudio/Debbie Dortzback Women_s Centennial Tea - 1975=DD.mp3",
+            "tags": "DD"
         },
         {
-            "name": "dog6",
+            "name": "Sounds of Ghinda Side 1 - Undated",
             "gallery": "cassettes",
             "category": "cassettesAudio",
-            "filePath": "img/gallery/cassettes/cassettesAudio/dog6.wav"
+            "filePath": "img/gallery/cassettes/cassettesAudio/Sounds of Ghinda Side 1 - Undated=SoG.mp3",
+            "tags": "SoG"
         },
         {
-            "name": "Waltz",
+            "name": "Sounds of Ghinda Side 2 - Undated",
             "gallery": "cassettes",
             "category": "cassettesAudio",
-            "filePath": "img/gallery/cassettes/cassettesAudio/Waltz=animal yippee.wav",
-            "tags": "animal yippee"
+            "filePath": "img/gallery/cassettes/cassettesAudio/Sounds of Ghinda Side 2 - Undated=SoG.mp3",
+            "tags": "SoG"
         },
         {
-            "name": "fox2",
+            "name": "Service in the Hospital's Church - 1973",
             "gallery": "cassettes",
             "category": "cassettesImages",
-            "filePath": "img/gallery/cassettes/cassettesImages/fox2=animal yippee.png",
-            "tags": "animal yippee"
+            "filePath": "img/gallery/cassettes/cassettesImages/Service in the Hospital_s Church - 1973=DD.png",
+            "tags": "DD"
         },
         {
-            "name": "fox3",
+            "name": "Village of Stone Houses, with Coptic Church - 1996",
             "gallery": "cassettes",
             "category": "cassettesImages",
-            "filePath": "img/gallery/cassettes/cassettesImages/fox3=animal yippee.png",
-            "tags": "animal yippee"
+            "filePath": "img/gallery/cassettes/cassettesImages/Village of Stone Houses, with Coptic Church - 1996=DD.png",
+            "tags": "DD"
         },
         {
-            "name": "goose",
+            "name": "\"Our Home in Ghinda\" - 1967",
             "gallery": "cassettes",
             "category": "cassettesImages",
-            "filePath": "img/gallery/cassettes/cassettesImages/goose=animal yippee.png",
-            "tags": "animal yippee"
+            "filePath": "img/gallery/cassettes/cassettesImages/[dq]Our Home in Ghinda[dq] - 1967=SoG.png",
+            "tags": "SoG"
         },
         {
             "name": "Ali and His Younger Brother Muhammed - 1967",
