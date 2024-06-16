@@ -608,14 +608,19 @@ const displayCassettesGallery = (artifactsArray) => {
     });
 
     // Play/pause
+    const playButton = document.getElementById("playButtonCassettes");
+    const pauseButton = document.getElementById("pauseButtonCassettes");
     playerButton.addEventListener("click", playAudio = () => {
         if (cassettesAudio.paused && cassettesAudio.readyState == 4) {
             cassettesAudio.play();
             audioTimeInterval = setInterval(setCassettesAudio, 40);
+            playButton.style.display = "none";
+            pauseButton.style.display = "block";
         } else {
             cassettesAudio.pause();
-            // change to play icon
             clearInterval(audioTimeInterval);
+            pauseButton.style.display = "none";
+            playButton.style.display = "block";
         }
     });
     cassettesAudio.onended = () => {
@@ -624,8 +629,17 @@ const displayCassettesGallery = (artifactsArray) => {
 
     // Volume
     volumeSlider.addEventListener("change", () => {
+        const highVolume = document.getElementById("highVolumeCassettes");
+        const lowVolume = document.getElementById("lowVolumeCassettes");
         let volumeValue = volumeSlider.value / 100;
         cassettesAudio.volume = volumeValue;
+        if (volumeValue >= 0.5) {
+            lowVolume.style.display = "none";
+            highVolume.style.display = "block";
+        } else {
+            highVolume.style.display = "none";
+            lowVolume.style.display = "block";
+        }
     });
 
     // Handles the timeline and svgs depending on audio time

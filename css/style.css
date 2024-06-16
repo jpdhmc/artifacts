@@ -376,9 +376,13 @@ figcaption {
     padding: 0;
 }
 
-#lowVolume {
+#lowVolume, #lowVolumeCassettes {
     display: none;
     transform: translateY(8%);
+}
+
+#pauseButtonCassettes {
+    display: none;
 }
 
 .reelLine {

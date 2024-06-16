@@ -219,18 +219,24 @@
                         <div id="cassettesAudioPlayer" class="audioPlayer">
                             <audio id="cassettesAudio" src=""></audio>
                             <button id="cassettesPlayerButton" class="playerButton">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
+                                <svg id="playButtonCassettes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
                                     <path fill-rule="evenodd"
                                         d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
                                         clip-rule="evenodd" />
+                                </svg>
+                                <svg id="pauseButtonCassettes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
+                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
                                 </svg>
                             </button>
                             <button id="cassettesVolumeButton" class="volumeButton">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
-                                    <path fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                        clip-rule="evenodd" />
+                                <svg id="lowVolumeCassettes" viewBox="0 0 14.271 16.624" xmlns="http://www.w3.org/2000/svg">
+                                    <path style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:.493691;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.8" transform="matrix(.53593 0 0 .53593 -145.36 -22.304)" d="m283.385 42-8 8h-3.42a.735.735 135 0 0-.736.735v8.53a.735.735 45 0 0 .736.735h3.42l8.133 8.132c.647.648 1.349.451 1.54-.445 1.79-8.348 1.862-16.76-.103-25.249-.206-.892-.922-1.085-1.57-.437z"/>
+                                    <path style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M9.283 3.202c.626 2.278.584 5.5 0 7.752"/>
                                 </svg>
+                                <svg id="highVolumeCassettes" viewBox="0 0 14.271 16.624" xmlns="http://www.w3.org/2000/svg">
+                                    <path style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:.493691;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.8" transform="matrix(.53593 0 0 .53593 -145.36 -21.07)" d="m283.385 42-8 8h-3.42a.735.735 135 0 0-.736.735v8.53a.735.735 45 0 0 .736.735h3.42l8.133 8.132c.647.648 1.349.451 1.54-.445 1.79-8.348 1.862-16.76-.103-25.249-.206-.892-.922-1.085-1.57-.437z"/>
+                                    <path style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M12.571.661c1.402 3.385 1.367 11.917 0 15.302M10.895 2.586c.995 3.352.973 8.034 0 11.452M9.283 4.436c.626 2.278.584 5.5 0 7.752"/>
+                                </svg>  
                             </button>
                             <input id="cassettesVolumeSlider" class="volumeSlider" type="range" max="100" value="100">
                             <div id="cassettesReelLine" class="reelLine">
