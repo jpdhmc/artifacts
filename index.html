@@ -8,7 +8,6 @@
     <title>DH Artifacts</title>
     <script src="js/artifacts.js" charset="utf-8"></script>
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body style="background-color: black;">
@@ -29,6 +28,14 @@
                     <div id="aboutModal">
                         <h1>About</h1>
                         <p>This is a website of various family media that aims to provide an experience of browsing through collections of now-digitized physical items belonging to Gil and Marilyn Den Hartog. It will continue to be updated as the digitization work proceeds.</p>
+                        <br>
+                        <h3>A word from the web dev</h3>
+                        <p>I took this project on primarily because I wanted to build my understanding of vanilla JavaScript as a language - Some solutions would surely have been much easier via the many frameworks and libraries available, but problem solving with just the tools that js provides helped to round out the fundamentals. And of course, the creative side was very rewarding - Putting together a sort of "virtual library" of my grandparent's old media is a compelling idea that I'm motivated to continue on with.</p>
+                        <p><i>- John Den Hartog</i></p>
+                        <br>
+                        <h3>A word from the media preservationist</h3>
+                        <p>This is the oral and visual history of the lives and missionary work of John Gilbert DenHartog and Marilyn Sophia DenHartog. It is a story of two cherished members of my family, but its value goes beyond personal importance. Through old pictures, recordings, and letters, it is an exploration of a different time and place, and has that strange appeal held by impermanence and ephemera. For my whole life I have heard this history in bits and pieces - the occasional anecdote, photograph, or traditional dish. It is in the interest of preservation and curiosity that I set out to do this project.</p>
+                        <p><i>- Dietrich Den Hartog</i></p>
                         <br>
                         <p>Web development, design, and hosting by John Den Hartog</p>
                         <p>Creative design and media digitization by Dietrich Den Hartog</p>
@@ -233,17 +240,13 @@
                     <div id="cassettesGallery" class="gallery">
                         <div id="cassettesAudioPlayer" class="audioPlayer">
                             <audio id="cassettesAudio" src=""></audio>
-                            <button id="cassettesPlayerButton" class="playerButton">
-                                <svg id="playButtonCassettes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
-                                    <path fill="#000000" fill-rule="evenodd"
-                                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                                <svg id="pauseButtonCassettes" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="#3D3132">
-                                    <path fill="#000000" fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zM7 8a1 1 0 012 0v4a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v4a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
-                                </svg>
-                            </button>
-                            <button id="cassettesVolumeButton" class="volumeButton">
+                                <button id="playButtonCassettes" class="playerButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg1" version="1.1" viewBox="0 0 102.351 53.674"><defs id="defs1"><linearGradient id="linearGradient21"><stop id="stop21" offset="0" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop1" offset=".1" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop3" offset=".1" style="stop-color:#cccccc;stop-opacity:1;"/><stop id="stop4" offset=".897" style="stop-color:#cccccc;stop-opacity:1;"/><stop id="stop2" offset=".897" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop22" offset="1" style="stop-color:#999999;stop-opacity:1;"/></linearGradient><linearGradient xlink:href="#linearGradient21" id="linearGradient22" x1="86.204" x2="86.204" y1="-95.024" y2="-36.226" gradientTransform="matrix(2.56258 0 0 .45426 -189.16 45.086)" gradientUnits="userSpaceOnUse"/><filter id="filter21" width="1.064" height="1.228" x="-.032" y="-.075" style="color-interpolation-filters:sRGB"><feFlood id="feFlood20" flood-color="rgb(102,102,102)" flood-opacity="1" result="flood"/><feGaussianBlur id="feGaussianBlur20" in="SourceGraphic" result="blur" stdDeviation=".8"/><feOffset id="feOffset20" dx="0" dy="2" in="blur" result="offset"/><feComposite id="feComposite20" in="flood" in2="offset" operator="in" result="comp1"/><feComposite id="feComposite21" in="SourceGraphic" in2="comp1" operator="over" result="comp2"/></filter><path id="rect8" d="M153.133 386.934h211.242v54.349H153.133z"/></defs><rect id="rect1" width="59.651" height="25.62" x="1.92" y="1.92" ry="0" style="fill:url(#linearGradient22);stroke-width:0.159791;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;filter:url(#filter21)" transform="scale(1.61206 1.70612)"/><path id="path8" d="m63.87 80.252 9.085 5.636a.372.372 90 0 1 0 .632l-9.086 5.636a.333.333 29.095 0 1-.509-.284V80.536a.333.333 150.905 0 1 .51-.284z" style="fill:#262626;fill-opacity:1;stroke-width:0.13883;stroke-linecap:round;stroke-linejoin:round" transform="matrix(1.85253 0 0 1.96063 -73.545 -143.883)"/></svg>
+                                </button>
+                                <button id="pauseButtonCassettes" class="playerButton">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="svg1" version="1.1" viewBox="0 0 102.351 53.674"><defs id="defs1"><linearGradient id="linearGradient21"><stop id="stop21" offset="0" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop1" offset=".1" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop3" offset=".1" style="stop-color:#cccccc;stop-opacity:1;"/><stop id="stop4" offset=".897" style="stop-color:#cccccc;stop-opacity:1;"/><stop id="stop2" offset=".897" style="stop-color:#999999;stop-opacity:1;"/><stop id="stop22" offset="1" style="stop-color:#999999;stop-opacity:1;"/></linearGradient><linearGradient xlink:href="#linearGradient21" id="linearGradient22" x1="86.204" x2="86.204" y1="-95.024" y2="-36.226" gradientTransform="matrix(2.56258 0 0 .45426 -189.16 45.086)" gradientUnits="userSpaceOnUse"/><filter id="filter21" width="1.064" height="1.228" x="-.032" y="-.075" style="color-interpolation-filters:sRGB"><feFlood id="feFlood20" flood-color="rgb(102,102,102)" flood-opacity="1" result="flood"/><feGaussianBlur id="feGaussianBlur20" in="SourceGraphic" result="blur" stdDeviation=".8"/><feOffset id="feOffset20" dx="0" dy="2" in="blur" result="offset"/><feComposite id="feComposite20" in="flood" in2="offset" operator="in" result="comp1"/><feComposite id="feComposite21" in="SourceGraphic" in2="comp1" operator="over" result="comp2"/></filter><path id="rect8" d="M153.133 386.934h211.242v54.349H153.133z"/></defs><rect id="rect1" width="59.651" height="25.62" x="1.92" y="1.92" ry="0" style="fill:url(#linearGradient22);stroke-width:0.159791;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;filter:url(#filter21)" transform="scale(1.61206 1.70612)"/><rect id="rect9" width="5.618" height="23.534" x="41.94" y="13.364" ry="1.029" style="fill:#262626;fill-opacity:1;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round"/><rect id="rect9-0" width="5.618" height="23.534" x="54.793" y="13.364" ry="1.029" style="fill:#262626;fill-opacity:1;stroke-width:0.264999;stroke-linecap:round;stroke-linejoin:round"/></svg>
+                                </button>
+                                    <button id="cassettesVolumeButton" class="volumeButton">
                                 <svg id="lowVolumeCassettes" viewBox="0 0 14.271 16.624" xmlns="http://www.w3.org/2000/svg">
                                     <path style="fill:#000000;fill-opacity:1;stroke:none;stroke-width:.493691;stroke-linecap:round;stroke-linejoin:round;stroke-opacity:.8" transform="matrix(.53593 0 0 .53593 -145.36 -22.304)" d="m283.385 42-8 8h-3.42a.735.735 135 0 0-.736.735v8.53a.735.735 45 0 0 .736.735h3.42l8.133 8.132c.647.648 1.349.451 1.54-.445 1.79-8.348 1.862-16.76-.103-25.249-.206-.892-.922-1.085-1.57-.437z"/>
                                     <path style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:1.32292;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1" d="M9.283 3.202c.626 2.278.584 5.5 0 7.752"/>
@@ -321,5 +324,4 @@
         </div>
     </main>
 </body>
-
 </html>

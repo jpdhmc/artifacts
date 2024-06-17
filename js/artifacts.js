@@ -175,8 +175,8 @@ const goHome = (artifactsArray) => {
                     for (let i = 0; i < playerButtons.length; i++) {
                         try {
                             playerButtons[i].removeEventListener("click", playAudio);
+                            playerButtons[i].removeEventListener("click", pauseAudio);
                         } catch (error) {
-                            console.error("playaudio not initialized yet");
                         }
                     }
                     for (let i = 0; i < galleryElements.length; i++) {
@@ -630,22 +630,17 @@ const displayCassettesGallery = (artifactsArray) => {
     // Play/pause
     const playButton = document.getElementById("playButtonCassettes");
     const pauseButton = document.getElementById("pauseButtonCassettes");
-    playerButton.addEventListener("click", playAudio = () => {
+    playButton.addEventListener("click", playAudio = () => {
         if (cassettesAudio.paused && cassettesAudio.readyState == 4) {
             cassettesAudio.play();
             audioTimeInterval = setInterval(setCassettesAudio, 40);
-            playButton.style.display = "none";
-            pauseButton.style.display = "block";
-        } else {
-            cassettesAudio.pause();
-            clearInterval(audioTimeInterval);
-            pauseButton.style.display = "none";
-            playButton.style.display = "block";
         }
     });
-    cassettesAudio.onended = () => {
-        // change to pause icon
-    };
+
+    pauseButton.addEventListener("click", pauseAudio = () => {
+        cassettesAudio.pause();
+        clearInterval(audioTimeInterval);
+    })
 
     // Volume
     volumeSlider.addEventListener("change", () => {

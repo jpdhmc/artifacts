@@ -62,21 +62,27 @@ html, body {
 
 #aboutWrapper {
     display: none;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
     z-index: 3;
     background-color: rgba(0,0,0,0.6);
     width: 100vw;
-    height: 100vw;
+    height: 100vh;
 }
 
 #aboutModal {
+    max-width: 45%;;
     animation: grow 0.3s;
     background-color: rgb(195, 207, 221);
-    width: 40vw;
-    height: auto;
     border-radius: 1em;
+    border-color: black;
+    border-width: 0.2em;
+    border-style: solid;
+    padding: 1%;
+    overflow: auto;
+    -ms-overflow-style: none;  /* IE and Edge scrollbar */
+    scrollbar-width: none;  /* Firefox scrollbar */
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -395,6 +401,11 @@ figcaption {
     padding: 0;
 }
 
+#playButtonCassettes {
+    position: relative;
+    right: 25%;
+}
+
 .volumeButton {
     grid-row: 1 / 2;
     grid-column: 1 / 2;
@@ -413,10 +424,6 @@ figcaption {
 #lowVolume, #lowVolumeCassettes {
     display: none;
     transform: translateY(8%);
-}
-
-#pauseButtonCassettes {
-    display: none;
 }
 
 .reelLine {
