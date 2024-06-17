@@ -45,6 +45,41 @@ html, body {
     transform: scale(1.1);
 }
 
+#aboutButton {
+    position: fixed;
+    width: 2.5vw;
+    top: 0%;
+    left: 0;
+    z-index: 2;
+    background-color: transparent;
+    border: none;
+    transition: transform 0.5s;
+}
+
+#aboutButton:hover {
+    transform: scale(1.1);
+}
+
+#aboutWrapper {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 3;
+    background-color: rgba(0,0,0,0.6);
+    width: 100vw;
+    height: 100vw;
+}
+
+#aboutModal {
+    animation: grow 0.3s;
+    background-color: rgb(195, 207, 221);
+    width: 40vw;
+    height: auto;
+    border-radius: 1em;
+    font-family: 'Open Sans', sans-serif;
+}
+
 #indexPoster {
     object-fit: cover;
     height: 100%;

@@ -20,6 +20,9 @@ const init = () => {
     document.getElementById("homeButton").addEventListener("click", () => {
         goHome(artifactsArray);
     });
+    document.getElementById("aboutButton").addEventListener("click", () => {
+        displayAbout();
+    })
     document.getElementById("rightButtons").addEventListener("mouseover", toggleSidebar);
 };
 
@@ -138,6 +141,7 @@ const goHome = (artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterWrapper = document.getElementById("posterWrapper");
     const homeButton = document.getElementById("homeButton");
+    const aboutButton = document.getElementById("aboutButton");
     const expandedWrapper = document.getElementById("expandedWrapper");
     const galleryElements = document.querySelectorAll(".gallery");
     const rightButtons = document.getElementById("rightButtons");
@@ -145,9 +149,10 @@ const goHome = (artifactsArray) => {
     const tempElements = document.querySelectorAll(".temp");
     const playerButtons = document.querySelectorAll(".playerButton")
     const scrollIndicator = document.getElementById("scrollIndicator");
+
     expandedWrapper.style.display = "none";
     scrollIndicator.style.display = "none";
-    scrollIndicator.style.left = "initial";
+    scrollIndicator.style.left = "26%";
     handlePosterMovers(false);
     handlePosterMovers(true);
     showIndexPaths(true);
@@ -156,6 +161,7 @@ const goHome = (artifactsArray) => {
         if (e.target == posterWrapper) {
             posterWrapper.removeEventListener("transitionend", fadeTransition);
             homeButton.style.display = "none";
+            aboutButton.style.display = "block";
 
             indexPoster.addEventListener("load", imgLoad = (e) => {
                 if (e.target == indexPoster) {
@@ -186,6 +192,19 @@ const goHome = (artifactsArray) => {
     });
     posterWrapper.style.opacity = 0;
 };
+
+// Open a modal displaying info about the website
+const displayAbout = () => {
+    const aboutWrapper = document.getElementById("aboutWrapper");
+
+    handlePosterMovers(false);
+    aboutWrapper.style.display = "flex";
+    aboutWrapper.addEventListener("click", closer = () => {
+        aboutWrapper.style.display = "none";
+        handlePosterMovers(true);
+        aboutWrapper.removeEventListener("click", closer);
+    });
+}
 
 // Open/close the right button menu
 const toggleSidebar = () => {
@@ -224,12 +243,12 @@ const showIndexPaths = (showing) => {
 };
 
 // Transitions poster depending on selected gallery and calls its function
-// TODO fix bug where you can click on a different button quickly before transition finishes
 const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
     const posterMover = document.getElementById("posterMover");
     const homeButton = document.getElementById("homeButton");
+    const aboutButton = document.getElementById("aboutButton");
 
     let desiredArtifacts = [];
     artifactsArray.forEach((artifact) => {
@@ -239,6 +258,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     });
 
     posterVideo.src = "img/transitions/" + selectedGallery + "Transition.mp4";
+    aboutButton.style.display = "none";
 
     // Waits until poster scale transition finishes to trigger
     posterMover.addEventListener("transitionend", posterTransition = (e) => {
@@ -768,7 +788,7 @@ const expandImage = (selectedArtifact) => {
     expandedImg.src = expandedFilepath;
     expandedCaption.innerHTML = selectedArtifact.name;
     expandedWrapper.style.display = "flex";
-    expandedWrapper.addEventListener("click", closer = (event) => {
+    expandedWrapper.addEventListener("click", closer = () => {
         expandedWrapper.style.display = "none";
         expandedWrapper.removeEventListener("click", closer);
     });
