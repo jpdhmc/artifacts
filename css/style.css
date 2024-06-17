@@ -289,9 +289,8 @@ figcaption {
     aspect-ratio: 4/3;
     width: 100%;
     height: 100%;
-    padding-right: 6%;
+    padding: 3%;
     border: none;
-    padding-left: 6%;
 }
 
 .vhsIconText {
