@@ -45,6 +45,16 @@ html, body {
     transform: scale(1.1);
 }
 
+#loadMessage {
+    font-family: 'Open Sans', sans-serif;
+    display: none;
+    z-index: 2;
+    color: black;
+    font-size: xx-large;
+    font-weight: 800;
+    animation: scrollFade 2s infinite alternate-reverse;
+}
+
 #aboutButton {
     position: fixed;
     width: 2.5vw;

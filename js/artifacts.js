@@ -263,11 +263,17 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
     // Waits until poster scale transition finishes to trigger
     posterMover.addEventListener("transitionend", posterTransition = (e) => {
         if (e.target == posterMover) {
+            const loadMessage = document.getElementById("loadMessage");
+            const loadTimer = setTimeout(() => {
+                loadMessage.style.display = "block";
+            }, 1500)
             posterMover.removeEventListener("transitionend", posterTransition);
             posterVideo.style.display = "block";
 
             // Onplay helps avoid a blank frame between image and video
             posterVideo.onplay = () => {
+                clearTimeout(loadTimer);
+                loadMessage.style.display = "none";
                 indexPoster.style.display = "none";
                 indexPoster.src = "img/stills/" + selectedGallery + "Still.jpg";
             };
