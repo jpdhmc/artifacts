@@ -246,6 +246,7 @@ const showIndexPaths = (showing) => {
 const galleryButtonClick = (selectedGallery, artifactsArray) => {
     const indexPoster = document.getElementById("indexPoster");
     const posterVideo = document.getElementById("posterVideo");
+    const posterSource = document.getElementById("posterSource");
     const posterMover = document.getElementById("posterMover");
     const homeButton = document.getElementById("homeButton");
     const aboutButton = document.getElementById("aboutButton");
@@ -257,7 +258,7 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
         }
     });
 
-    posterVideo.src = "img/transitions/" + selectedGallery + "Transition.mp4";
+    posterSource.src = "img/transitions/" + selectedGallery + "Transition.mp4";
     aboutButton.style.display = "none";
 
     // Waits until poster scale transition finishes to trigger
@@ -268,12 +269,14 @@ const galleryButtonClick = (selectedGallery, artifactsArray) => {
                 loadMessage.style.display = "block";
             }, 1500)
             posterMover.removeEventListener("transitionend", posterTransition);
+            posterVideo.load();
             posterVideo.style.display = "block";
+            posterVideo.play();
 
             // Onplay helps avoid a blank frame between image and video
             posterVideo.onplay = () => {
-                clearTimeout(loadTimer);
                 loadMessage.style.display = "none";
+                clearTimeout(loadTimer);
                 indexPoster.style.display = "none";
                 indexPoster.src = "img/stills/" + selectedGallery + "Still.jpg";
             };
@@ -791,6 +794,7 @@ const expandImage = (selectedArtifact) => {
     expandedWrapper.style.display = "flex";
     expandedWrapper.addEventListener("click", closer = () => {
         expandedWrapper.style.display = "none";
+        expandedImg.src = "";
         expandedWrapper.removeEventListener("click", closer);
     });
 };
