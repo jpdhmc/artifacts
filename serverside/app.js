@@ -10,10 +10,13 @@ const imgFolderPath = "../img/gallery";
 const outputPath = "../include/artifacts.json"
 
 let filesArray = [];
+let artifactId = 0;
+let categorySpecificId;
 
 // Traverse server directory and add artifacts to filesArray
 const traverseDirectory = (directory) => {
     let filesAndFolders = fs.readdirSync(directory);
+    categorySpecificId = 0;
 
     filesAndFolders.forEach(fileOrFolder => {
         let fullPath = path.join(directory, fileOrFolder);
@@ -24,6 +27,8 @@ const traverseDirectory = (directory) => {
             traverseDirectory(fullPath);
         } else if (!fileOrFolder.includes(".jpg")) {
             // if file + not a fullsized img, create an object to represent it and place it in the filesArray
+            artifactId++;
+            categorySpecificId++;
             let parentFolder = path.relative(imgFolderPath, directory);
             let galleryFolder = parentFolder.split("\\")[0];
             let categoryFolder = parentFolder.split("\\")[1];
@@ -41,11 +46,13 @@ const traverseDirectory = (directory) => {
             let tags = fileOrFolder.split(".")[0].split("=")[1];
             let artifactPath = "img/gallery/" + galleryFolder + "/" + categoryFolder + "/" + fileOrFolder;
             let file = {
+                id: artifactId,
+                categorySpecificId: categorySpecificId,
                 name: title,
                 gallery: galleryFolder,
                 category: categoryFolder,
                 filePath: artifactPath,
-                tags: tags,
+                tags: tags
             };
             filesArray.push(file);
         }
